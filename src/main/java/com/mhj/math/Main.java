@@ -9,7 +9,7 @@ public class Main {
 
 	}
 
-	private static String leftPadZeros(final int number, final long value) {
+	public static String leftPadZeros(final int number, final long value) {
 		return String.format("%0"+ number +"d", value);	
 	}
 

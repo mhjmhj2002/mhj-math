@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="security"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -22,9 +21,6 @@
 	</header>
 
 	<section id="about">
-
-
-
 		<div class="container">
 			<form:form action="${s:mvcUrl('MC#calcular').build() }" method="POST"
 				commandName="valores">
@@ -32,8 +28,8 @@
 					<div>
 						<p>
 							<span id="myspan"> <input type="number" min="1" max="9999"
-								cssClass="form-control" /> <input type="number" min="1"
-								max="9999" cssClass="form-control" />
+								class="form-control" /> <input type="number" min="1"
+								max="9999" class="form-control" />
 							</span> <br> <br>
 						</p>
 					</div>
