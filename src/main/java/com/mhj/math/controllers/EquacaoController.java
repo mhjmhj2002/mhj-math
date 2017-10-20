@@ -43,7 +43,7 @@ public class EquacaoController {
 
 	@RequestMapping("equacao")
 	public ModelAndView form(EquacaoGrau2 equacaoGrau2) {
-		ModelAndView modelAndView = new ModelAndView("math/equacao");
+		ModelAndView modelAndView = new ModelAndView("math/em/1ano/equacao2grau");
 		modelAndView.addObject("sinais", Sinal.values());
 
 		return modelAndView;
@@ -66,7 +66,7 @@ public class EquacaoController {
 
 		Operacao operacao = equacaoGrau2Build.resolver();
 
-		ModelAndView modelAndView = new ModelAndView("math/equacao_resultado");
+		ModelAndView modelAndView = new ModelAndView("math/em/1ano/equacao_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
 
 		return modelAndView;

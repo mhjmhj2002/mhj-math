@@ -3,7 +3,9 @@ package com.mhj.math;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println(leftPadZeros(3, 1));
+		String str = "12345678901234567890";
+		System.out.println(str.substring(0, 16));
+		//System.out.println(leftPadZeros(3, 1));
 
 	}
 

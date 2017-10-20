@@ -2,11 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-	id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
 	<div class="container">
-		<a class="navbar-brand js-scroll-trigger" href="${homePath}#page-top"><fmt:message
-				key="header.home" /></a>
+		<a class="navbar-brand js-scroll-trigger" href="${homePath}#page-top">
+			<fmt:message key="header.home" />
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -14,14 +14,44 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="#about"><fmt:message key="header.about" /></a></li>
-				<!--             <li class="nav-item"> -->
-				<!--               <a class="nav-link js-scroll-trigger" href="#services">Services</a> -->
-				<!--             </li> -->
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="${homePath}#contact"><fmt:message key="header.contact" /></a>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="#about">
+						<fmt:message key="header.about" />
+					</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="${homePath}#contact">
+						<fmt:message key="header.contact" />
+					</a>
+				</li>
+				
+        	<li class="nav-item dropdown">
+            	<a id="dLabel" role="button" data-toggle="dropdown" class="nav-link dropdown-toggle" data-target="#" href="/page.html">
+                	Dropdown <span class="caret"></span>
+            	</a>
+    			<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              		<li><a class="dropdown-item" href="#">Some action</a></li>
+              		<li><a class="dropdown-item" href="#">Some other action</a></li>
+              		<li class="divider"></li>
+              		<li class="dropdown-submenu">
+                <a class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" tabindex="-1" href="#">Second level</a></li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item" href="#">Even More..</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">3rd level</a></li>
+                    	<li><a class="dropdown-item" href="#">3rd level</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Second level</a></li>
+                  <li><a class="dropdown-item" href="#">Second level</a></li>
+                </ul>
+              </li>
+            </ul>
+        </li>
+
+				<!-- original -->
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDropdownPortfolio" data-toggle="dropdown"
@@ -41,14 +71,14 @@
 							href="portfolio-item.html"><fmt:message
 								key="header.operations.5" /></a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="?locale=pt" rel="nofollow"> <fmt:message
-							key="menu.pt" />
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="?locale=pt" rel="nofollow"> <fmt:message key="menu.pt" />
 				</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="?locale=es" rel="nofollow"> <fmt:message
-							key="menu.es" />
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="?locale=es" rel="nofollow"> <fmt:message key="menu.es" />
 				</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="?locale=en" rel="nofollow"> <fmt:message
-							key="menu.en" />
+				<li class="nav-item"><a class="nav-link js-scroll-trigger"
+					href="?locale=en" rel="nofollow"> <fmt:message key="menu.en" />
 				</a></li>
 			</ul>
 		</div>
