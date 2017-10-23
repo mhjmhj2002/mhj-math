@@ -2,7 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+	id="mainNav">
 	<div class="container">
 		<a class="navbar-brand js-scroll-trigger" href="${homePath}#page-top">
 			<fmt:message key="header.home" />
@@ -14,63 +15,112 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" href="#about">
-						<fmt:message key="header.about" />
+				<li class="nav-item dropdown">
+					<a id="dLabel" role="button" data-toggle="dropdown" class="nav-link dropdown-toggle" data-target="#" href="/page.html"><fmt:message	key="header.operations"/> 
+						<span class="caret"></span>
 					</a>
+					<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+						<li class="dropdown-submenu">
+							<a class="dropdown-item" tabindex="-1" href="#">EF1</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">1 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">2 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">3 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">4 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">5 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>					
+						<li class="dropdown-submenu">
+							<a class="dropdown-item" tabindex="-1" href="#">EF2</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">6 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">7 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">8 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">9 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li class="dropdown-submenu">
+							<a class="dropdown-item" tabindex="-1" href="#">EM</a>
+							<ul class="dropdown-menu">
+<!-- 								<li><a class="dropdown-item" tabindex="-1" href="#">Second level</a></li> -->
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">1 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="${mathPath}/equacao">Equação</a></li>
+<!-- 										<li><a class="dropdown-item" href="#">3rd level</a></li> -->
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">2 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a class="dropdown-item" href="#">3 Ano</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+									</ul>
+								</li>
+<!-- 								<li><a class="dropdown-item" href="#">Second level</a></li> -->
+<!-- 								<li><a class="dropdown-item" href="#">Second level</a></li> -->
+							</ul>
+						</li>
+					</ul>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" href="${homePath}contato">
-						<fmt:message key="header.contact" />
-					</a>
+					<a class="nav-link js-scroll-trigger" href="#about"><fmt:message key="header.about"/></a>
 				</li>
-				
-        	<li class="nav-item dropdown">
-            	<a id="dLabel" role="button" data-toggle="dropdown" class="nav-link dropdown-toggle" data-target="#" href="/page.html">
-                	Dropdown <span class="caret"></span>
-            	</a>
-    			<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              		<li><a class="dropdown-item" href="#">Some action</a></li>
-              		<li><a class="dropdown-item" href="#">Some other action</a></li>
-              		<li class="divider"></li>
-              		<li class="dropdown-submenu">
-                <a class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" tabindex="-1" href="#">Second level</a></li>
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-item" href="#">Even More..</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">3rd level</a></li>
-                    	<li><a class="dropdown-item" href="#">3rd level</a></li>
-                    </ul>
-                  </li>
-                  <li><a class="dropdown-item" href="#">Second level</a></li>
-                  <li><a class="dropdown-item" href="#">Second level</a></li>
-                </ul>
-              </li>
-            </ul>
-        </li>
-
-				<!-- original -->
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownPortfolio" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> <fmt:message
-							key="header.operations" />
-				</a>
-					<div class="dropdown-menu dropdown-menu-right"
-						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="${mathPath}/equacao"><fmt:message
-								key="header.operations.1" /></a> <a class="dropdown-item"
-							href="portfolio-2-col.html"><fmt:message
-								key="header.operations.2" /></a> <a class="dropdown-item"
-							href="portfolio-3-col.html"><fmt:message
-								key="header.operations.3" /></a> <a class="dropdown-item"
-							href="portfolio-4-col.html"><fmt:message
-								key="header.operations.4" /></a> <a class="dropdown-item"
-							href="portfolio-item.html"><fmt:message
-								key="header.operations.5" /></a>
-					</div></li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="${homePath}contato"><fmt:message key="header.contact"/></a>
+				</li>
 				<li class="nav-item"><a class="nav-link js-scroll-trigger"
 					href="?locale=pt" rel="nofollow"> <fmt:message key="menu.pt" />
 				</a></li>
@@ -80,6 +130,27 @@
 				<li class="nav-item"><a class="nav-link js-scroll-trigger"
 					href="?locale=en" rel="nofollow"> <fmt:message key="menu.en" />
 				</a></li>
+
+				<!-- original -->
+<!-- 				<li class="nav-item dropdown"><a -->
+<!-- 					class="nav-link dropdown-toggle" href="#" -->
+<!-- 					id="navbarDropdownPortfolio" data-toggle="dropdown" -->
+<%-- 					aria-haspopup="true" aria-expanded="false"> <fmt:message --%>
+<%-- 							key="header.operations" /> --%>
+<!-- 				</a> -->
+<!-- 					<div class="dropdown-menu dropdown-menu-right" -->
+<!-- 						aria-labelledby="navbarDropdownPortfolio"> -->
+<%-- 						<a class="dropdown-item" href="${mathPath}/equacao"><fmt:message --%>
+<%-- 								key="header.operations.1" /></a> <a class="dropdown-item" --%>
+<%-- 							href="portfolio-2-col.html"><fmt:message --%>
+<%-- 								key="header.operations.2" /></a> <a class="dropdown-item" --%>
+<%-- 							href="portfolio-3-col.html"><fmt:message --%>
+<%-- 								key="header.operations.3" /></a> <a class="dropdown-item" --%>
+<%-- 							href="portfolio-4-col.html"><fmt:message --%>
+<%-- 								key="header.operations.4" /></a> <a class="dropdown-item" --%>
+<%-- 							href="portfolio-item.html"><fmt:message --%>
+<%-- 								key="header.operations.5" /></a> --%>
+<!-- 					</div></li> -->
 			</ul>
 		</div>
 	</div>

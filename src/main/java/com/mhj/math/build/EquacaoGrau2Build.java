@@ -55,7 +55,7 @@ public class EquacaoGrau2Build extends Build{
 
 	@Override
 	protected void titulo() {
-		System.out.println(messageSource.getMessage("typeMismatch.produto.numeros", null, locale));
+//		System.out.println(messageSource.getMessage("typeMismatch.produto.numeros", null, locale));
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("EquacaoGrau2Build.titulo.1", null, locale)));
 		operacao.getRetorno().add(new Descricao(equacaoGrau2.getMetodo().getNome()));
 		operacao.getRetorno().add(Simbolo.ESPACO);

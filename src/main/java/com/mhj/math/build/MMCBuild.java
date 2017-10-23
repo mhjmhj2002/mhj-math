@@ -2,6 +2,13 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
@@ -19,15 +26,27 @@ import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Divisao;
 import com.mhj.math.operacao.MMC;
 import com.mhj.math.operacao.Operacao;
-import com.mhj.math.util.MathProperties;
 import com.mhj.math.util.MathjaxUtil;
 import com.mhj.math.util.OperacaoUtil;
 
-public class MMCBuild extends Build{
+@Component
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
+public class MMCBuild extends Build {
+
+	@Autowired
+	private MessageSource messageSource;
+
+	Locale locale;
+
 	private MMC mmc;
 	List<MMC> decomposicoes;
 	Inteiro resultado;
-	
+
+	public MMCBuild() {
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+		decomposicoes = new ArrayList<>();
+	}
+
 	public MMCBuild(MMC mmc, Operacao operacao) {
 		super(operacao);
 		this.mmc = mmc;
@@ -47,28 +66,29 @@ public class MMCBuild extends Build{
 	@Override
 	protected void titulo() throws BusinessException {
 		if (mmc.isIrredutivel()) {
-			operacao.getRetorno().add(new Descricao(MathProperties.getPropertyString("MMCBuild.titulo.1")));
-		}else{
-			operacao.getRetorno().add(new Descricao(MathProperties.getPropertyString("MMCBuild.titulo.2")));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.titulo.1", null, locale)));
+		} else {
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.titulo.2", null, locale)));
 		}
-		
+
 		for (Inteiro numero : mmc.getNumeros()) {
 			operacao.getRetorno().add(numero);
 			operacao.getRetorno().add(Simbolo.VIRGULA);
 			operacao.getRetorno().add(Simbolo.ESPACO);
 		}
-		operacao.getRetorno().remove(operacao.getRetorno().size()-1);
-		operacao.getRetorno().remove(operacao.getRetorno().size()-1);
+		operacao.getRetorno().remove(operacao.getRetorno().size() - 1);
+		operacao.getRetorno().remove(operacao.getRetorno().size() - 1);
 		operacao.getRetorno().add(Simbolo.PARENTESE_FECHA);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		
+
 	}
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
+		verificarNumerosIguais();
 		verificarPrimos();
-		
+
 	}
 
 	@Override
@@ -76,13 +96,13 @@ public class MMCBuild extends Build{
 		calcularDecomposicoes(mmc);
 		operacao.getRetorno().add(new Descricao("Resolvendo:"));
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		
+
 		abreMath();
-		
+
 		List<Inteiro> resultados = montaMatriz();
-		
+
 		fechaMath();
-		
+
 		operacao.getRetorno().add(new Descricao("Multiplicando temos:"));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		for (Inteiro inteiro : resultados) {
@@ -101,32 +121,32 @@ public class MMCBuild extends Build{
 		operacao.getRetorno().add(resultado);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		
+
 	}
-	
+
 	private void verificarPrimos() throws RegraException {
-		operacao.getRetorno().add(new Descricao(MathProperties.getPropertyString("MMCBuild.verificarPrimos.1")));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.verificarPrimos.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		
+
 		boolean primos = true;
-		
+
 		for (Inteiro numero : mmc.getNumeros()) {
-			if(!OperacaoUtil.ehPrimo(numero)){
+			if (!OperacaoUtil.ehPrimo(numero)) {
 				primos = false;
 				break;
 			}
 		}
-		
+
 		if (primos) {
-			operacao.getRetorno().add(new Descricao("numeros são primos por tanto:"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.verificarPrimos.2", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			operacao.getRetorno().add(new Descricao("MMC"));
 			operacao.getRetorno().add(Simbolo.ESPACO);
 			operacao.getRetorno().add(Simbolo.IGUAL);
 			operacao.getRetorno().add(Simbolo.ESPACO);
-			
+
 			Inteiro multiplicacao = new Inteiro(1);
-			
+
 			for (Inteiro numero : mmc.getNumeros()) {
 				operacao.getRetorno().add(numero);
 				operacao.getRetorno().add(Simbolo.ESPACO);
@@ -134,57 +154,56 @@ public class MMCBuild extends Build{
 				operacao.getRetorno().add(Simbolo.ESPACO);
 				multiplicacao = OperacaoUtil.multiplicacao(multiplicacao, numero);
 			}
-			
-			operacao.getRetorno().remove(operacao.getRetorno().size()-1);
-			operacao.getRetorno().remove(operacao.getRetorno().size()-1);
+
+			operacao.getRetorno().remove(operacao.getRetorno().size() - 1);
+			operacao.getRetorno().remove(operacao.getRetorno().size() - 1);
 			operacao.getRetorno().add(Simbolo.IGUAL);
 			operacao.getRetorno().add(Simbolo.ESPACO);
 			operacao.getRetorno().add(multiplicacao);
 			throw new RegraException();
-		}else{
-			operacao.getRetorno().add(new Descricao("numeros não são primos."));
+		} else {
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.verificarPrimos.3", null, locale)));
 		}
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 	}
 
-	private void calcularDecomposicoes(MMC mmc) throws BusinessException{
-		
+	private void calcularDecomposicoes(MMC mmc) throws BusinessException {
+
 		if (mmc.isIrredutivel()) {
-			if(calculoDecomposicoesFinalizado(mmc)){
+			if (calculoDecomposicoesFinalizado(mmc)) {
 				return;
 			}
 			decomposicoes.add(mmc);
-		}else{
+		} else {
 			decomposicoes.add(mmc);
-			if(calculoDecomposicoesFinalizado(mmc)){
+			if (calculoDecomposicoesFinalizado(mmc)) {
 				return;
 			}
 		}
-		
+
 		List<Inteiro> numeros = new ArrayList<>();
-		
+
 		for (Inteiro numero : mmc.getNumeros()) {
 			if (numero.getValor() < 1) {
-				throw new BusinessException("erro no calculo de decomposicao");
+				throw new BusinessException(messageSource.getMessage("MMCBuild.calcularDecomposicoes.1", null, locale));
 			}
-			
+
 			if (numero.getValor() == 1) {
 				numeros.add(numero);
 				continue;
 			}
-			
+
 			if (numero.getValor() < mmc.getDivisor().getValor()) {
 				numeros.add(numero);
 				continue;
 			}
-			
-			
+
 			if (OperacaoUtil.resto(numero, mmc.getDivisor()).getValor() == 0) {
-				Divisao divisao = OperacaoUtil.divisao(numero, mmc.getDivisor());	
+				Divisao divisao = OperacaoUtil.divisao(numero, mmc.getDivisor());
 				numeros.add(divisao.getQuociente());
 				continue;
-			}else{
+			} else {
 				numeros.add(numero);
 			}
 		}
@@ -192,24 +211,23 @@ public class MMCBuild extends Build{
 		MMC calculo;
 		if (mmc.isIrredutivel()) {
 			calculo = new MMC(numeros, mmc.getResultado(), true);
-		}else{
+		} else {
 			calculo = new MMC(numeros, mmc.getResultado());
 		}
 		calcularDecomposicoes(calculo);
-		
+
 	}
 
 	private boolean calculoDecomposicoesFinalizado(MMC mmc) {
 		List<Inteiro> numeros = mmc.getNumeros();
 		for (Inteiro inteiro : numeros) {
 			if (mmc.isIrredutivel()) {
-				if (inteiro.getValor() < 2){
+				if (inteiro.getValor() < 2) {
 					return true;
-				}else{
+				} else {
 					return false;
 				}
-			}else 
-				if (inteiro.getValor() > 1) {
+			} else if (inteiro.getValor() > 1) {
 				return false;
 			}
 		}
@@ -219,81 +237,81 @@ public class MMCBuild extends Build{
 	public Inteiro getResultado() {
 		return resultado;
 	}
-	
+
 	private List<Inteiro> montaMatriz() {
-		List<Inteiro> resultados = new ArrayList<>(); 
+		List<Inteiro> resultados = new ArrayList<>();
 		List<ValueComposta> values = new ArrayList<>();
 		List<PropertyComposta> properties = new ArrayList<>();
 		int qtdeNumeros = mmc.getNumeros().size();
-		
+
 		ValueComposta value = new ValueComposta(MathjaxValue.PT, new Inteiro(qtdeNumeros));
 		values = new ArrayList<>();
 		values.add(value);
-		PropertyComposta property = new PropertyComposta(MathjaxProperty.ROW_SPACING, values);		
+		PropertyComposta property = new PropertyComposta(MathjaxProperty.ROW_SPACING, values);
 		properties.add(property);
-		
+
 		values = new ArrayList<>();
 		value = new ValueComposta(MathjaxValue.EM, new Inteiro(1));
 		values.add(value);
-		property = new PropertyComposta(MathjaxProperty.COLUMN_SPACING, values);		
+		property = new PropertyComposta(MathjaxProperty.COLUMN_SPACING, values);
 		properties.add(property);
-				
-		TagComposta tag = new TagComposta(MathjaxTag.MTABLE_OPEN, properties);		
+
+		TagComposta tag = new TagComposta(MathjaxTag.MTABLE_OPEN, properties);
 		operacao.getRetorno().addAll(MathjaxUtil.montarTagComposta(tag));
-		
+
 		properties = new ArrayList<>();
-		
+
 		operacao.getRetorno().add(MathjaxTag.MTD_OPEN);
 
 		values = new ArrayList<>();
-		value = new ValueComposta(MathjaxValue.CENTER); 
+		value = new ValueComposta(MathjaxValue.CENTER);
 		for (int i = 0; i < qtdeNumeros; i++) {
 			values.add(value);
 		}
 		values.add(value);
 		values.add(value);
-		property = new PropertyComposta(MathjaxProperty.COLUMN_ALIGN, values);		
+		property = new PropertyComposta(MathjaxProperty.COLUMN_ALIGN, values);
 		properties.add(property);
-		
+
 		values = new ArrayList<>();
 		value = new ValueComposta(MathjaxValue.PT, new Inteiro(qtdeNumeros));
 		values.add(value);
-		property = new PropertyComposta(MathjaxProperty.ROW_SPACING, values);		
+		property = new PropertyComposta(MathjaxProperty.ROW_SPACING, values);
 		properties.add(property);
-		
+
 		values = new ArrayList<>();
 		value = new ValueComposta(MathjaxValue.EM, new Inteiro(1));
 		values.add(value);
-		property = new PropertyComposta(MathjaxProperty.COLUMN_SPACING, values);		
+		property = new PropertyComposta(MathjaxProperty.COLUMN_SPACING, values);
 		properties.add(property);
 
 		values = new ArrayList<>();
-		value = new ValueComposta(MathjaxValue.SOLID); 		
+		value = new ValueComposta(MathjaxValue.SOLID);
 		values.add(value);
 		value = new ValueComposta(MathjaxValue.NONE);
 		values.add(value);
-		property = new PropertyComposta(MathjaxProperty.ROW_LINES, values);		
+		property = new PropertyComposta(MathjaxProperty.ROW_LINES, values);
 		properties.add(property);
 
 		values = new ArrayList<>();
-		
+
 		for (int i = 0; i < qtdeNumeros; i++) {
-			if (i == qtdeNumeros-1) {
+			if (i == qtdeNumeros - 1) {
 				value = new ValueComposta(MathjaxValue.SOLID);
-				values.add(value);	
-			}else{
+				values.add(value);
+			} else {
 				value = new ValueComposta(MathjaxValue.NONE);
 				values.add(value);
 			}
 		}
 		value = new ValueComposta(MathjaxValue.NONE);
 		values.add(value);
-		property = new PropertyComposta(MathjaxProperty.COLUMN_LINES, values);		
+		property = new PropertyComposta(MathjaxProperty.COLUMN_LINES, values);
 		properties.add(property);
-		
-		tag = new TagComposta(MathjaxTag.MTABLE_OPEN, properties);		
+
+		tag = new TagComposta(MathjaxTag.MTABLE_OPEN, properties);
 		operacao.getRetorno().addAll(MathjaxUtil.montarTagComposta(tag));
-		
+
 		for (MMC mmc : decomposicoes) {
 			operacao.getRetorno().add(MathjaxTag.MTR_OPEN);
 			for (Inteiro numero : mmc.getNumeros()) {
@@ -308,10 +326,10 @@ public class MMCBuild extends Build{
 			operacao.getRetorno().add(mmc.getDivisor());
 			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 			operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
-			
+
 			resultados.add(mmc.getDivisor());
-			resultado = mmc.getResultado();	
-			
+			resultado = mmc.getResultado();
+
 			operacao.getRetorno().add(MathjaxTag.MTR_CLOSE);
 
 		}
@@ -319,6 +337,38 @@ public class MMCBuild extends Build{
 		operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
 		operacao.getRetorno().add(MathjaxTag.MTABLE_CLOSE);
 		return resultados;
+	}
+
+	public void setMmc(MMC mmc) {
+		this.mmc = mmc;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	private void verificarNumerosIguais() throws RegraException {
+		
+		Inteiro num = mmc.getNumeros().get(0);
+
+		for (Inteiro numero : mmc.getNumeros()) {
+			if (!numero.getValor().equals(num.getValor())) {
+				return;
+			}
+		}
+
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.verificarNumerosIguais.1", null, locale)));
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			operacao.getRetorno().add(new Descricao("MMC"));
+			operacao.getRetorno().add(Simbolo.ESPACO);
+			operacao.getRetorno().add(Simbolo.IGUAL);
+			operacao.getRetorno().add(Simbolo.ESPACO);
+			operacao.getRetorno().add(num);
+			
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			
+			throw new RegraException();
 	}
 
 }

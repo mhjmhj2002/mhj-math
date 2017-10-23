@@ -22,14 +22,15 @@
 
 	<section id="about">
 		<div class="container">
-			<form:form action="${s:mvcUrl('MC#calcular').build() }" method="POST"
-				commandName="valores">
-				<div class="form-group">
+		
+		<form action="${s:mvcUrl('MC#calcular').build() }" method="post">
+		<div class="form-group">
 					<div>
 						<p>
-							<span id="myspan"> <input type="number" min="1" max="9999"
-								class="form-control" /> <input type="number" min="1"
-								max="9999" class="form-control" />
+							<span id="myspan"> 
+								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1" />
+								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1" /> 
+<%-- 								<form:input path="numeros" type="number" min="1" max="9999" class="form-control" value="1" /> --%>
 							</span> <br> <br>
 						</p>
 					</div>
@@ -44,7 +45,31 @@
 				<button type="submit" class="btn btn-primary">
 					<fmt:message key="equacao.calculate" />
 				</button>
-			</form:form>
+		</form>
+		
+<%-- 			<form:form action="${s:mvcUrl('MC#calcular').build() }" method="POST" --%>
+<%-- 				commandName="mmcDto"> --%>
+<!-- 				<div class="form-group"> -->
+<!-- 					<div> -->
+<!-- 						<p> -->
+<%-- 							<span id="myspan">  --%>
+<%-- 								<form:input path="numeros" type="number" min="1" max="9999" class="form-control" value="1" />  --%>
+<%-- 								<form:input path="numeros" type="number" min="1" max="9999" class="form-control" value="1" /> --%>
+<%-- 							</span> <br> <br> --%>
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 						<p> -->
+<!-- 							<input class="btn btn-primary" type="button" value="Add Rows" -->
+<!-- 								onclick="add();" /> <input class="btn btn-primary" -->
+<!-- 								type="button" value="Delete Rows" onclick="remove();" /> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<button type="submit" class="btn btn-primary"> -->
+<%-- 					<fmt:message key="equacao.calculate" /> --%>
+<!-- 				</button> -->
+<%-- 			</form:form> --%>
 
 		</div>
 	</section>
@@ -52,10 +77,12 @@
 	<script type="text/javascript">
 		function add() {
 			var element = document.createElement("input");
+			element.setAttribute("name", "numeros");
 			element.setAttribute("type", "number");
 			element.setAttribute("min", "1");
 			element.setAttribute("max", "9999");
-			element.setAttribute("cssClass", "form-control");
+			element.setAttribute("class", "form-control");
+			element.setAttribute("value", "1");
 			var spanvar = document.getElementById("myspan");
 			spanvar.appendChild(element);
 		}

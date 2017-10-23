@@ -1,5 +1,6 @@
 package com.mhj.math.operacao;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,6 +10,10 @@ import com.mhj.math.util.OperacaoUtil;
 public class MMC extends Comum{
 
 	private boolean irredutivel;
+	
+	public MMC(){
+		super(new Inteiro(1) , new ArrayList<>());
+	}
 	
 	public MMC(List<Inteiro> numeros, Inteiro resultado){
 		super(resultado, numeros);

@@ -21,7 +21,6 @@ import com.mhj.math.data.Descricao;
 import com.mhj.math.enums.Letra;
 import com.mhj.math.enums.Sinal;
 import com.mhj.math.exception.BusinessException;
-import com.mhj.math.exception.RegraException;
 import com.mhj.math.metodo.Bhaskara;
 import com.mhj.math.operacao.EquacaoGrau2;
 import com.mhj.math.operacao.Operacao;
@@ -29,7 +28,7 @@ import com.mhj.math.print.Impressao;
 import com.mhj.math.validation.EquacaoGrau2Validation;
 
 @Controller
-@RequestMapping("/math")
+@RequestMapping("/math/equacao")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class EquacaoController {
 
@@ -50,7 +49,7 @@ public class EquacaoController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView calcular(@Valid EquacaoGrau2 equacaoGrau2, Locale locale, BindingResult result, RedirectAttributes redirectAttributes) throws BusinessException, RegraException {
+	public ModelAndView calcular(@Valid EquacaoGrau2 equacaoGrau2, Locale locale, BindingResult result, RedirectAttributes redirectAttributes) throws BusinessException {
 		
 		if (result.hasErrors()) {
 		return form(equacaoGrau2);
