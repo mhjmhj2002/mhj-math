@@ -77,11 +77,7 @@ public class Test {
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
 		FracaoBuild fracaoBuild = new FracaoBuildMultiplicacao(fracoes, operacao);
-		try {
-			fracaoBuild.resolver();
-		} catch (RegraException e) {
-			e.printStackTrace();
-		}
+		fracaoBuild.resolver();
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "teste4", operacao.getRetorno());
 		impressao.imprimirTexto("c:/manuel/", "teste4", operacao.getRetorno());
@@ -104,11 +100,7 @@ public class Test {
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
 		FracaoBuildDivisao fracaoBuild = new FracaoBuildDivisao(fracoes, operacao);
-		try {
-			fracaoBuild.resolver();
-		} catch (RegraException e) {
-			e.printStackTrace();
-		}
+		fracaoBuild.resolver();
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "teste4", operacao.getRetorno());
 		impressao.imprimirTexto("c:/manuel/", "teste4", operacao.getRetorno());
@@ -140,11 +132,7 @@ public class Test {
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
 		FracaoBuild fracaoBuild = new FracaoBuildSoma(fracoes, operacao);
-		try {
-			fracaoBuild.resolver();
-		} catch (RegraException e) {
-			e.printStackTrace();
-		}
+		fracaoBuild.resolver();
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "teste4", operacao.getRetorno());
 		impressao.imprimirTexto("c:/manuel/", "teste4", operacao.getRetorno());
@@ -170,7 +158,6 @@ public class Test {
 			mmcBuild.resolver();
 		} catch (BusinessException e) {
 			e.printStackTrace();
-		} catch (RegraException e) {
 		}
 
 		Impressao impressao = new Impressao();
@@ -328,7 +315,6 @@ public class Test {
 			mmcBuild.resolver();
 		} catch (BusinessException e) {
 			e.printStackTrace();
-		} catch (RegraException e) {
 		}
 
 		Impressao impressao = new Impressao();
