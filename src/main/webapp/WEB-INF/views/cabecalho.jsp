@@ -20,7 +20,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" href="${homePath}#contact">
+					<a class="nav-link js-scroll-trigger" href="${homePath}contato">
 						<fmt:message key="header.contact" />
 					</a>
 				</li>
