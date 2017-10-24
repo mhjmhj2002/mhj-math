@@ -2,6 +2,13 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
@@ -19,14 +26,26 @@ import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Divisao;
 import com.mhj.math.operacao.MDC;
 import com.mhj.math.operacao.Operacao;
-import com.mhj.math.util.MathProperties;
 import com.mhj.math.util.MathjaxUtil;
 import com.mhj.math.util.OperacaoUtil;
 
+@Component
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class MDCBuild extends Build {
+
+	@Autowired
+	private MessageSource messageSource;
+
+	Locale locale;
+	
 	private MDC mdc;
 	List<MDC> decomposicoes;
 	Inteiro resultado;
+
+	public MDCBuild() {
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+		decomposicoes = new ArrayList<>();
+	}
 
 	public MDCBuild(MDC mdc, Operacao operacao) {
 		super(operacao);
@@ -37,16 +56,16 @@ public class MDCBuild extends Build {
 	@Override
 	protected void validarParametros() throws BusinessException, RegraException {
 		if (mdc == null) {
-			throw new BusinessException("MDC obrigatório!");
+			throw new BusinessException(messageSource.getMessage("MDCBuild.validarParametros.1", null, locale));
 		}
 		if (mdc.getNumeros() == null || mdc.getNumeros().isEmpty()) {
-			throw new BusinessException("MDC obrigatório!");
+			throw new BusinessException(messageSource.getMessage("MDCBuild.validarParametros.1", null, locale));
 		}
 	}
 
 	@Override
 	protected void titulo() throws BusinessException {
-		operacao.getRetorno().add(new Descricao("Resolvendo MDC de ( "));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MDCBuild.titulo.1", null, locale)));
 		
 		for (Inteiro numero : mdc.getNumeros()) {
 			operacao.getRetorno().add(numero);
@@ -69,7 +88,7 @@ public class MDCBuild extends Build {
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
 		calcularDecomposicoes(mdc);
-		operacao.getRetorno().add(new Descricao("Resolvendo:"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MDCBuild.resolucao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		abreMath();
@@ -78,7 +97,7 @@ public class MDCBuild extends Build {
 		
 		fechaMath();
 		
-		operacao.getRetorno().add(new Descricao("Multiplicando temos:"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MDCBuild.resolucao.2", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		for (Inteiro inteiro : resultados) {
 			operacao.getRetorno().add(inteiro);
@@ -99,7 +118,7 @@ public class MDCBuild extends Build {
 	}
 
 	private void verificarPrimos() throws RegraException {
-		operacao.getRetorno().add(new Descricao(MathProperties.getPropertyString("MMCBuild.verificarPrimos.1")));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MDCBuild.verificarPrimos.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		boolean primos = true;
@@ -112,7 +131,7 @@ public class MDCBuild extends Build {
 		}
 		
 		if (primos) {
-			operacao.getRetorno().add(new Descricao("numeros são primos por tanto:"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MDCBuild.verificarPrimos.2", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			operacao.getRetorno().add(new Descricao("MDC"));
 			operacao.getRetorno().add(Simbolo.ESPACO);
@@ -122,7 +141,7 @@ public class MDCBuild extends Build {
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			throw new RegraException();
 		}else{
-			operacao.getRetorno().add(new Descricao("numeros não são primos."));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MDCBuild.verificarPrimos.3", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 		}
 	}
@@ -138,7 +157,7 @@ public class MDCBuild extends Build {
 		
 		for (Inteiro numero : mdc.getNumeros()) {
 			if (numero.getValor() < 1) {
-				throw new BusinessException("erro no calculo de decomposicao");
+				throw new BusinessException(messageSource.getMessage("MDCBuild.calcularDecomposicoes.1", null, locale));
 			}
 			
 			if (numero.getValor() == 1) {
@@ -280,6 +299,14 @@ public class MDCBuild extends Build {
 		operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
 		operacao.getRetorno().add(MathjaxTag.MTABLE_CLOSE);
 		return resultados;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	public void setMdc(MDC mdc) {
+		this.mdc = mdc;
 	}
 
 }

@@ -28,7 +28,7 @@ import com.mhj.math.validation.MMCValidation;
 @Controller
 @RequestMapping("/math/mmc")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class MinController {
+public class MMCController {
 
 	@Autowired
 	private MMCBuild mmcBuild;
@@ -46,8 +46,8 @@ public class MinController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView calcular(@RequestParam("numeros") List<Integer> numeros, Locale locale) throws BusinessException, RegraException {
+	@RequestMapping(method = RequestMethod.POST, name="calcular_mmc")
+	public ModelAndView calcular(@RequestParam("numeros") List<Integer> numeros, Locale locale) throws BusinessException {
 		
 		List<Inteiro> nums = new ArrayList<>();
 		

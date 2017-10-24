@@ -1,5 +1,10 @@
 package com.mhj.math.conf;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
@@ -45,9 +50,46 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		
+		Properties prop = getProperties();
+		
 		super.onStartup(servletContext);
 		servletContext.addListener(RequestContextListener.class);
-		servletContext.setInitParameter("spring.profiles.active", "dev");
+		
+		String activeProfile = prop.getProperty("enviroment");
+		if (activeProfile == null) {
+			activeProfile = "prod"; 
+		}
+		
+		servletContext.setInitParameter("spring.profiles.active", activeProfile);
+		
+	}
+	
+	private Properties getProperties(){
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("C:\\properties\\init.properties");
+
+			prop.load(input);
+
+			System.out.println(prop.getProperty("database"));
+			System.out.println(prop.getProperty("dbuser"));
+			System.out.println(prop.getProperty("dbpassword"));
+
+		} catch (IOException ex) {
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return prop;
 	}
 
 }

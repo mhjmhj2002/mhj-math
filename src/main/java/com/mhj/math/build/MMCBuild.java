@@ -56,10 +56,10 @@ public class MMCBuild extends Build {
 	@Override
 	protected void validarParametros() throws BusinessException {
 		if (mmc == null) {
-			throw new BusinessException("MMC obrigatório!");
+			throw new BusinessException(messageSource.getMessage("MMCBuild.validarParametros.1", null, locale));
 		}
 		if (mmc.getNumeros() == null || mmc.getNumeros().isEmpty()) {
-			throw new BusinessException("MMC obrigatório!");
+			throw new BusinessException(messageSource.getMessage("MMCBuild.validarParametros.1", null, locale));
 		}
 	}
 
@@ -94,7 +94,7 @@ public class MMCBuild extends Build {
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
 		calcularDecomposicoes(mmc);
-		operacao.getRetorno().add(new Descricao("Resolvendo:"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.resolucao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
 		abreMath();
@@ -103,7 +103,7 @@ public class MMCBuild extends Build {
 
 		fechaMath();
 
-		operacao.getRetorno().add(new Descricao("Multiplicando temos:"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.resolucao.2", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		for (Inteiro inteiro : resultados) {
 			operacao.getRetorno().add(inteiro);

@@ -24,7 +24,7 @@
 	<section id="about">
 		<div class="container">
 
-			<form action="${s:mvcUrl('calcular_mmc').build() }" method="post">
+			<form action="${s:mvcUrl('calcular_mdc').build() }" method="post">
 				<div class="form-group">
 					<div>
 						<p>

@@ -62,7 +62,8 @@
 								<li class="dropdown-submenu">
 									<a class="dropdown-item" href="#">6 Ano</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Desenvolvendo...</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/mmc">MMC</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/mdc">MDC</a></li>
 									</ul>
 								</li>
 								<li class="dropdown-submenu">
