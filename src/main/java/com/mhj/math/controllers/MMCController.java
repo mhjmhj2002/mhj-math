@@ -40,48 +40,38 @@ public class MMCController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView form(MmcDto mmc) {
-		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/mmc");//
-//		modelAndView.addObject("sinais", Sinal.values());
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/mmc");
 
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name="calcular_mmc")
-	public ModelAndView calcular(@RequestParam("numeros") List<Integer> numeros, Locale locale) throws BusinessException {
-		
+	@RequestMapping(method = RequestMethod.POST, name = "calcular_mmc")
+	public ModelAndView calcular(@RequestParam("numeros") List<Integer> numeros, Locale locale)
+			throws BusinessException {
+
 		List<Inteiro> nums = new ArrayList<>();
-		
+
 		for (int i = 1; i < numeros.size(); i++) {
-			nums.add(new Inteiro(numeros.get(i)));			
+			nums.add(new Inteiro(numeros.get(i)));
 		}
-		
+
 		MMC mmc = new MMC(nums, new Inteiro(1));
-		
+
 		mmcBuild.setMmc(mmc);
 		mmcBuild.setLocale(locale);
 
-		Operacao operacao = mmcBuild.resolver();
+		try {
+			mmcBuild.resolver();
+		} catch (RegraException e) {
+			e.printStackTrace();
+		}
+		
+		Operacao operacao = mmcBuild.getOperacao();
 
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/mmc_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
 
 		return modelAndView;
 	}
-
-//	@RequestMapping(method = RequestMethod.POST)
-//	public ModelAndView calcular(@Valid MmcDto mmcDto, Locale locale, BindingResult result,
-//			RedirectAttributes redirectAttributes) throws BusinessException, RegraException {
-//
-//		if (result.hasErrors()) {
-//			return form(mmcDto);
-//		}
-//
-//		Operacao operacao = mmcBuild.resolver();
-//
-//		ModelAndView modelAndView = new ModelAndView("math/em/1ano/mmc_resultado");
-//		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
-//
-//		return modelAndView;
-//	}
 
 }

@@ -19,6 +19,7 @@ import com.mhj.math.build.MDCBuild;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.dto.MdcDto;
 import com.mhj.math.exception.BusinessException;
+import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.MDC;
 import com.mhj.math.operacao.Operacao;
 import com.mhj.math.print.Impressao;
@@ -59,7 +60,13 @@ public class MDCController {
 		mdcBuild.setMdc(mdc);
 		mdcBuild.setLocale(locale);
 
-		Operacao operacao = mdcBuild.resolver();
+		try {
+			mdcBuild.resolver();
+		} catch (RegraException e) {
+			e.printStackTrace();
+		}
+		
+		Operacao operacao = mdcBuild.getOperacao();
 
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/mdc_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));

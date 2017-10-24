@@ -1,23 +1,37 @@
 package com.mhj.math.build;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.data.interfaces.Data;
 import com.mhj.math.enums.Letra;
+import com.mhj.math.enums.MathjaxProperty;
+import com.mhj.math.enums.MathjaxTag;
 import com.mhj.math.enums.Simbolo;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
-import com.mhj.math.enums.MathjaxTag;
-import com.mhj.math.enums.MathjaxProperty;
 import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 public abstract class FracaoBuild extends Build{
+
+	@Autowired
+	MessageSource messageSource;
+
+	Locale locale;
 	
 	List<Fracao> fracoes;
+	
+	public FracaoBuild(){
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+	}
 	
 	protected FracaoBuild(List<Fracao> fracoes, Operacao operacao) {
 		super(operacao);
@@ -124,6 +138,14 @@ public abstract class FracaoBuild extends Build{
 		}
 		
 		fechaMath();
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	public void setFracoes(List<Fracao> fracoes) {
+		this.fracoes = fracoes;
 	}
 
 }

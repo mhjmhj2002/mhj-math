@@ -173,11 +173,11 @@ public class OperacaoUtil {
 		Inteiro denominadorIgual = fracoes.get(0).getDenominador();
 		
 		for (Fracao fracao : fracoes) {
-			if (denominadorIgual.compareTo(fracao.getDenominador()) != 0) {
+			if (!denominadorIgual.getValor().equals(fracao.getDenominador().getValor())) {
 				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public Inteiro calculaMDC(Inteiro numero1, Inteiro numero2) {

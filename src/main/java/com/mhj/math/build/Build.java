@@ -15,15 +15,12 @@ public abstract class Build {
 		this.operacao = operacao;
 	}
 
-	public Operacao resolver() throws BusinessException{
-		try {
+	public Operacao resolver() throws BusinessException, RegraException{
 			validarOperacao();
 			validarParametros();
 			titulo();
 			regras();
 			resolucao();
-		} catch (RegraException e) {
-		}
 		return this.operacao;
 	}
 	

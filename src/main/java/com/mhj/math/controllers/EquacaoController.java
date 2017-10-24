@@ -21,6 +21,7 @@ import com.mhj.math.data.Descricao;
 import com.mhj.math.enums.Letra;
 import com.mhj.math.enums.Sinal;
 import com.mhj.math.exception.BusinessException;
+import com.mhj.math.exception.RegraException;
 import com.mhj.math.metodo.Bhaskara;
 import com.mhj.math.operacao.EquacaoGrau2;
 import com.mhj.math.operacao.Operacao;
@@ -63,7 +64,12 @@ public class EquacaoController {
 		equacaoGrau2Build.setEquacaoGrau2(equacaoGrau2);
 		equacaoGrau2Build.setLocale(locale);
 
-		Operacao operacao = equacaoGrau2Build.resolver();
+		try {
+			equacaoGrau2Build.resolver();
+		} catch (RegraException e) {
+		}
+		
+		Operacao operacao = equacaoGrau2Build.getOperacao();
 
 		ModelAndView modelAndView = new ModelAndView("math/em/1ano/equacao_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));

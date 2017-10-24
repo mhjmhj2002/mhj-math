@@ -77,7 +77,11 @@ public class Test {
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
 		FracaoBuild fracaoBuild = new FracaoBuildMultiplicacao(fracoes, operacao);
-		fracaoBuild.resolver();
+		try {
+			fracaoBuild.resolver();
+		} catch (RegraException e) {
+			e.printStackTrace();
+		}
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "teste4", operacao.getRetorno());
 		impressao.imprimirTexto("c:/manuel/", "teste4", operacao.getRetorno());
@@ -100,7 +104,11 @@ public class Test {
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
 		FracaoBuildDivisao fracaoBuild = new FracaoBuildDivisao(fracoes, operacao);
-		fracaoBuild.resolver();
+		try {
+			fracaoBuild.resolver();
+		} catch (RegraException e) {
+			e.printStackTrace();
+		}
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "teste4", operacao.getRetorno());
 		impressao.imprimirTexto("c:/manuel/", "teste4", operacao.getRetorno());
@@ -132,13 +140,17 @@ public class Test {
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
 		FracaoBuild fracaoBuild = new FracaoBuildSoma(fracoes, operacao);
-		fracaoBuild.resolver();
+		try {
+			fracaoBuild.resolver();
+		} catch (RegraException e) {
+			e.printStackTrace();
+		}
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "teste4", operacao.getRetorno());
 		impressao.imprimirTexto("c:/manuel/", "teste4", operacao.getRetorno());
 	}
 
-	public static void testarMMCVariosNumeros() {
+	public static void testarMMCVariosNumeros() throws BusinessException {
 		List<Inteiro> numeros = new ArrayList<>();
 		numeros.add(new Inteiro(10));
 		numeros.add(new Inteiro(11));
@@ -156,7 +168,7 @@ public class Test {
 
 		try {
 			mmcBuild.resolver();
-		} catch (BusinessException e) {
+		} catch (RegraException e) {
 			e.printStackTrace();
 		}
 
@@ -289,7 +301,7 @@ public class Test {
 
 	}
 
-	public static void testarMDCVariosNumeros() {
+	public static void testarMDCVariosNumeros() throws BusinessException, RegraException {
 		List<Inteiro> numeros = new ArrayList<>();
 
 		numeros.add(new Inteiro(180));
@@ -311,11 +323,7 @@ public class Test {
 
 		MDCBuild mmcBuild = new MDCBuild(mmc, operacao);
 
-		try {
-			mmcBuild.resolver();
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
+		mmcBuild.resolver();
 
 		Impressao impressao = new Impressao();
 		impressao.imprimirHTML("c:/manuel/", "testeMDC", operacao.getRetorno());

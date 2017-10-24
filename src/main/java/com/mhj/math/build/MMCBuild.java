@@ -160,6 +160,9 @@ public class MMCBuild extends Build {
 			operacao.getRetorno().add(Simbolo.IGUAL);
 			operacao.getRetorno().add(Simbolo.ESPACO);
 			operacao.getRetorno().add(multiplicacao);
+			
+			resultado = multiplicacao; 
+					
 			throw new RegraException();
 		} else {
 			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.verificarPrimos.3", null, locale)));
@@ -368,6 +371,8 @@ public class MMCBuild extends Build {
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			
+			this.resultado = num;
+
 			throw new RegraException();
 	}
 
