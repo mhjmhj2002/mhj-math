@@ -64,6 +64,9 @@
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="${mathPath}/mmc">MMC</a></li>
 										<li><a class="dropdown-item" href="${mathPath}/mdc">MDC</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/soma">Soma Frações</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/multiplicacao">Multiplicação Frações</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/divisao">Divisão Frações</a></li>
 									</ul>
 								</li>
 								<li class="dropdown-submenu">

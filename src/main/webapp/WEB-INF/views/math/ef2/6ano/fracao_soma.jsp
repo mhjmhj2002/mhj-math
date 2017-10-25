@@ -26,6 +26,23 @@
 
 			<form action="${s:mvcUrl('calcular_ss_fracao').build() }" method="post">
 				<div class="form-group">
+					<div class="col-md-12">
+						<div class="form-group row">
+							<div class="col-md-1">
+								<p>
+									<span id="myspan"> 
+										<input name="sinais" type="text" min="1" max="1" class="form-control" value="+"/> 
+										<input name="numeradores" type="number" min="1" max="9999" class="form-control" value="1"/> 
+										<input name="denominadores" type="number" min="1" max="9999" class="form-control" value="2"/>
+										<input name="sinais" type="text" min="1" max="1" class="form-control" value="+"/> 
+										<input name="numeradores" type="number" min="1" max="9999" class="form-control" value="1"/> 
+										<input name="denominadores" type="number" min="1" max="9999" class="form-control" value="2"/>
+									</span> 
+									<br> <br>
+								</p>
+							</div>
+						</div>
+					</div>
 					<div>
 						<p>
 							<span id="myspan"> 

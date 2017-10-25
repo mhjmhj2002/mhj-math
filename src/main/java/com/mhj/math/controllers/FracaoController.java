@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mhj.math.build.FracaoBuildDivisao;
+import com.mhj.math.build.FracaoBuildMultiplicacao;
 import com.mhj.math.build.FracaoBuildSoma;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.dto.FracaoDto;
@@ -31,21 +33,41 @@ import com.mhj.math.validation.FracaoValidation;
 public class FracaoController {
 
 	@Autowired
-	private FracaoBuildSoma fracaoBuild;
+	private FracaoBuildSoma fracaoBuildSoma;
+
+	@Autowired
+	private FracaoBuildMultiplicacao fracaoBuildMultiplicacao;
+
+	@Autowired
+	private FracaoBuildDivisao fracaoBuildDivisao;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(new FracaoValidation());
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView form(FracaoDto fracao) {
-		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao");
+	@RequestMapping(method = RequestMethod.GET, name="soma", value="soma")
+	public ModelAndView soma(FracaoDto fracao) {
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_soma");
 
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_ss_fracao")
+	@RequestMapping(method = RequestMethod.GET, name="multiplicacao", value="multiplicacao")
+	public ModelAndView multiplicacao(FracaoDto fracao) {
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_multiplicacao");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, name="divisao", value="divisao")
+	public ModelAndView divisao(FracaoDto fracao) {
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_divisao");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, name = "calcular_ss_fracao", value="calcular_ss_fracao")
 	public ModelAndView calcularSoma(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 
@@ -68,14 +90,90 @@ public class FracaoController {
 			pos++;
 		}
 		
-		fracaoBuild.setFracoes(fracoes);
-		fracaoBuild.setLocale(locale);
+		fracaoBuildSoma.setFracoes(fracoes);
+		fracaoBuildSoma.setLocale(locale);
 
 		try {
-			fracaoBuild.resolver();
+			fracaoBuildSoma.resolver();
 		} catch (RegraException e) {
 		}
-		Operacao operacao = fracaoBuild.getOperacao();
+		Operacao operacao = fracaoBuildSoma.getOperacao();
+
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_resultado");
+		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
+
+		return modelAndView;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, name = "calcular_mult_fracao", value="calcular_mult_fracao")
+	public ModelAndView calcularMultiplicacao(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
+			throws BusinessException {
+
+		List<Inteiro> nums = new ArrayList<>();
+		List<Inteiro> denoms = new ArrayList<>();
+		List<Fracao> fracoes = new ArrayList<>();
+
+		for (int i = 1; i < numeradores.size(); i++) {
+			nums.add(new Inteiro(Integer.valueOf(sinais.get(i) + numeradores.get(i))));
+		}
+		
+		for (int i = 1; i < denominadores.size(); i++) {
+			denoms.add(new Inteiro(denominadores.get(i)));
+		}
+		
+		int pos = 0;
+		for (Inteiro num : nums) {
+			Fracao fracao = new Fracao(num, denoms.get(pos));
+			fracoes.add(fracao);
+			pos++;
+		}
+		
+		fracaoBuildMultiplicacao.setFracoes(fracoes);
+		fracaoBuildMultiplicacao.setLocale(locale);
+
+		try {
+			fracaoBuildMultiplicacao.resolver();
+		} catch (RegraException e) {
+		}
+		Operacao operacao = fracaoBuildMultiplicacao.getOperacao();
+
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_resultado");
+		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
+
+		return modelAndView;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, name = "calcular_div_fracao", value="calcular_div_fracao")
+	public ModelAndView calcularDivisao(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
+			throws BusinessException {
+
+		List<Inteiro> nums = new ArrayList<>();
+		List<Inteiro> denoms = new ArrayList<>();
+		List<Fracao> fracoes = new ArrayList<>();
+
+		for (int i = 1; i < numeradores.size(); i++) {
+			nums.add(new Inteiro(Integer.valueOf(sinais.get(i) + numeradores.get(i))));
+		}
+		
+		for (int i = 1; i < denominadores.size(); i++) {
+			denoms.add(new Inteiro(denominadores.get(i)));
+		}
+		
+		int pos = 0;
+		for (Inteiro num : nums) {
+			Fracao fracao = new Fracao(num, denoms.get(pos));
+			fracoes.add(fracao);
+			pos++;
+		}
+		
+		fracaoBuildDivisao.setFracoes(fracoes);
+		fracaoBuildDivisao.setLocale(locale);
+
+		try {
+			fracaoBuildDivisao.resolver();
+		} catch (RegraException e) {
+		}
+		Operacao operacao = fracaoBuildDivisao.getOperacao();
 
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));

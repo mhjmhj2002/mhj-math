@@ -2,6 +2,11 @@ package com.mhj.math.build;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.enums.LineSeparator;
@@ -12,9 +17,16 @@ import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
+@Component
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class FracaoBuildMultiplicacao extends FracaoBuild {
 	
+	@Autowired
 	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
+	
+	public FracaoBuildMultiplicacao(){
+		super();
+	}
 
 	public FracaoBuildMultiplicacao(List<Fracao> fracoes, Operacao operacao) {
 		super(fracoes, operacao);
@@ -22,8 +34,6 @@ public class FracaoBuildMultiplicacao extends FracaoBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
