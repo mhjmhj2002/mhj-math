@@ -24,7 +24,7 @@ import com.mhj.math.util.OperacaoUtil;
 public class FracaoBuildDivisao extends FracaoBuild {
 	
 	@Autowired
-	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
+	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
 	
 	public FracaoBuildDivisao(){
 		super();
@@ -97,7 +97,7 @@ public class FracaoBuildDivisao extends FracaoBuild {
 			fechaMath();
 		}
 		
-		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(resultado, operacao);
+		fracaoSimplificacaoBuild = new FracaoBuildSimplificacao(resultado, operacao);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}

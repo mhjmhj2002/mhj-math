@@ -67,6 +67,7 @@
 										<li><a class="dropdown-item" href="${mathPath}/fracao/soma">Soma Frações</a></li>
 										<li><a class="dropdown-item" href="${mathPath}/fracao/multiplicacao">Multiplicação Frações</a></li>
 										<li><a class="dropdown-item" href="${mathPath}/fracao/divisao">Divisão Frações</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/simplificacao">Simplificação Frações</a></li>
 									</ul>
 								</li>
 								<li class="dropdown-submenu">

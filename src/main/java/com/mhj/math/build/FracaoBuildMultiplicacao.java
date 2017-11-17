@@ -22,7 +22,7 @@ import com.mhj.math.util.OperacaoUtil;
 public class FracaoBuildMultiplicacao extends FracaoBuild {
 	
 	@Autowired
-	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
+	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
 	
 	public FracaoBuildMultiplicacao(){
 		super();
@@ -60,7 +60,7 @@ public class FracaoBuildMultiplicacao extends FracaoBuild {
 		operacao.getRetorno().add(new Descricao("Multiplicando denominadores: "));
 		Inteiro multiplicacaoDenominadores = multiplicarDenominadores();
 		
-		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao);
+		fracaoSimplificacaoBuild = new FracaoBuildSimplificacao(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}

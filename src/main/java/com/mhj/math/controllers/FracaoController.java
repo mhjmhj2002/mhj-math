@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mhj.math.build.FracaoBuildDivisao;
 import com.mhj.math.build.FracaoBuildMultiplicacao;
+import com.mhj.math.build.FracaoBuildSimplificacao;
 import com.mhj.math.build.FracaoBuildSoma;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.dto.FracaoDto;
@@ -40,6 +41,9 @@ public class FracaoController {
 
 	@Autowired
 	private FracaoBuildDivisao fracaoBuildDivisao;
+	
+	@Autowired
+	private FracaoBuildSimplificacao fracaoBuildSimplificacao;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -63,6 +67,13 @@ public class FracaoController {
 	@RequestMapping(method = RequestMethod.GET, name="divisao", value="divisao")
 	public ModelAndView divisao(FracaoDto fracao) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_divisao");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, name="simplificacao", value="simplificacao")
+	public ModelAndView simplificacao(FracaoDto fracao) {
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_simplificacao");
 
 		return modelAndView;
 	}
@@ -174,6 +185,44 @@ public class FracaoController {
 		} catch (RegraException e) {
 		}
 		Operacao operacao = fracaoBuildDivisao.getOperacao();
+
+		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_resultado");
+		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
+
+		return modelAndView;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, name = "calcular_simpl_fracao", value="calcular_simpl_fracao")
+	public ModelAndView calcularSimplificacao(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
+			throws BusinessException {
+
+		List<Inteiro> nums = new ArrayList<>();
+		List<Inteiro> denoms = new ArrayList<>();
+		List<Fracao> fracoes = new ArrayList<>();
+
+		for (int i = 1; i < numeradores.size(); i++) {
+			nums.add(new Inteiro(Integer.valueOf(sinais.get(i) + numeradores.get(i))));
+		}
+		
+		for (int i = 1; i < denominadores.size(); i++) {
+			denoms.add(new Inteiro(denominadores.get(i)));
+		}
+		
+		int pos = 0;
+		for (Inteiro num : nums) {
+			Fracao fracao = new Fracao(num, denoms.get(pos));
+			fracoes.add(fracao);
+			pos++;
+		}
+		
+		fracaoBuildSimplificacao.setFracao(fracoes.get(0));
+		fracaoBuildSimplificacao.setLocale(locale);
+
+		try {
+			fracaoBuildSimplificacao.resolver();
+		} catch (RegraException e) {
+		}
+		Operacao operacao = fracaoBuildSimplificacao.getOperacao();
 
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));

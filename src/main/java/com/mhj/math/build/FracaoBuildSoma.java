@@ -28,7 +28,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 	MMCBuild mmcBuild;
 	
 	@Autowired
-	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
+	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
 	
 	public FracaoBuildSoma() {
 		super();

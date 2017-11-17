@@ -27,7 +27,7 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoSimplificacaoBuild extends FracaoBuild {
+public class FracaoBuildSimplificacao extends FracaoBuild {
 
 	@Autowired
 	private MessageSource messageSource;
@@ -40,15 +40,15 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 	Fracao fracao;
 	Divisao divisao;
 
-	public FracaoSimplificacaoBuild() {
+	public FracaoBuildSimplificacao() {
 		super();
 	}
 
-	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao) {
+	public FracaoBuildSimplificacao(List<Fracao> fracoes, Operacao operacao) {
 		super(fracoes, operacao);
 	}
 
-	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao) {
+	public FracaoBuildSimplificacao(Fracao fracao, Operacao operacao) {
 		super(null, operacao);
 		this.fracao = fracao;
 		divisao = null;
