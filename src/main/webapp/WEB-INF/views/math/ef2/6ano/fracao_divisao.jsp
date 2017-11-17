@@ -13,10 +13,10 @@
 	<header class="bg-primary text-white">
 		<div class="container text-center">
 			<h1>
-				<fmt:message key="equacao.title" />
+				<fmt:message key="fracao.div.title" />
 			</h1>
 			<p class="lead">
-				<fmt:message key="equacao.description" />
+				<fmt:message key="fracao.div.description" />
 			</p>
 		</div>
 	</header>
@@ -25,29 +25,47 @@
 		<div class="container">
 
 			<form action="${s:mvcUrl('calcular_div_fracao').build() }" method="post">
-				<div class="form-group">
-					<div>
-						<p>
-							<span id="myspan"> 
-								<input name="sinais" type="text" min="1" max="1" class="form-control" value="+"/> 
-								<input name="numeradores" type="number" min="1" max="9999" class="form-control" value="1"/> 
-								<input name="denominadores" type="number" min="1" max="9999" class="form-control" value="2"/>
-								<input name="sinais" type="text" min="1" max="1" class="form-control" value="+"/> 
-								<input name="numeradores" type="number" min="1" max="9999" class="form-control" value="1"/> 
-								<input name="denominadores" type="number" min="1" max="9999" class="form-control" value="2"/>
-							</span> <br> <br>
-						</p>
-					</div>
-					<div>
-						<p>
-							<input class="btn btn-primary" type="button" value="Add Rows" onclick="add();"/> 
-							<input class="btn btn-primary" type="button" value="Delete Rows" onclick="remove();"/>
-						</p>
-					</div>
+			
+				<div id="expressoes" class="form-group">
+				
+					<div class="form-group row">
+						<div>
+							<select name="sinais">
+								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
+							</select>
+						</div>
+						<div style="padding-left: 5px">
+							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<label>&#x97;&#x97;&#x97;&#x97;</label>
+							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+						</div>						
+						<div style="padding: 40px 0px 0px 10px">
+							<label class="form-control">&divide;</label>
+						</div>
+						<div style="padding-left: 0px">
+							<select name="sinais">
+								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
+							</select>
+						</div>
+						<div style="padding-left: 5px">
+							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<label>&#x97;&#x97;&#x97;&#x97;</label>
+							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+						</div>
+					</div>	
+					
+				</div>											
+					
+				<div>
+					<p>
+<!-- 						<input class="btn btn-primary" type="button" value="Add Rows" onclick="add();"/>  -->
+<!-- 						<input class="btn btn-primary" type="button" value="Delete Rows" onclick="remove();"/> -->
+						<button type="submit" class="btn btn-primary"><fmt:message key="fracao.div.calculate" /></button>
+					</p>
 				</div>
-				<button type="submit" class="btn btn-primary">
-					<fmt:message key="equacao.calculate" />
-				</button>
+		
 			</form>
 
 		</div>

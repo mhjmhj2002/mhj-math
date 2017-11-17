@@ -29,7 +29,7 @@ import com.mhj.math.print.Impressao;
 import com.mhj.math.validation.EquacaoGrau2Validation;
 
 @Controller
-@RequestMapping("/math/equacao")
+@RequestMapping("/math")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class EquacaoController {
 

@@ -13,10 +13,10 @@
 	<header class="bg-primary text-white">
 		<div class="container text-center">
 			<h1>
-				<fmt:message key="equacao.title" />
+				<fmt:message key="mdc.title" />
 			</h1>
 			<p class="lead">
-				<fmt:message key="equacao.description" />
+				<fmt:message key="mdc.description" />
 			</p>
 		</div>
 	</header>
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<button type="submit" class="btn btn-primary">
-					<fmt:message key="equacao.calculate" />
+					<fmt:message key="mdc.calculate" />
 				</button>
 			</form>
 

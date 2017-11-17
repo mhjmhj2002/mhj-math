@@ -24,6 +24,9 @@
 <!-- Custom styles for this template -->
 <link href="${resourcesPath}/css/scrolling-nav.css" rel="stylesheet">
 
+<!-- Custom styles for mhj-math -->
+<link href="${resourcesPath}/css/mhj-math.css" rel="stylesheet">
+
 </head>
 <body id="page-top">
 
