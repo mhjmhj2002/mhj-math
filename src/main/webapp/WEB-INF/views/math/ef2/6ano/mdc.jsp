@@ -7,8 +7,12 @@
 	prefix="security"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix='spring' uri='http://www.springframework.org/tags'%>
 
 <tags:pageTemplate titulo="Math">
+
+<spring:message code="mdc.add.operacao" var="mccAddOperacao"/>
+<spring:message code="mdc.del.operacao" var="mccDelOperacao"/>
 
 	<header class="bg-primary text-white">
 		<div class="container text-center">
@@ -36,8 +40,8 @@
 					</div>
 					<div>
 						<p>
-							<input class="btn btn-primary" type="button" value="Add Rows" onclick="add();"/> 
-							<input class="btn btn-primary" type="button" value="Delete Rows" onclick="remove();"/>
+							<input class="btn btn-primary" type="button" value="${mccAddOperacao}" onclick="add();"/> 
+							<input class="btn btn-primary" type="button" value="${mccDelOperacao}" onclick="remove();"/>
 						</p>
 					</div>
 				</div>

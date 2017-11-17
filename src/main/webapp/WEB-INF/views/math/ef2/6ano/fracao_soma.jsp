@@ -7,8 +7,73 @@
 	prefix="security"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix='spring' uri='http://www.springframework.org/tags'%>
 
 <tags:pageTemplate titulo="Math">
+
+<spring:message code="fracao.soma.add.operacao" var="mccAddOperacao"/>
+<spring:message code="fracao.soma.del.operacao" var="mccDelOperacao"/>
+
+	<header class="bg-primary text-white">
+		<div class="container text-center">
+			<h1>
+				<fmt:message key="fracao.soma.title" />
+			</h1>
+			<p class="lead">
+				<fmt:message key="fracao.soma.description" />
+			</p>
+		</div>
+	</header>
+
+	<section id="about">
+		<div class="container">
+
+			<form action="${s:mvcUrl('calcular_ss_fracao').build() }" method="post">
+			
+				<div id="expressoes" class="form-group">
+				
+					<div class="form-group row">
+						<div>
+							<select name="sinais">
+								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
+							</select>
+						</div>
+						<div style="padding-left: 5px">
+							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<label>&#x97;&#x97;&#x97;&#x97;</label>
+							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+						</div>
+						<div style="padding-left: 20px">
+							<select name="sinais">
+								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
+							</select>
+						</div>
+						<div style="padding-left: 5px">
+							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<label>&#x97;&#x97;&#x97;&#x97;</label>
+							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+						</div>
+					</div>											
+					
+					<div>
+						<p>
+							<input class="btn btn-primary" type="button" value="${mccAddOperacao}" onclick="add();"/> 
+							<input class="btn btn-primary" type="button" value="${mccDelOperacao}" onclick="remove();"/>
+						</p>
+					</div>
+					
+				</div>
+					
+				<button type="submit" class="btn btn-primary">
+					<fmt:message key="fracao.soma.calculate" />
+				</button>
+		
+			</form>
+
+		</div>
+	</section>
 
 	<script type="text/javascript">
 		function add() {
@@ -116,66 +181,5 @@
 			return divSinal;
 		}
 	</script>
-
-	<header class="bg-primary text-white">
-		<div class="container text-center">
-			<h1>
-				<fmt:message key="fracao.soma.title" />
-			</h1>
-			<p class="lead">
-				<fmt:message key="fracao.soma.description" />
-			</p>
-		</div>
-	</header>
-
-	<section id="about">
-		<div class="container">
-
-			<form action="${s:mvcUrl('calcular_ss_fracao').build() }" method="post">
-			
-				<div id="expressoes" class="form-group">
-				
-					<div class="form-group row">
-						<div>
-							<select name="sinais">
-								<option value="+" label="+" selected="selected" ></option>
-								<option value="-" label="-"/>
-							</select>
-						</div>
-						<div style="padding-left: 5px">
-							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
-							<label>&#x97;&#x97;&#x97;&#x97;</label>
-							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
-						</div>
-						<div style="padding-left: 20px">
-							<select name="sinais">
-								<option value="+" label="+" selected="selected" ></option>
-								<option value="-" label="-"/>
-							</select>
-						</div>
-						<div style="padding-left: 5px">
-							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
-							<label>&#x97;&#x97;&#x97;&#x97;</label>
-							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
-						</div>
-					</div>											
-					
-					<div>
-						<p>
-							<input class="btn btn-primary" type="button" value="Add Rows" onclick="add();"/> 
-							<input class="btn btn-primary" type="button" value="Delete Rows" onclick="remove();"/>
-						</p>
-					</div>
-					
-				</div>
-					
-				<button type="submit" class="btn btn-primary">
-					<fmt:message key="fracao.soma.calculate" />
-				</button>
-		
-			</form>
-
-		</div>
-	</section>
 
 </tags:pageTemplate>

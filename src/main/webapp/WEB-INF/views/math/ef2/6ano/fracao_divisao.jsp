@@ -60,8 +60,6 @@
 					
 				<div>
 					<p>
-<!-- 						<input class="btn btn-primary" type="button" value="Add Rows" onclick="add();"/>  -->
-<!-- 						<input class="btn btn-primary" type="button" value="Delete Rows" onclick="remove();"/> -->
 						<button type="submit" class="btn btn-primary"><fmt:message key="fracao.div.calculate" /></button>
 					</p>
 				</div>
