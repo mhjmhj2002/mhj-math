@@ -46,7 +46,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 		exibirFracoes(fracoes);
 		
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		operacao.getRetorno().add(LineSeparator.BREAK);
+//		operacao.getRetorno().add(LineSeparator.BREAK);
 	}
 
 	@Override
@@ -57,7 +57,10 @@ public class FracaoBuildSoma extends FracaoBuild {
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
 		carregarMmc();
-		mmcBuild.resolver();
+		
+		try {
+			mmcBuild.resolver();
+		} catch (RegraException e) {}
 
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
@@ -69,7 +72,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 		List<Fracao> fracoesRetorno = transformarFracoesMesmoDenominador();
 		
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.4", null, locale)));
-		exibirIgualdadeFracoes(fracoes, fracoesRetorno);
+		exibirIgualdadeFracoes(fracoes, fracoesRetorno, false);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		fracoesRetorno = resolverDenominadores(fracoesRetorno);
@@ -110,8 +113,12 @@ public class FracaoBuildSoma extends FracaoBuild {
 		
 		return fracoesRetorno;
 	}
-
+	
 	private void exibirIgualdadeFracoes(List<Fracao> fracoes1, List<Fracao> fracoes2) {
+		exibirIgualdadeFracoes(fracoes1, fracoes2, true);
+	}
+
+	private void exibirIgualdadeFracoes(List<Fracao> fracoes1, List<Fracao> fracoes2, boolean addNumerador) {
 		Fracao fracao = fracoes1.get(0);
 		Fracao fracao2 = fracoes2.get(0);
 		
@@ -127,11 +134,11 @@ public class FracaoBuildSoma extends FracaoBuild {
 		
 		addIgualdade();
 		
-		montaFracao(fracao2, false);
+		montaFracao(fracao2, false, addNumerador);
 		
 		for (int i = 1; i < fracoes2.size(); i++) {
 			fracao2 = fracoes2.get(i);
-			montaFracao(fracao2, true);
+			montaFracao(fracao2, true, addNumerador);
 			
 		}
 		
@@ -187,6 +194,8 @@ public class FracaoBuildSoma extends FracaoBuild {
 		fechaMath();
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
+		validarNumeradorZerado(somaNominadores);
+		
 		simplificarFracao(somaNominadores);
 	}
 
@@ -237,6 +246,15 @@ public class FracaoBuildSoma extends FracaoBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException {
+	}
+
+	private void validarNumeradorZerado(Fracao fracao) throws RegraException {
+		if (fracao.getNumerador().getValor().equals(0)) {
+			operacao.getRetorno().add(new Descricao("Numerador igual a zero, então o resultado é: 0"));
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			throw new RegraException();
+		}
+		
 	}
 
 }

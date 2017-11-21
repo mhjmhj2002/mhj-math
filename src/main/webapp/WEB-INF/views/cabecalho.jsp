@@ -62,12 +62,12 @@
 								<li class="dropdown-submenu">
 									<a class="dropdown-item" href="#">6 Ano</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="${mathPath}/mmc">MMC</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/divisao">Frações Divisão</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/multiplicacao">Frações Multiplicação</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/simplificacao">Frações Simplificação</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/fracao/soma">Frações Soma</a></li>
 										<li><a class="dropdown-item" href="${mathPath}/mdc">MDC</a></li>
-										<li><a class="dropdown-item" href="${mathPath}/fracao/soma">Soma Frações</a></li>
-										<li><a class="dropdown-item" href="${mathPath}/fracao/multiplicacao">Multiplicação Frações</a></li>
-										<li><a class="dropdown-item" href="${mathPath}/fracao/divisao">Divisão Frações</a></li>
-										<li><a class="dropdown-item" href="${mathPath}/fracao/simplificacao">Simplificação Frações</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/mmc">MMC</a></li>
 									</ul>
 								</li>
 								<li class="dropdown-submenu">
@@ -121,104 +121,21 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" href="#about"><fmt:message key="header.about"/></a>
+					<a class="nav-link js-scroll-trigger" href="${homePath}#about"><fmt:message key="header.about"/></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link js-scroll-trigger" href="${homePath}contato"><fmt:message key="header.contact"/></a>
 				</li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="?locale=pt" rel="nofollow"> <fmt:message key="menu.pt" />
-				</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="?locale=es" rel="nofollow"> <fmt:message key="menu.es" />
-				</a></li>
-				<li class="nav-item"><a class="nav-link js-scroll-trigger"
-					href="?locale=en" rel="nofollow"> <fmt:message key="menu.en" />
-				</a></li>
-
-				<!-- original -->
-<!-- 				<li class="nav-item dropdown"><a -->
-<!-- 					class="nav-link dropdown-toggle" href="#" -->
-<!-- 					id="navbarDropdownPortfolio" data-toggle="dropdown" -->
-<%-- 					aria-haspopup="true" aria-expanded="false"> <fmt:message --%>
-<%-- 							key="header.operations" /> --%>
-<!-- 				</a> -->
-<!-- 					<div class="dropdown-menu dropdown-menu-right" -->
-<!-- 						aria-labelledby="navbarDropdownPortfolio"> -->
-<%-- 						<a class="dropdown-item" href="${mathPath}/equacao"><fmt:message --%>
-<%-- 								key="header.operations.1" /></a> <a class="dropdown-item" --%>
-<%-- 							href="portfolio-2-col.html"><fmt:message --%>
-<%-- 								key="header.operations.2" /></a> <a class="dropdown-item" --%>
-<%-- 							href="portfolio-3-col.html"><fmt:message --%>
-<%-- 								key="header.operations.3" /></a> <a class="dropdown-item" --%>
-<%-- 							href="portfolio-4-col.html"><fmt:message --%>
-<%-- 								key="header.operations.4" /></a> <a class="dropdown-item" --%>
-<%-- 							href="portfolio-item.html"><fmt:message --%>
-<%-- 								key="header.operations.5" /></a> --%>
-<!-- 					</div></li> -->
+<!-- 				<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
+<%-- 					href="?locale=pt" rel="nofollow"> <fmt:message key="menu.pt" /> --%>
+<!-- 				</a></li> -->
+<!-- 				<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
+<%-- 					href="?locale=es" rel="nofollow"> <fmt:message key="menu.es" /> --%>
+<!-- 				</a></li> -->
+<!-- 				<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
+<%-- 					href="?locale=en" rel="nofollow"> <fmt:message key="menu.en" /> --%>
+<!-- 				</a></li> -->
 			</ul>
 		</div>
 	</div>
 </nav>
-<!--   <header id="layout-header"> -->
-<!--     <div class="clearfix container"> -->
-<%--         <a href="${s:mvcUrl('HC#index').build() }" id="logo"> --%>
-<!--           <img src="http://cdn.shopify.com/s/files/1/0155/7645/t/177/assets/casa-do-codigo-blue.svg?15063963123751285545" alt="Casa do Codigo"> -->
-<!--         </a> -->
-<!--       <div id="header-content"> -->
-<!--         <nav id="main-nav"> -->
-<!--               <ul class="clearfix"> -->
-<!--                   <li> -->
-<%--                       <a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow"> --%>
-<%--                       	<s:message code="menu.carrinho" --%>
-<%--                       		arguments="${carrinhoCompras.quantidade }" /> --%>
-<!--                       </a> -->
-
-<!--                   </li> -->
-<!--                   <li> -->
-<!--                       <a href="/pages/sobre-a-casa-do-codigo" rel="nofollow"> -->
-<%--                       	<fmt:message key="menu.sobre" /> --%>
-<!--                       </a> -->
-<!--                   </li> -->
-<!--                   <li> -->
-<!--                       <a href="?locale=pt" rel="nofollow"> -->
-<%--                       	<fmt:message key="menu.pt" /> --%>
-<!--                       </a> -->
-<!--                   </li> -->
-<!--                   <li> -->
-<!--                       <a href="?locale=en_US" rel="nofollow"> -->
-<%--                       	<fmt:message key="menu.en" /> --%>
-<!--                       </a> -->
-<!--                   </li> -->
-<!--               </ul> -->
-<!--         </nav> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </header> -->
-<!--   <nav class="categories-nav"> -->
-<!--     <ul class="container"> -->
-<!--         <li class="category"> -->
-<%--         		<a href="${s:mvcUrl('HC#index').build() }"> --%>
-<%--         			<fmt:message key="navegacao.categoria.home" /></a> --%>
-
-<!--                 <li class="category"><a href="/collections/livros-de-agile"> -->
-<%--                 		<fmt:message key="navegacao.categoria.agile" /></a> --%>
-<!--                 <li class="category"><a href="/collections/livros-de-front-end"> -->
-<%--                     <fmt:message key="navegacao.categoria.front_end" /></a> --%>
-<!--                 <li class="category"><a href="/collections/livros-de-games"> -->
-<%--                     <fmt:message key="navegacao.categoria.games" /> --%>
-<!--                   </a> -->
-<!--                 <li class="category"><a href="/collections/livros-de-java"> -->
-<%--                     <fmt:message key="navegacao.categoria.java" /> --%>
-<!--                   </a> -->
-<!--                 <li class="category"><a href="/collections/livros-de-mobile"> -->
-<%--                     <fmt:message key="navegacao.categoria.mobile" /> --%>
-<!--                   </a> -->
-<!--                 <li class="category"><a href="/collections/livros-desenvolvimento-web"> -->
-<%--                     <fmt:message key="navegacao.categoria.web" /> --%>
-<!--                   </a> -->
-<!--                 <li class="category"><a href="/collections/outros"> -->
-<%--                     <fmt:message key="navegacao.categoria.outros" /> --%>
-<!--                   </a> -->
-<!--     </ul> -->
-<!--   </nav> -->

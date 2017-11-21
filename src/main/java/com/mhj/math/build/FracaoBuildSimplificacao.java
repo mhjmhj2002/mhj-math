@@ -70,18 +70,18 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-	}
-
-	@Override
-	protected void resolucao() throws BusinessException, RegraException {
 		
 		verificarNumeradorIgual();
+
+		validarFracaoIrredutivel();
 		
 		verificarNumeradorMaiorSemResto();
 
 		verificarNumeradorMaiorComResto();
+	}
 
-		validarFracaoIrredutivel();
+	@Override
+	protected void resolucao() throws BusinessException, RegraException {
 
 		operacao.getRetorno().add(new Descricao("Para simplificar uma fração, devemos:"));
 		operacao.getRetorno().add(LineSeparator.BREAK);
@@ -92,7 +92,10 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
 		carregarMmc();
-		mmcBuild.resolver();
+		try {
+			mmcBuild.resolver();
+		} catch (RegraException e) {
+		}
 
 		operacao.getRetorno().add(new Descricao("Dividindo o numerador e o denominador pelo MMC temos:"));
 		operacao.getRetorno().add(LineSeparator.BREAK);
@@ -137,7 +140,7 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 			fechaMath();
 			fracao = new Fracao(divisao.getResto(), fracao.getDenominador());
 			
-			throw new RegraException();
+//			throw new RegraException();
 		}
 	}
 
@@ -164,8 +167,9 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 		mmcBuild.setLocale(locale);
 		mmcBuild.setOperacao(this.getOperacao());
 		List<Inteiro> denominadores = new ArrayList<>();
+		denominadores.add(fracao.getNumerador());
 		denominadores.add(fracao.getDenominador());
-		MMC mmc = new MMC(denominadores, new Inteiro(1));
+		MMC mmc = new MMC(denominadores, new Inteiro(1), true);
 		mmcBuild.setMmc(mmc);
 	}
 
