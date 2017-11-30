@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="security"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -20,10 +18,11 @@
 		</div>
 	</header>
 
-	<section id="menu">
-		<div class="container">
+	<section id="operacoes">
+	<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
+					<h2>Operações</h2>
 					<h2>EF2</h2>
 					<p class="lead">6 Ano</p>
 					<a class="dropdown-item" href="${mathPath}/fracao/divisao">- Frações Divisão</a>
@@ -49,7 +48,37 @@
 			</div>
 		</div>
 	</section>
-	
+
+	<section id="features">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2>Atualizações</h2>
+					<p class="lead">
+					- 05/2017: Add Equações de Segundo Grau.
+					</p>
+					<p class="lead">
+					- 06/2017: Add MMC.
+					</p>
+					<p class="lead">
+					- 07/2017: Add MDC.
+					</p>
+					<p class="lead">
+					- 08/2107: Add Simplificação de Frações.
+					</p>
+					<p class="lead">
+					- 09/2017: Add Soma/Subtração de Frações.
+					</p>
+					<p class="lead">
+					- 10/2017: Add Multiplicação de Frações.
+					</p>
+					<p class="lead">
+					- 11/2017: Adicionando Divisão de Frações.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
 </tags:pageTemplate>
 
