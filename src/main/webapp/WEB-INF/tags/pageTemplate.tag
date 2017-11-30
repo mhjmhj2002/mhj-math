@@ -20,7 +20,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="matematica passo a passo">
-<meta name="keywords" content="matematica, passo a passo, equação, equações, mmc, mdc, fração, frações, ef1, ef2, em, ensino fundmental, ensino medio">
+<meta name="keywords" content="matematica, passo a passo, equaï¿½ï¿½o, equaï¿½ï¿½es, mmc, mdc, fraï¿½ï¿½o, fraï¿½ï¿½es, ef1, ef2, em, ensino fundmental, ensino medio">
 
 <title>${titulo}</title>
 
@@ -49,10 +49,6 @@
 
 	<jsp:doBody />
 
-	<%@include file="/WEB-INF/views/rodape.jsp"%>
-
-	<jsp:invoke fragment="extraScripts" />
-
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle"
 	     style="display:block"
@@ -63,6 +59,10 @@
 	<script>
 	     (adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
+
+	<%@include file="/WEB-INF/views/rodape.jsp"%>
+
+	<jsp:invoke fragment="extraScripts" />
 
 </body>
 </html>
