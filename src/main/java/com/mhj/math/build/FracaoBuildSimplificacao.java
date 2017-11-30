@@ -27,7 +27,7 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoSimplificacaoBuild extends FracaoBuild {
+public class FracaoBuildSimplificacao extends FracaoBuild {
 
 	@Autowired
 	private MessageSource messageSource;
@@ -40,15 +40,15 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 	Fracao fracao;
 	Divisao divisao;
 
-	public FracaoSimplificacaoBuild() {
+	public FracaoBuildSimplificacao() {
 		super();
 	}
 
-	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao) {
+	public FracaoBuildSimplificacao(List<Fracao> fracoes, Operacao operacao) {
 		super(fracoes, operacao);
 	}
 
-	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao) {
+	public FracaoBuildSimplificacao(Fracao fracao, Operacao operacao) {
 		super(null, operacao);
 		this.fracao = fracao;
 		divisao = null;
@@ -70,18 +70,18 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-	}
-
-	@Override
-	protected void resolucao() throws BusinessException, RegraException {
 		
 		verificarNumeradorIgual();
+
+		validarFracaoIrredutivel();
 		
 		verificarNumeradorMaiorSemResto();
 
 		verificarNumeradorMaiorComResto();
+	}
 
-		validarFracaoIrredutivel();
+	@Override
+	protected void resolucao() throws BusinessException, RegraException {
 
 		operacao.getRetorno().add(new Descricao("Para simplificar uma fração, devemos:"));
 		operacao.getRetorno().add(LineSeparator.BREAK);
@@ -92,7 +92,10 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
 		carregarMmc();
-		mmcBuild.resolver();
+		try {
+			mmcBuild.resolver();
+		} catch (RegraException e) {
+		}
 
 		operacao.getRetorno().add(new Descricao("Dividindo o numerador e o denominador pelo MMC temos:"));
 		operacao.getRetorno().add(LineSeparator.BREAK);
@@ -137,7 +140,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 			fechaMath();
 			fracao = new Fracao(divisao.getResto(), fracao.getDenominador());
 			
-			throw new RegraException();
+//			throw new RegraException();
 		}
 	}
 
@@ -164,8 +167,9 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		mmcBuild.setLocale(locale);
 		mmcBuild.setOperacao(this.getOperacao());
 		List<Inteiro> denominadores = new ArrayList<>();
+		denominadores.add(fracao.getNumerador());
 		denominadores.add(fracao.getDenominador());
-		MMC mmc = new MMC(denominadores, new Inteiro(1));
+		MMC mmc = new MMC(denominadores, new Inteiro(1), true);
 		mmcBuild.setMmc(mmc);
 	}
 

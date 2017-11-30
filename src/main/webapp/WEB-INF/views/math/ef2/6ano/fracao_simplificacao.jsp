@@ -7,20 +7,16 @@
 	prefix="security"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@taglib prefix='spring' uri='http://www.springframework.org/tags'%>
 
 <tags:pageTemplate titulo="Math">
-
-<spring:message code="mdc.add.operacao" var="mccAddOperacao"/>
-<spring:message code="mdc.del.operacao" var="mccDelOperacao"/>
 
 	<header class="bg-primary text-white">
 		<div class="container text-center">
 			<h1>
-				<fmt:message key="mdc.title" />
+				<fmt:message key="fracao.div.title" />
 			</h1>
 			<p class="lead">
-				<fmt:message key="mdc.description" />
+				<fmt:message key="fracao.div.description" />
 			</p>
 		</div>
 	</header>
@@ -28,26 +24,32 @@
 	<section id="about">
 		<div class="container">
 
-			<form action="${s:mvcUrl('calcular_mdc').build() }" method="post">
-				<div class="form-group">
-					<div>
-						<p>
-							<span id="myspan"> 
-								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1"/> 
-								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1"/>
-							</span> <br> <br>
-						</p>
-					</div>
-					<div>
-						<p>
-							<input class="btn btn-primary" type="button" value="${mccAddOperacao}" onclick="add();"/> 
-							<input class="btn btn-primary" type="button" value="${mccDelOperacao}" onclick="remove();"/>
-						</p>
-					</div>
+			<form action="${s:mvcUrl('calcular_simpl_fracao').build() }" method="post">
+			
+				<div id="expressoes" class="form-group">
+				
+					<div class="form-group row">
+						<div>
+							<select name="sinais">
+								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
+							</select>
+						</div>
+						<div style="padding-left: 5px">
+							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<label>&#x97;&#x97;&#x97;&#x97;</label>
+							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+						</div>	
+					</div>	
+					
+				</div>											
+					
+				<div>
+					<p>
+						<button type="submit" class="btn btn-primary"><fmt:message key="fracao.div.calculate" /></button>
+					</p>
 				</div>
-				<button type="submit" class="btn btn-primary">
-					<fmt:message key="mdc.calculate" />
-				</button>
+		
 			</form>
 
 		</div>

@@ -103,17 +103,20 @@ public class MMCBuild extends Build {
 
 		fechaMath();
 
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.resolucao.2", null, locale)));
-		operacao.getRetorno().add(LineSeparator.BREAK);
-		for (Inteiro inteiro : resultados) {
-			operacao.getRetorno().add(inteiro);
-			operacao.getRetorno().add(Operando.MULTIPLICACAO);
+		if (resultados.size() > 1) {
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("MMCBuild.resolucao.2", null, locale)));
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			for (Inteiro inteiro : resultados) {
+				operacao.getRetorno().add(inteiro);
+				operacao.getRetorno().add(Operando.MULTIPLICACAO);
+			}
+			operacao.getRetorno().add(Simbolo.ESPACO);
+			operacao.getRetorno().add(Simbolo.IGUAL);
+			operacao.getRetorno().add(Simbolo.ESPACO);
+			operacao.getRetorno().add(resultado);
+			operacao.getRetorno().add(LineSeparator.BREAK);
 		}
-		operacao.getRetorno().add(Simbolo.ESPACO);
-		operacao.getRetorno().add(Simbolo.IGUAL);
-		operacao.getRetorno().add(Simbolo.ESPACO);
-		operacao.getRetorno().add(resultado);
-		operacao.getRetorno().add(LineSeparator.BREAK);
+		
 		operacao.getRetorno().add(new Descricao("MMC"));
 		operacao.getRetorno().add(Simbolo.ESPACO);
 		operacao.getRetorno().add(Simbolo.IGUAL);
@@ -162,6 +165,9 @@ public class MMCBuild extends Build {
 			operacao.getRetorno().add(multiplicacao);
 			
 			resultado = multiplicacao; 
+
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			operacao.getRetorno().add(LineSeparator.BREAK);
 					
 			throw new RegraException();
 		} else {

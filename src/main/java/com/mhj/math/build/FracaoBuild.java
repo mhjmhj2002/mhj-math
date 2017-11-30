@@ -97,6 +97,10 @@ public abstract class FracaoBuild extends Build{
 	}
 	
 	public void montaFracao(Fracao fracao, boolean mostraSinal){
+		montaFracao(fracao, mostraSinal, true);
+	}
+	
+	public void montaFracao(Fracao fracao, boolean mostraSinal, boolean addNumerador){
 		if (mostraSinal) {
 			montaValor(fracao.getNumerador());
 		}
@@ -105,7 +109,9 @@ public abstract class FracaoBuild extends Build{
 	
 		operacao.getRetorno().add(MathjaxTag.MROW_OPEN);
 		operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-		operacao.getRetorno().add(fracao.getNumerador().getValorSemSinal());
+		if (addNumerador) {
+			operacao.getRetorno().add(fracao.getNumerador().getValorSemSinal());
+		}
 		operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 		operacao.getRetorno().add(MathjaxTag.MROW_CLOSE);
 		
@@ -129,7 +135,11 @@ public abstract class FracaoBuild extends Build{
 		
 		abreMath();
 
-		montaFracao(fracao, false);
+		if (fracao.getNumerador().getValor() < 0) {
+			montaFracao(fracao, true);
+		}else{
+			montaFracao(fracao, false);
+		}
 		
 		for (int i = 1; i < fracoes.size(); i++) {
 			fracao = fracoes.get(i);

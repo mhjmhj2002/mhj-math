@@ -1,3 +1,1 @@
--corrigir texto botao add rows
--verificar simplificacao de fracao, ex:
- - 4/2 + 3/2 + 1/2 + 3/2 + 2/2 + 3/2
+-i18N em FracaoBuildSimplificacao
