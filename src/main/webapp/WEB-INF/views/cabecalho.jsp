@@ -98,7 +98,7 @@
 								<li class="dropdown-submenu">
 									<a class="dropdown-item" href="#">1 Ano</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="${mathPath}/equacao">Equação</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/equacao">Equação de Segundo Grau</a></li>
 <!-- 										<li><a class="dropdown-item" href="#">3rd level</a></li> -->
 									</ul>
 								</li>
@@ -125,6 +125,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link js-scroll-trigger" href="${homePath}contato"><fmt:message key="header.contact"/></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="${homePath}#features">Atualizações</a>
 				</li>
 <!-- 				<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
 <%-- 					href="?locale=pt" rel="nofollow"> <fmt:message key="menu.pt" /> --%>
