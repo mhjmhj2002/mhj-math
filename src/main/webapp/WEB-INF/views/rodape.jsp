@@ -1,4 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	<div class="container">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-format="fluid"
+	     data-ad-layout-key="-hb-f+32-2f-57"
+	     data-ad-client="ca-pub-3680058830798497"
+	     data-ad-slot="5210124612"></ins>
+	<script>
+	     (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</div>
 
 <!-- Footer -->
 <footer class="py-1 bg-dark">
