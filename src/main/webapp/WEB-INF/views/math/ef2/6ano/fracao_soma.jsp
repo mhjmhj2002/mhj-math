@@ -40,9 +40,9 @@
 							</select>
 						</div>
 						<div style="padding-left: 5px">
-							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<input name="numeradores" type="number" min="1" max="999999" class="form-control input-xs" value="1"/> 							
 							<label>&#x97;&#x97;&#x97;&#x97;</label>
-							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+							<input name="denominadores" type="number" min="1" max="999999" class="form-control input-xs" value="2"/>
 						</div>
 						<div style="padding-left: 20px">
 							<select name="sinais">
@@ -51,9 +51,9 @@
 							</select>
 						</div>
 						<div style="padding-left: 5px">
-							<input name="numeradores" type="number" min="1" max="9999" class="form-control input-xs" value="1"/> 							
+							<input name="numeradores" type="number" min="1" max="999999" class="form-control input-xs" value="1"/> 							
 							<label>&#x97;&#x97;&#x97;&#x97;</label>
-							<input name="denominadores" type="number" min="1" max="9999" class="form-control input-xs" value="2"/>
+							<input name="denominadores" type="number" min="1" max="999999" class="form-control input-xs" value="2"/>
 						</div>
 					</div>											
 					

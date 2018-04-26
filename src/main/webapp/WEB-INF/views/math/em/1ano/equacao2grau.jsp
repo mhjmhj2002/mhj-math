@@ -38,7 +38,7 @@
 								<form:errors path="sinalA" />
 							</div>
 							<div class="col-md-1">
-								<form:input path="a" type="number" min="1" max="9999"
+								<form:input path="a" type="number" min="1" max="999999"
 									cssClass="form-control" id="a" value="1" />
 								<form:errors path="a" />
 							</div>
@@ -59,7 +59,7 @@
 								<form:errors path="sinalB" />
 							</div>
 							<div class="col-md-1">
-								<form:input path="b" type="number" min="1" max="9999"
+								<form:input path="b" type="number" min="1" max="999999"
 									cssClass="form-control" id="b" value="2" />
 							</div>
 								<form:errors path="b" />
@@ -78,7 +78,7 @@
 								<form:errors path="sinalC" />
 							</div>
 							<div class="col-md-1">
-								<form:input path="c" type="number" min="1" max="9999"
+								<form:input path="c" type="number" min="1" max="999999"
 									cssClass="form-control" id="c" value="3" />
 								<form:errors path="c" />
 							</div>

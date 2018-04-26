@@ -28,9 +28,9 @@
 					<div>
 						<p>
 							<span id="myspan"> 
-								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1" />
-								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1" /> 
-<%-- 								<form:input path="numeros" type="number" min="1" max="9999" class="form-control" value="1" /> --%>
+								<input name="numeros" type="number" min="1" max="999999" class="form-control" value="1" />
+								<input name="numeros" type="number" min="1" max="999999" class="form-control" value="1" /> 
+<%-- 								<form:input path="numeros" type="number" min="1" max="999999" class="form-control" value="1" /> --%>
 							</span> <br> <br>
 						</p>
 					</div>
@@ -53,8 +53,8 @@
 <!-- 					<div> -->
 <!-- 						<p> -->
 <%-- 							<span id="myspan">  --%>
-<%-- 								<form:input path="numeros" type="number" min="1" max="9999" class="form-control" value="1" />  --%>
-<%-- 								<form:input path="numeros" type="number" min="1" max="9999" class="form-control" value="1" /> --%>
+<%-- 								<form:input path="numeros" type="number" min="1" max="999999" class="form-control" value="1" />  --%>
+<%-- 								<form:input path="numeros" type="number" min="1" max="999999" class="form-control" value="1" /> --%>
 <%-- 							</span> <br> <br> --%>
 <!-- 						</p> -->
 <!-- 					</div> -->

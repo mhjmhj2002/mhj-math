@@ -33,8 +33,8 @@
 					<div>
 						<p>
 							<span id="myspan"> 
-								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1"/> 
-								<input name="numeros" type="number" min="1" max="9999" class="form-control" value="1"/>
+								<input name="numeros" type="number" min="1" max="999999" class="form-control" value="1"/> 
+								<input name="numeros" type="number" min="1" max="999999" class="form-control" value="1"/>
 							</span> <br> <br>
 						</p>
 					</div>
