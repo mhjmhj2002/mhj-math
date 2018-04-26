@@ -54,7 +54,7 @@ public class JPAConfiguration {
 //		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		
 		dataSource.setUsername("postgres");
-        dataSource.setPassword("postgres");
+        dataSource.setPassword("2y244y26");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/manuelhj_math");
         dataSource.setDriverClassName("org.postgresql.Driver");
 		

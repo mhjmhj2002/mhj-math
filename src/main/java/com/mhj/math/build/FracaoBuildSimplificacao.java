@@ -2,10 +2,8 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,11 +26,6 @@ import com.mhj.math.util.OperacaoUtil;
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class FracaoBuildSimplificacao extends FracaoBuild {
-
-	@Autowired
-	private MessageSource messageSource;
-
-	Locale locale;
 
 	@Autowired
 	MMCBuild mmcBuild;
@@ -70,11 +63,11 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		
+
 		verificarNumeradorIgual();
 
 		validarFracaoIrredutivel();
-		
+
 		verificarNumeradorMaiorSemResto();
 
 		verificarNumeradorMaiorComResto();
@@ -139,8 +132,8 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 			montaFracao(divisao.getResto(), fracao.getDenominador());
 			fechaMath();
 			fracao = new Fracao(divisao.getResto(), fracao.getDenominador());
-			
-//			throw new RegraException();
+
+			// throw new RegraException();
 		}
 	}
 
@@ -192,7 +185,8 @@ public class FracaoBuildSimplificacao extends FracaoBuild {
 	}
 
 	private void verificarNumeradorMaiorSemResto() throws RegraException {
-		if ( (fracao.getNumerador().getValor() > fracao.getDenominador().getValor()) && (OperacaoUtil.resto(fracao.getNumerador(), fracao.getDenominador()).getValor().equals(0)) ) {
+		if ((fracao.getNumerador().getValor() > fracao.getDenominador().getValor())
+				&& (OperacaoUtil.resto(fracao.getNumerador(), fracao.getDenominador()).getValor().equals(0))) {
 			operacao.getRetorno().add(new Descricao("Numerador igual que o denominador, então dividimos eles:"));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			divisao = OperacaoUtil.divisao(fracao.getNumerador(), fracao.getDenominador());
