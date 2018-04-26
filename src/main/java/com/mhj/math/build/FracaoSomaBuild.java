@@ -22,19 +22,19 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoBuildSoma extends FracaoBuild {
+public class FracaoSomaBuild extends FracaoBuild {
 	
 	@Autowired
 	MMCBuild mmcBuild;
 	
 	@Autowired
-	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
+	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
 	
-	public FracaoBuildSoma() {
+	public FracaoSomaBuild() {
 		super();
 	}
 
-	public FracaoBuildSoma(List<Fracao> fracoes, Operacao operacao) {
+	public FracaoSomaBuild(List<Fracao> fracoes, Operacao operacao) {
 		super(fracoes, operacao);
 		carregarMmcBuild();
 	}

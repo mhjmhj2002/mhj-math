@@ -7,9 +7,9 @@ import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.Operacao;
 
-public class FracaoBuildSubtracao extends FracaoBuild {
+public class FracaoSubtracaoBuild extends FracaoBuild {
 
-	protected FracaoBuildSubtracao(List<Fracao> fracoes, Operacao operacao) {
+	protected FracaoSubtracaoBuild(List<Fracao> fracoes, Operacao operacao) {
 		super(fracoes, operacao);
 		// TODO Auto-generated constructor stub
 	}

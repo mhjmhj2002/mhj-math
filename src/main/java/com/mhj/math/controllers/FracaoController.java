@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mhj.math.build.FracaoBuildDivisao;
-import com.mhj.math.build.FracaoBuildMultiplicacao;
-import com.mhj.math.build.FracaoBuildSimplificacao;
-import com.mhj.math.build.FracaoBuildSoma;
+import com.mhj.math.build.FracaoDivisaoBuild;
+import com.mhj.math.build.FracaoMultiplicacaoBuild;
+import com.mhj.math.build.FracaoSimplificacaoBuild;
+import com.mhj.math.build.FracaoSomaBuild;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.dto.FracaoDto;
 import com.mhj.math.exception.BusinessException;
@@ -34,16 +34,16 @@ import com.mhj.math.validation.FracaoValidation;
 public class FracaoController {
 
 	@Autowired
-	private FracaoBuildSoma fracaoBuildSoma;
+	private FracaoSomaBuild fracaoBuildSoma;
 
 	@Autowired
-	private FracaoBuildMultiplicacao fracaoBuildMultiplicacao;
+	private FracaoMultiplicacaoBuild fracaoBuildMultiplicacao;
 
 	@Autowired
-	private FracaoBuildDivisao fracaoBuildDivisao;
+	private FracaoDivisaoBuild fracaoBuildDivisao;
 	
 	@Autowired
-	private FracaoBuildSimplificacao fracaoBuildSimplificacao;
+	private FracaoSimplificacaoBuild fracaoBuildSimplificacao;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

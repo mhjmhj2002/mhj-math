@@ -2,7 +2,6 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -37,8 +36,6 @@ public class EquacaoGrau2Build extends Build{
 
 	EquacaoGrau2 equacaoGrau2;
 	
-	Locale locale;
-
 	public EquacaoGrau2Build() {
 		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
 	}
@@ -950,10 +947,6 @@ public class EquacaoGrau2Build extends Build{
 
 	public void setEquacaoGrau2(EquacaoGrau2 equacaoGrau2) {
 		this.equacaoGrau2 = equacaoGrau2;
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
 	}
 
 }

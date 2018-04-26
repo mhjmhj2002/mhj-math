@@ -2,7 +2,6 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -35,8 +34,6 @@ public class MMCBuild extends Build {
 
 	@Autowired
 	private MessageSource messageSource;
-
-	Locale locale;
 
 	private MMC mmc;
 	List<MMC> decomposicoes;
@@ -350,10 +347,6 @@ public class MMCBuild extends Build {
 
 	public void setMmc(MMC mmc) {
 		this.mmc = mmc;
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
 	}
 
 	private void verificarNumerosIguais() throws RegraException {

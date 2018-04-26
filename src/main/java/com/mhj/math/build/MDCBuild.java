@@ -2,7 +2,6 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -36,8 +35,6 @@ public class MDCBuild extends Build {
 	@Autowired
 	private MessageSource messageSource;
 
-	Locale locale;
-	
 	private MDC mdc;
 	List<MDC> decomposicoes;
 	Inteiro resultado;
@@ -299,10 +296,6 @@ public class MDCBuild extends Build {
 		operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
 		operacao.getRetorno().add(MathjaxTag.MTABLE_CLOSE);
 		return resultados;
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
 	}
 
 	public void setMdc(MDC mdc) {

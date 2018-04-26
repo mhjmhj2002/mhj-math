@@ -1,5 +1,7 @@
 package com.mhj.math.build;
 
+import java.util.Locale;
+
 import com.mhj.math.enums.MathjaxTag;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
@@ -10,6 +12,8 @@ import com.mhj.math.util.MathjaxUtil;
 public abstract class Build {
 	
 	Operacao operacao;
+
+	Locale locale;
 
 	public Build(Operacao operacao) {
 		this.operacao = operacao;
@@ -62,6 +66,10 @@ public abstract class Build {
 
 	public Operacao getOperacao() {
 		return operacao;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
 	}
 
 }

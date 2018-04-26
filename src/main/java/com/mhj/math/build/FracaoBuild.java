@@ -2,7 +2,6 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -24,8 +23,6 @@ public abstract class FracaoBuild extends Build{
 
 	@Autowired
 	MessageSource messageSource;
-
-	Locale locale;
 	
 	List<Fracao> fracoes;
 	
@@ -148,10 +145,6 @@ public abstract class FracaoBuild extends Build{
 		}
 		
 		fechaMath();
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
 	}
 
 	public void setFracoes(List<Fracao> fracoes) {

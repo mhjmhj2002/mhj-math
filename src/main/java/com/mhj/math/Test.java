@@ -7,9 +7,9 @@ import java.util.List;
 
 import com.mhj.math.build.EquacaoGrau2Build;
 import com.mhj.math.build.FracaoBuild;
-import com.mhj.math.build.FracaoBuildDivisao;
-import com.mhj.math.build.FracaoBuildMultiplicacao;
-import com.mhj.math.build.FracaoBuildSoma;
+import com.mhj.math.build.FracaoDivisaoBuild;
+import com.mhj.math.build.FracaoMultiplicacaoBuild;
+import com.mhj.math.build.FracaoSomaBuild;
 import com.mhj.math.build.MDCBuild;
 import com.mhj.math.build.MMCBuild;
 import com.mhj.math.data.Descricao;
@@ -76,7 +76,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		FracaoBuild fracaoBuild = new FracaoBuildMultiplicacao(fracoes, operacao);
+		FracaoBuild fracaoBuild = new FracaoMultiplicacaoBuild(fracoes, operacao);
 		try {
 			fracaoBuild.resolver();
 		} catch (RegraException e) {
@@ -103,7 +103,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		FracaoBuildDivisao fracaoBuild = new FracaoBuildDivisao(fracoes, operacao);
+		FracaoDivisaoBuild fracaoBuild = new FracaoDivisaoBuild(fracoes, operacao);
 		try {
 			fracaoBuild.resolver();
 		} catch (RegraException e) {
@@ -139,7 +139,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		FracaoBuild fracaoBuild = new FracaoBuildSoma(fracoes, operacao);
+		FracaoBuild fracaoBuild = new FracaoSomaBuild(fracoes, operacao);
 		try {
 			fracaoBuild.resolver();
 		} catch (RegraException e) {

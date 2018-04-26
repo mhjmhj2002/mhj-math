@@ -19,16 +19,16 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoBuildMultiplicacao extends FracaoBuild {
+public class FracaoMultiplicacaoBuild extends FracaoBuild {
 	
 	@Autowired
-	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
+	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
 	
-	public FracaoBuildMultiplicacao(){
+	public FracaoMultiplicacaoBuild(){
 		super();
 	}
 
-	public FracaoBuildMultiplicacao(List<Fracao> fracoes, Operacao operacao) {
+	public FracaoMultiplicacaoBuild(List<Fracao> fracoes, Operacao operacao) {
 		super(fracoes, operacao);
 	}
 
@@ -60,7 +60,7 @@ public class FracaoBuildMultiplicacao extends FracaoBuild {
 		operacao.getRetorno().add(new Descricao("Multiplicando denominadores: "));
 		Inteiro multiplicacaoDenominadores = multiplicarDenominadores();
 		
-		fracaoSimplificacaoBuild = new FracaoBuildSimplificacao(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao);
+		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}
