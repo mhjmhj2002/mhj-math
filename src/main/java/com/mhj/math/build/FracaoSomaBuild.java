@@ -2,6 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -35,8 +36,8 @@ public class FracaoSomaBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoSomaBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
-		super(fracoes, operacao, messageSource);
+	public FracaoSomaBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(fracoes, operacao, messageSource, locale);
 		carregarMmcBuild();
 	}
 
@@ -231,7 +232,7 @@ public class FracaoSomaBuild extends FracaoBuild {
 			denominadores.add(fracao.getDenominador());
 		}
 		MMC mmc = new MMC(denominadores, new Inteiro(1));
-		mmcBuild = new MMCBuild(mmc, operacao, messageSource);
+		mmcBuild = new MMCBuild(mmc, operacao, messageSource, locale);
 	}
 	
 	private void carregarMmc() {

@@ -2,6 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -38,12 +39,12 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
-		super(fracoes, operacao, messageSource);
+	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(fracoes, operacao, messageSource, locale);
 	}
 
-	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao, MessageSource messageSource) {
-		super(null, operacao, messageSource);
+	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(null, operacao, messageSource, locale);
 		this.fracao = fracao;
 		divisao = null;
 	}

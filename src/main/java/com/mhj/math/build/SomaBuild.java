@@ -1,5 +1,7 @@
 package com.mhj.math.build;
 
+import java.util.Locale;
+
 import org.springframework.context.MessageSource;
 
 import com.mhj.math.data.Descricao;
@@ -22,8 +24,8 @@ public class SomaBuild extends OperacaoBasicaBuild {
 		super();
 	}
 
-	public SomaBuild(Operacao operacao, MessageSource messageSource) {
-		super(operacao, messageSource);
+	public SomaBuild(Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(operacao, messageSource, locale);
 	}
 
 	@Override

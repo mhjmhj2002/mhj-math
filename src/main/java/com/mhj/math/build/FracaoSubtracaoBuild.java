@@ -1,6 +1,7 @@
 package com.mhj.math.build;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 
@@ -15,8 +16,8 @@ public class FracaoSubtracaoBuild extends FracaoBuild {
 		super();
 	}
 
-	protected FracaoSubtracaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
-		super(fracoes, operacao, messageSource);
+	protected FracaoSubtracaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(fracoes, operacao, messageSource, locale);
 		// TODO Auto-generated constructor stub
 	}
 

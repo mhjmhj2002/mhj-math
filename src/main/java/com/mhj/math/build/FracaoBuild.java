@@ -2,6 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 
@@ -23,11 +24,11 @@ public abstract class FracaoBuild extends Build{
 	List<Fracao> fracoes;
 	
 	public FracaoBuild(){
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null, null);
 	}
 	
-	protected FracaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
-		super(operacao, messageSource);
+	protected FracaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(operacao, messageSource, locale);
 		this.fracoes = fracoes;
 	}
 	

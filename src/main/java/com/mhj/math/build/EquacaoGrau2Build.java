@@ -2,6 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
@@ -33,11 +34,11 @@ public class EquacaoGrau2Build extends Build{
 	EquacaoGrau2 equacaoGrau2;
 	
 	public EquacaoGrau2Build() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null, null);
 	}
 
-	public EquacaoGrau2Build(EquacaoGrau2 equacaoGrau2, Operacao operacao, MessageSource messageSource) {
-		super(operacao, messageSource);
+	public EquacaoGrau2Build(EquacaoGrau2 equacaoGrau2, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(operacao, messageSource, locale);
 		this.equacaoGrau2 = equacaoGrau2;
 		this.equacaoGrau2.setMetodo(new Bhaskara());
 	}
