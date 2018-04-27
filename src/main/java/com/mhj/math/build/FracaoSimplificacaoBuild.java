@@ -62,10 +62,12 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		verificarNumeradorIgual();
 
 		validarFracaoIrredutivel();
+		
+		while(validarFracaoBase10());
 
 		verificarNumeradorMaiorSemResto();
 
-		verificarNumeradorMaiorComResto();
+//		verificarNumeradorMaiorComResto();
 	}
 
 	@Override
@@ -195,6 +197,21 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 			operacao.getRetorno().add(divisao.getQuociente());
 			throw new RegraException();
 		}
+	}
+
+	private boolean validarFracaoBase10() {
+		if (fracao.getNumerador().getValor() % 10 == 0 && fracao.getDenominador().getValor() % 10 == 0) {
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.validarFracaoBase10.1", null, locale)));
+			operacao.getRetorno().add(LineSeparator.BREAK);
+			Divisao divNumerador = OperacaoUtil.divisao(fracao.getNumerador(), new Inteiro(10));
+			Divisao divDenominador = OperacaoUtil.divisao(fracao.getDenominador(), new Inteiro(10));
+			abreMath();
+			montaFracao(divNumerador.getQuociente(), divDenominador.getQuociente());
+			fechaMath();
+			fracao = new Fracao(divNumerador.getQuociente(), divDenominador.getQuociente());
+			return true;
+		}
+		return false;
 	}
 
 }
