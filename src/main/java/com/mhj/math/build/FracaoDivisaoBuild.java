@@ -1,10 +1,8 @@
 package com.mhj.math.build;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -18,7 +16,6 @@ import com.mhj.math.enums.Simbolo;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Fracao;
-import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 @Component
@@ -32,8 +29,8 @@ public class FracaoDivisaoBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoDivisaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(fracoes, operacao, messageSource, locale);
+	public FracaoDivisaoBuild(List<Fracao> fracoes) {
+		super(fracoes);
 	}
 
 	@Override
@@ -99,7 +96,9 @@ public class FracaoDivisaoBuild extends FracaoBuild {
 			fechaMath();
 		}
 		
-		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(resultado, operacao, messageSource, locale);
+		fracaoSimplificacaoBuild.setFracao(resultado);
+		fracaoSimplificacaoBuild.setOperacao(operacao);
+		fracaoSimplificacaoBuild.setLocale(locale);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}

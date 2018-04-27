@@ -41,7 +41,6 @@ public class MDCController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView form(MdcDto mdc) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/mdc");//
-//		modelAndView.addObject("sinais", Sinal.values());
 
 		return modelAndView;
 	}
@@ -59,6 +58,7 @@ public class MDCController {
 		
 		mdcBuild.setMdc(mdc);
 		mdcBuild.setLocale(locale);
+		mdcBuild.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			mdcBuild.resolver();
@@ -73,21 +73,5 @@ public class MDCController {
 
 		return modelAndView;
 	}
-
-//	@RequestMapping(method = RequestMethod.POST)
-//	public ModelAndView calcular(@Valid MmcDto mmcDto, Locale locale, BindingResult result,
-//			RedirectAttributes redirectAttributes) throws BusinessException, RegraException {
-//
-//		if (result.hasErrors()) {
-//			return form(mmcDto);
-//		}
-//
-//		Operacao operacao = mmcBuild.resolver();
-//
-//		ModelAndView modelAndView = new ModelAndView("math/em/1ano/mmc_resultado");
-//		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
-//
-//		return modelAndView;
-//	}
 
 }

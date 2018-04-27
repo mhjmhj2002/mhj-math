@@ -2,9 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -24,7 +22,6 @@ import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Divisao;
 import com.mhj.math.operacao.MDC;
-import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.MathjaxUtil;
 import com.mhj.math.util.OperacaoUtil;
 
@@ -37,13 +34,7 @@ public class MDCBuild extends Build {
 	Inteiro resultado;
 
 	public MDCBuild() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null, null);
-		decomposicoes = new ArrayList<>();
-	}
-
-	public MDCBuild(MDC mdc, Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(operacao, messageSource, locale);
-		this.mdc = mdc;
+		super();
 		decomposicoes = new ArrayList<>();
 	}
 

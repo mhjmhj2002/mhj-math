@@ -59,6 +59,7 @@ public class MMCController {
 
 		mmcBuild.setMmc(mmc);
 		mmcBuild.setLocale(locale);
+		mmcBuild.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			mmcBuild.resolver();

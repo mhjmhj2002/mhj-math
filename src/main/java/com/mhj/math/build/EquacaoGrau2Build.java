@@ -1,10 +1,7 @@
 package com.mhj.math.build;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -24,7 +21,6 @@ import com.mhj.math.metodo.Bhaskara;
 import com.mhj.math.operacao.Divisao;
 import com.mhj.math.operacao.EquacaoGrau2;
 import com.mhj.math.operacao.Fracao;
-import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 @Component
@@ -34,13 +30,8 @@ public class EquacaoGrau2Build extends Build{
 	EquacaoGrau2 equacaoGrau2;
 	
 	public EquacaoGrau2Build() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null, null);
-	}
-
-	public EquacaoGrau2Build(EquacaoGrau2 equacaoGrau2, Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(operacao, messageSource, locale);
-		this.equacaoGrau2 = equacaoGrau2;
-		this.equacaoGrau2.setMetodo(new Bhaskara());
+		super();
+		equacaoGrau2 = new EquacaoGrau2();
 	}
 
 	@Override
@@ -49,7 +40,6 @@ public class EquacaoGrau2Build extends Build{
 
 	@Override
 	protected void titulo() {
-//		System.out.println(messageSource.getMessage("typeMismatch.produto.numeros", null, locale));
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("EquacaoGrau2Build.titulo.1", null, locale)));
 		operacao.getRetorno().add(new Descricao(equacaoGrau2.getMetodo().getNome()));
 		operacao.getRetorno().add(Simbolo.ESPACO);

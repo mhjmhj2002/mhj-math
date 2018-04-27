@@ -1,22 +1,12 @@
 package com.mhj.math.build;
 
-import java.util.Locale;
-
-import org.springframework.context.MessageSource;
-
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
-import com.mhj.math.operacao.Operacao;
 
 public class SubtracaoBuild extends OperacaoBasicaBuild {
 
 	public SubtracaoBuild() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public SubtracaoBuild(Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(operacao, messageSource, locale);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -1,19 +1,14 @@
 package com.mhj.math.build;
 
-import java.util.Locale;
-
-import org.springframework.context.MessageSource;
-
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.enums.LineSeparator;
+import com.mhj.math.enums.MathjaxProperty;
+import com.mhj.math.enums.MathjaxTag;
 import com.mhj.math.enums.Simbolo;
 import com.mhj.math.enums.Sinal;
-import com.mhj.math.enums.MathjaxTag;
-import com.mhj.math.enums.MathjaxProperty;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
-import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 public class SomaBuild extends OperacaoBasicaBuild {
@@ -22,10 +17,6 @@ public class SomaBuild extends OperacaoBasicaBuild {
 
 	public SomaBuild() {
 		super();
-	}
-
-	public SomaBuild(Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(operacao, messageSource, locale);
 	}
 
 	@Override

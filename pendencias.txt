@@ -1,1 +1,1 @@
--i18N em FracaoBuildSimplificacao
+-simplificar fracao calculando com e sem inteiros

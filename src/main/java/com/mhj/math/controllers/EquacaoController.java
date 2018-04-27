@@ -1,5 +1,6 @@
 package com.mhj.math.controllers;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -63,6 +64,7 @@ public class EquacaoController {
 
 		equacaoGrau2Build.setEquacaoGrau2(equacaoGrau2);
 		equacaoGrau2Build.setLocale(locale);
+		equacaoGrau2Build.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			equacaoGrau2Build.resolver();
