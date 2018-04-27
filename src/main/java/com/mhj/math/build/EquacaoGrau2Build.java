@@ -3,7 +3,6 @@ package com.mhj.math.build;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -31,17 +30,14 @@ import com.mhj.math.util.OperacaoUtil;
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class EquacaoGrau2Build extends Build{
 
-	@Autowired
-	private MessageSource messageSource;
-
 	EquacaoGrau2 equacaoGrau2;
 	
 	public EquacaoGrau2Build() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
 	}
 
-	public EquacaoGrau2Build(EquacaoGrau2 equacaoGrau2, Operacao operacao) {
-		super(operacao);
+	public EquacaoGrau2Build(EquacaoGrau2 equacaoGrau2, Operacao operacao, MessageSource messageSource) {
+		super(operacao, messageSource);
 		this.equacaoGrau2 = equacaoGrau2;
 		this.equacaoGrau2.setMetodo(new Bhaskara());
 	}

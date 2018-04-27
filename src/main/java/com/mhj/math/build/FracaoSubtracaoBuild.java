@@ -2,6 +2,8 @@ package com.mhj.math.build;
 
 import java.util.List;
 
+import org.springframework.context.MessageSource;
+
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Fracao;
@@ -9,8 +11,12 @@ import com.mhj.math.operacao.Operacao;
 
 public class FracaoSubtracaoBuild extends FracaoBuild {
 
-	protected FracaoSubtracaoBuild(List<Fracao> fracoes, Operacao operacao) {
-		super(fracoes, operacao);
+	public FracaoSubtracaoBuild() {
+		super();
+	}
+
+	protected FracaoSubtracaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
+		super(fracoes, operacao, messageSource);
 		// TODO Auto-generated constructor stub
 	}
 

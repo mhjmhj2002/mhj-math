@@ -32,7 +32,7 @@ import com.mhj.math.validation.FracaoValidation;
 @RequestMapping("/math/fracao")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class FracaoController {
-
+	
 	@Autowired
 	private FracaoSomaBuild fracaoBuildSoma;
 

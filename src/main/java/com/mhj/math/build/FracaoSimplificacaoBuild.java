@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -37,12 +38,12 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao) {
-		super(fracoes, operacao);
+	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
+		super(fracoes, operacao, messageSource);
 	}
 
-	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao) {
-		super(null, operacao);
+	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao, MessageSource messageSource) {
+		super(null, operacao, messageSource);
 		this.fracao = fracao;
 		divisao = null;
 	}
@@ -54,7 +55,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	@Override
 	protected void titulo() {
-		operacao.getRetorno().add(new Descricao("Simplificando fração: "));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.titulo.1", null, locale)));
 		abreMath();
 		montaFracao(fracao, false);
 		fechaMath();
@@ -76,12 +77,12 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
 
-		operacao.getRetorno().add(new Descricao("Para simplificar uma fração, devemos:"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(new Descricao(
-				"- Calcular o MMC do numerador e denominador até se tornar irredutível, ou seja, quando o primeiro número dos dois não seja mais divisível."));
+				messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.2", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		operacao.getRetorno().add(new Descricao("- Dividir o numerador e o denominador pelo MMC."));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.3", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
 		carregarMmc();
@@ -90,7 +91,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		} catch (RegraException e) {
 		}
 
-		operacao.getRetorno().add(new Descricao("Dividindo o numerador e o denominador pelo MMC temos:"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.4", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(fracao.getNumerador());
 		operacao.getRetorno().add(Operando.DIVISAO);
@@ -102,7 +103,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		operacao.getRetorno().add(Operando.DIVISAO);
 		operacao.getRetorno().add(mmcBuild.getResultado());
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		operacao.getRetorno().add(new Descricao("O resultado é: "));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.5", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
 		fracao = new Fracao(OperacaoUtil.divisao(fracao.getNumerador(), mmcBuild.getResultado()).getQuociente(),
@@ -122,7 +123,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	private void verificarNumeradorMaiorComResto() throws RegraException {
 		if (fracao.getNumerador().getValor() > fracao.getDenominador().getValor()) {
-			operacao.getRetorno().add(new Descricao("Numerador maior que o denominador, então dividimos eles:"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.verificarNumeradorMaiorComResto.1", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			divisao = OperacaoUtil.divisao(fracao.getNumerador(), fracao.getDenominador());
 			abreMath();
@@ -139,7 +140,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	private void validarFracaoIrredutivel() throws RegraException {
 		if (OperacaoUtil.mdc(fracao.getNumerador(), fracao.getDenominador()).getValor() == 1) {
-			operacao.getRetorno().add(new Descricao("Resultado"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.validarFracaoIrredutivel.1", null, locale)));
 			abreMath();
 			if (divisao != null) {
 				operacao.getRetorno().add(MathjaxTag.MO_OPEN);
@@ -168,7 +169,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	private void verificarNumeradorIgual() throws RegraException {
 		if (fracao.getNumerador().getValor() == fracao.getDenominador().getValor()) {
-			operacao.getRetorno().add(new Descricao("Numerador igual que o denominador, então dividimos eles:"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.verificarNumeradorIgual.1", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			divisao = OperacaoUtil.divisao(fracao.getNumerador(), fracao.getDenominador());
 			operacao.getRetorno().add(fracao.getNumerador());
@@ -187,7 +188,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 	private void verificarNumeradorMaiorSemResto() throws RegraException {
 		if ((fracao.getNumerador().getValor() > fracao.getDenominador().getValor())
 				&& (OperacaoUtil.resto(fracao.getNumerador(), fracao.getDenominador()).getValor().equals(0))) {
-			operacao.getRetorno().add(new Descricao("Numerador igual que o denominador, então dividimos eles:"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.verificarNumeradorMaiorSemResto.1", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			divisao = OperacaoUtil.divisao(fracao.getNumerador(), fracao.getDenominador());
 			operacao.getRetorno().add(fracao.getNumerador());

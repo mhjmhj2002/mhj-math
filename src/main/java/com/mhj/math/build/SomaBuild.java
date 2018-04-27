@@ -1,5 +1,7 @@
 package com.mhj.math.build;
 
+import org.springframework.context.MessageSource;
+
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.enums.LineSeparator;
@@ -16,8 +18,12 @@ public class SomaBuild extends OperacaoBasicaBuild {
 	
 	Sinal sinal = Sinal.POSITIVO;
 
-	public SomaBuild(Operacao operacao) {
-		super(operacao);
+	public SomaBuild() {
+		super();
+	}
+
+	public SomaBuild(Operacao operacao, MessageSource messageSource) {
+		super(operacao, messageSource);
 	}
 
 	@Override

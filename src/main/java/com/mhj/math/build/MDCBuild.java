@@ -3,7 +3,6 @@ package com.mhj.math.build;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -32,20 +31,17 @@ import com.mhj.math.util.OperacaoUtil;
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class MDCBuild extends Build {
 
-	@Autowired
-	private MessageSource messageSource;
-
 	private MDC mdc;
 	List<MDC> decomposicoes;
 	Inteiro resultado;
 
 	public MDCBuild() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
 		decomposicoes = new ArrayList<>();
 	}
 
-	public MDCBuild(MDC mdc, Operacao operacao) {
-		super(operacao);
+	public MDCBuild(MDC mdc, Operacao operacao, MessageSource messageSource) {
+		super(operacao, messageSource);
 		this.mdc = mdc;
 		decomposicoes = new ArrayList<>();
 	}
