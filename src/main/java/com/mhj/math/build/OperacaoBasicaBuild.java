@@ -1,26 +1,16 @@
 package com.mhj.math.build;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import org.springframework.context.MessageSource;
 
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
-import com.mhj.math.operacao.Operacao;
 
 public abstract class OperacaoBasicaBuild extends Build {
 	
 	List<Inteiro> inteiros;
 	
 	public OperacaoBasicaBuild(){
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null, null);
-	}
-
-	public OperacaoBasicaBuild(Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(operacao, messageSource, locale);
 	}
 
 	@Override

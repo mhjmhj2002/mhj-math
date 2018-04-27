@@ -103,6 +103,7 @@ public class FracaoController {
 		
 		fracaoBuildSoma.setFracoes(fracoes);
 		fracaoBuildSoma.setLocale(locale);
+		fracaoBuildSoma.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			fracaoBuildSoma.resolver();
@@ -141,6 +142,7 @@ public class FracaoController {
 		
 		fracaoBuildMultiplicacao.setFracoes(fracoes);
 		fracaoBuildMultiplicacao.setLocale(locale);
+		fracaoBuildMultiplicacao.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			fracaoBuildMultiplicacao.resolver();
@@ -179,6 +181,7 @@ public class FracaoController {
 		
 		fracaoBuildDivisao.setFracoes(fracoes);
 		fracaoBuildDivisao.setLocale(locale);
+		fracaoBuildDivisao.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			fracaoBuildDivisao.resolver();
@@ -217,6 +220,7 @@ public class FracaoController {
 		
 		fracaoBuildSimplificacao.setFracao(fracoes.get(0));
 		fracaoBuildSimplificacao.setLocale(locale);
+		fracaoBuildSimplificacao.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
 		try {
 			fracaoBuildSimplificacao.resolver();

@@ -2,10 +2,8 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -22,7 +20,6 @@ import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Divisao;
 import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.MMC;
-import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 @Component
@@ -39,12 +36,8 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoSimplificacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(fracoes, operacao, messageSource, locale);
-	}
-
-	public FracaoSimplificacaoBuild(Fracao fracao, Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(null, operacao, messageSource, locale);
+	public FracaoSimplificacaoBuild(Fracao fracao) {
+		super(null);
 		this.fracao = fracao;
 		divisao = null;
 	}
@@ -135,7 +128,6 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 			fechaMath();
 			fracao = new Fracao(divisao.getResto(), fracao.getDenominador());
 
-			// throw new RegraException();
 		}
 	}
 
@@ -160,7 +152,7 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	private void carregarMmc() {
 		mmcBuild.setLocale(locale);
-		mmcBuild.setOperacao(this.getOperacao());
+		mmcBuild.setOperacao(operacao);
 		List<Inteiro> denominadores = new ArrayList<>();
 		denominadores.add(fracao.getNumerador());
 		denominadores.add(fracao.getDenominador());

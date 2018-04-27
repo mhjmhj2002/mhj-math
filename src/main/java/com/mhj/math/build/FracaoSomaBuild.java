@@ -2,10 +2,8 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -13,13 +11,12 @@ import org.springframework.web.context.WebApplicationContext;
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.enums.LineSeparator;
-import com.mhj.math.enums.Simbolo;
 import com.mhj.math.enums.MathjaxTag;
+import com.mhj.math.enums.Simbolo;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.MMC;
-import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 @Component
@@ -36,11 +33,6 @@ public class FracaoSomaBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoSomaBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
-		super(fracoes, operacao, messageSource, locale);
-		carregarMmcBuild();
-	}
-
 	@Override
 	protected void titulo() {
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.titulo.1", null, locale)));
@@ -48,7 +40,6 @@ public class FracaoSomaBuild extends FracaoBuild {
 		exibirFracoes(fracoes);
 		
 		operacao.getRetorno().add(LineSeparator.BREAK);
-//		operacao.getRetorno().add(LineSeparator.BREAK);
 	}
 
 	@Override
@@ -226,18 +217,9 @@ public class FracaoSomaBuild extends FracaoBuild {
 		operacao.getRetorno().add(LineSeparator.BREAK);
 	}
 
-	private void carregarMmcBuild() {
-		List<Inteiro> denominadores = new ArrayList<>();
-		for (Fracao fracao : fracoes) {
-			denominadores.add(fracao.getDenominador());
-		}
-		MMC mmc = new MMC(denominadores, new Inteiro(1));
-		mmcBuild = new MMCBuild(mmc, operacao, messageSource, locale);
-	}
-	
 	private void carregarMmc() {
 		mmcBuild.setLocale(locale);
-		mmcBuild.setOperacao(this.getOperacao());
+		mmcBuild.setOperacao(operacao);
 		List<Inteiro> denominadores = new ArrayList<>();
 		for (Fracao fracao : fracoes) {
 			denominadores.add(fracao.getDenominador());

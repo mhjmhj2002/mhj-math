@@ -21,14 +21,7 @@ public abstract class Build {
 
 	Locale locale;
 
-	public Build(Operacao operacao, MessageSource messageSource, Locale locale) {
-		this.operacao = operacao;
-		if (messageSource != null) {
-			this.messageSource = messageSource;
-		}
-		if (locale != null) {
-			this.locale = locale;
-		}
+	public Build() {
 	}
 
 	public Operacao resolver() throws BusinessException, RegraException{
@@ -82,10 +75,6 @@ public abstract class Build {
 
 	public void setLocale(Locale locale) {
 		this.locale = locale;
-	}
-
-	public void setMessageSource(MessageSource messageSource) {
-		this.messageSource = messageSource;
 	}
 
 }
