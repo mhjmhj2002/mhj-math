@@ -1,20 +1,19 @@
 package com.mhj.math.build;
 
+import org.springframework.context.MessageSource;
+
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Operacao;
 
-public class MultiplicacaoBuild extends Build {
+public class MultiplicacaoBuild extends OperacaoBasicaBuild {
 
-	public MultiplicacaoBuild(Operacao operacao) {
-		super(operacao);
-		// TODO Auto-generated constructor stub
+	public MultiplicacaoBuild() {
+		super();
 	}
 
-	@Override
-	protected void validarParametros() throws BusinessException {
-		// TODO Auto-generated method stub
-		
+	public MultiplicacaoBuild(Operacao operacao, MessageSource messageSource) {
+		super(operacao, messageSource);
 	}
 
 	@Override

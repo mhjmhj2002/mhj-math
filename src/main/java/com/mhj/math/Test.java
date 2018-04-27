@@ -7,9 +7,9 @@ import java.util.List;
 
 import com.mhj.math.build.EquacaoGrau2Build;
 import com.mhj.math.build.FracaoBuild;
-import com.mhj.math.build.FracaoBuildDivisao;
-import com.mhj.math.build.FracaoBuildMultiplicacao;
-import com.mhj.math.build.FracaoBuildSoma;
+import com.mhj.math.build.FracaoDivisaoBuild;
+import com.mhj.math.build.FracaoMultiplicacaoBuild;
+import com.mhj.math.build.FracaoSomaBuild;
 import com.mhj.math.build.MDCBuild;
 import com.mhj.math.build.MMCBuild;
 import com.mhj.math.data.Descricao;
@@ -76,7 +76,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		FracaoBuild fracaoBuild = new FracaoBuildMultiplicacao(fracoes, operacao);
+		FracaoBuild fracaoBuild = new FracaoMultiplicacaoBuild(fracoes, operacao, null);
 		try {
 			fracaoBuild.resolver();
 		} catch (RegraException e) {
@@ -103,7 +103,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		FracaoBuildDivisao fracaoBuild = new FracaoBuildDivisao(fracoes, operacao);
+		FracaoDivisaoBuild fracaoBuild = new FracaoDivisaoBuild(fracoes, operacao, null);
 		try {
 			fracaoBuild.resolver();
 		} catch (RegraException e) {
@@ -139,7 +139,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		FracaoBuild fracaoBuild = new FracaoBuildSoma(fracoes, operacao);
+		FracaoBuild fracaoBuild = new FracaoSomaBuild(fracoes, operacao, null);
 		try {
 			fracaoBuild.resolver();
 		} catch (RegraException e) {
@@ -164,7 +164,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		MMCBuild mmcBuild = new MMCBuild(mmc, operacao);
+		MMCBuild mmcBuild = new MMCBuild(mmc, operacao, null);
 
 		try {
 			mmcBuild.resolver();
@@ -233,23 +233,23 @@ public class Test {
 
 		EquacaoGrau2 equacaoGrau21 = new EquacaoGrau2(Letra.X, a1, b1, c1, sinalA1, sinalB1, sinalC1, resultado1,
 				sinalResultado1);
-		EquacaoGrau2Build build1 = new EquacaoGrau2Build(equacaoGrau21, operacao);
+		EquacaoGrau2Build build1 = new EquacaoGrau2Build(equacaoGrau21, operacao, null);
 
 		EquacaoGrau2 equacaoGrau22 = new EquacaoGrau2(Letra.X, a2, b2, c2, sinalA2, sinalB2, sinalC2, resultado2,
 				sinalResultado2);
-		EquacaoGrau2Build build2 = new EquacaoGrau2Build(equacaoGrau22, operacao);
+		EquacaoGrau2Build build2 = new EquacaoGrau2Build(equacaoGrau22, operacao, null);
 
 		EquacaoGrau2 equacaoGrau23 = new EquacaoGrau2(Letra.X, a3, b3, c3, sinalA3, sinalB3, sinalC3, resultado3,
 				sinalResultado3);
-		EquacaoGrau2Build build3 = new EquacaoGrau2Build(equacaoGrau23, operacao);
+		EquacaoGrau2Build build3 = new EquacaoGrau2Build(equacaoGrau23, operacao, null);
 
 		EquacaoGrau2 equacaoGrau24 = new EquacaoGrau2(Letra.X, a4, b4, c4, sinalA4, sinalB4, sinalC4, resultado4,
 				sinalResultado4);
-		EquacaoGrau2Build build4 = new EquacaoGrau2Build(equacaoGrau24, operacao);
+		EquacaoGrau2Build build4 = new EquacaoGrau2Build(equacaoGrau24, operacao, null);
 
 		EquacaoGrau2 equacaoGrau25 = new EquacaoGrau2(Letra.X, a5, b5, c5, sinalA5, sinalB5, sinalC5, resultado5,
 				sinalResultado5);
-		EquacaoGrau2Build build5 = new EquacaoGrau2Build(equacaoGrau25, operacao);
+		EquacaoGrau2Build build5 = new EquacaoGrau2Build(equacaoGrau25, operacao, null);
 
 		Operacao retorno1 = build1.resolver();
 		Operacao retorno2 = build2.resolver();
@@ -321,7 +321,7 @@ public class Test {
 
 		Operacao operacao = new Operacao(new ArrayList<>(), filtroOperacoes);
 
-		MDCBuild mmcBuild = new MDCBuild(mmc, operacao);
+		MDCBuild mmcBuild = new MDCBuild(mmc, operacao, null);
 
 		mmcBuild.resolver();
 

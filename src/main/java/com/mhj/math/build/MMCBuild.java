@@ -2,9 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -33,22 +31,17 @@ import com.mhj.math.util.OperacaoUtil;
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class MMCBuild extends Build {
 
-	@Autowired
-	private MessageSource messageSource;
-
-	Locale locale;
-
 	private MMC mmc;
 	List<MMC> decomposicoes;
 	Inteiro resultado;
 
 	public MMCBuild() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
 		decomposicoes = new ArrayList<>();
 	}
 
-	public MMCBuild(MMC mmc, Operacao operacao) {
-		super(operacao);
+	public MMCBuild(MMC mmc, Operacao operacao, MessageSource messageSource) {
+		super(operacao, messageSource);
 		this.mmc = mmc;
 		decomposicoes = new ArrayList<>();
 	}
@@ -350,10 +343,6 @@ public class MMCBuild extends Build {
 
 	public void setMmc(MMC mmc) {
 		this.mmc = mmc;
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
 	}
 
 	private void verificarNumerosIguais() throws RegraException {

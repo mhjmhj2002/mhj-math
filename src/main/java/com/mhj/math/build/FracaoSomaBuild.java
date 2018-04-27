@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -22,26 +23,26 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoBuildSoma extends FracaoBuild {
+public class FracaoSomaBuild extends FracaoBuild {
 	
 	@Autowired
 	MMCBuild mmcBuild;
 	
 	@Autowired
-	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
-	
-	public FracaoBuildSoma() {
+	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
+
+	public FracaoSomaBuild() {
 		super();
 	}
 
-	public FracaoBuildSoma(List<Fracao> fracoes, Operacao operacao) {
-		super(fracoes, operacao);
+	public FracaoSomaBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
+		super(fracoes, operacao, messageSource);
 		carregarMmcBuild();
 	}
 
 	@Override
 	protected void titulo() {
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.titulo.1", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.titulo.1", null, locale)));
 		
 		exibirFracoes(fracoes);
 		
@@ -62,28 +63,28 @@ public class FracaoBuildSoma extends FracaoBuild {
 			mmcBuild.resolver();
 		} catch (RegraException e) {}
 
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.1", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.2", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.2", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.3", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.3", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
 		List<Fracao> fracoesRetorno = transformarFracoesMesmoDenominador();
 		
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.4", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.4", null, locale)));
 		exibirIgualdadeFracoes(fracoes, fracoesRetorno, false);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		fracoesRetorno = resolverDenominadores(fracoesRetorno);
 		
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.5", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.5", null, locale)));
 		exibirIgualdadeFracoes(fracoes, fracoesRetorno);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		fracoesRetorno = resolverNumeradores(fracoesRetorno);		
 
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolucao.6", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.6", null, locale)));
 		exibirIgualdadeFracoes(fracoes, fracoesRetorno);
 		operacao.getRetorno().add(LineSeparator.BREAK);
 				
@@ -173,7 +174,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 			somaNominadores.setDenominador(fracaoMmc.getDenominador());
 		}		
 		
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolverFracao.1", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolverFracao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		operacao.getRetorno().add(OperacaoUtil.getNumeroComSinal(fracoesMmc.get(0).getNumerador(), false));
@@ -188,7 +189,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 		operacao.getRetorno().add(somaNominadores.getNumerador());
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.resolverFracao.2", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolverFracao.2", null, locale)));
 		abreMath();
 		montaFracao(somaNominadores.getNumerador(), somaNominadores.getDenominador());
 		fechaMath();
@@ -207,11 +208,11 @@ public class FracaoBuildSoma extends FracaoBuild {
 	}
 
 	private void validarDenominadorIgual() throws RegraException, BusinessException {
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.validarDenominadorIgual.1", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.validarDenominadorIgual.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		
 		if (OperacaoUtil.validarDenominadorIgual(fracoes)) {
-			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.validarDenominadorIgual.2", null, locale)));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.validarDenominadorIgual.2", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			resolverFracao(fracoes);
 			operacao.getRetorno().add(LineSeparator.BREAK);
@@ -219,7 +220,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 			throw new RegraException();
 		}
 		
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoBuildSoma.validarDenominadorIgual.3", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.validarDenominadorIgual.3", null, locale)));
 
 		operacao.getRetorno().add(LineSeparator.BREAK);
 	}
@@ -230,7 +231,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 			denominadores.add(fracao.getDenominador());
 		}
 		MMC mmc = new MMC(denominadores, new Inteiro(1));
-		mmcBuild = new MMCBuild(mmc, operacao);
+		mmcBuild = new MMCBuild(mmc, operacao, messageSource);
 	}
 	
 	private void carregarMmc() {
@@ -250,7 +251,7 @@ public class FracaoBuildSoma extends FracaoBuild {
 
 	private void validarNumeradorZerado(Fracao fracao) throws RegraException {
 		if (fracao.getNumerador().getValor().equals(0)) {
-			operacao.getRetorno().add(new Descricao("Numerador igual a zero, então o resultado é: 0"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.validarNumeradorZerado.1", null, locale)));
 			operacao.getRetorno().add(LineSeparator.BREAK);
 			throw new RegraException();
 		}

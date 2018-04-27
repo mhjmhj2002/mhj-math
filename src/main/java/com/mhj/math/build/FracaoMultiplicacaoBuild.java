@@ -3,6 +3,7 @@ package com.mhj.math.build;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -19,17 +20,17 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoBuildMultiplicacao extends FracaoBuild {
+public class FracaoMultiplicacaoBuild extends FracaoBuild {
 	
 	@Autowired
-	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
+	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
 	
-	public FracaoBuildMultiplicacao(){
+	public FracaoMultiplicacaoBuild(){
 		super();
 	}
 
-	public FracaoBuildMultiplicacao(List<Fracao> fracoes, Operacao operacao) {
-		super(fracoes, operacao);
+	public FracaoMultiplicacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
+		super(fracoes, operacao, messageSource);
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class FracaoBuildMultiplicacao extends FracaoBuild {
 
 	@Override
 	protected void titulo() throws BusinessException {
-		operacao.getRetorno().add(new Descricao("Resolvendo "));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoMultiplicacaoBuild.titulo.1", null, locale)));
 		
 		exibirFracoes(fracoes);
 		
@@ -54,13 +55,13 @@ public class FracaoBuildMultiplicacao extends FracaoBuild {
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		operacao.getRetorno().add(new Descricao("Multiplicando numeradores: "));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoMultiplicacaoBuild.resolucao.1", null, locale)));
 		Inteiro multiplicacaoNumeradores = multiplicarNumeradores();
 
-		operacao.getRetorno().add(new Descricao("Multiplicando denominadores: "));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoMultiplicacaoBuild.resolucao.2", null, locale)));
 		Inteiro multiplicacaoDenominadores = multiplicarDenominadores();
 		
-		fracaoSimplificacaoBuild = new FracaoBuildSimplificacao(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao);
+		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao, messageSource);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}

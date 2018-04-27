@@ -1,5 +1,10 @@
 package com.mhj.math.build;
 
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+
 import com.mhj.math.enums.MathjaxTag;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
@@ -8,11 +13,19 @@ import com.mhj.math.util.MathProperties;
 import com.mhj.math.util.MathjaxUtil;
 
 public abstract class Build {
+
+	@Autowired
+	MessageSource messageSource;
 	
 	Operacao operacao;
 
-	public Build(Operacao operacao) {
+	Locale locale;
+
+	public Build(Operacao operacao, MessageSource messageSource) {
 		this.operacao = operacao;
+		if (messageSource != null) {
+			this.messageSource = messageSource;
+		}
 	}
 
 	public Operacao resolver() throws BusinessException, RegraException{
@@ -62,6 +75,14 @@ public abstract class Build {
 
 	public Operacao getOperacao() {
 		return operacao;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	public void setMessageSource(MessageSource messageSource) {
+		this.messageSource = messageSource;
 	}
 
 }

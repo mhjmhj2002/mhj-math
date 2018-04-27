@@ -3,6 +3,7 @@ package com.mhj.math.build;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -21,17 +22,17 @@ import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class FracaoBuildDivisao extends FracaoBuild {
+public class FracaoDivisaoBuild extends FracaoBuild {
 	
 	@Autowired
-	FracaoBuildSimplificacao fracaoSimplificacaoBuild;
-	
-	public FracaoBuildDivisao(){
+	FracaoSimplificacaoBuild fracaoSimplificacaoBuild;
+
+	public FracaoDivisaoBuild() {
 		super();
 	}
 
-	public FracaoBuildDivisao(List<Fracao> fracoes, Operacao operacao) {
-		super(fracoes, operacao);
+	public FracaoDivisaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
+		super(fracoes, operacao, messageSource);
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class FracaoBuildDivisao extends FracaoBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		operacao.getRetorno().add(new Descricao("Para dividir frações multiplicamos a primeira fração pelo inverso da segunda"));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoDivisaoBuild.regras.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 	}
 
@@ -64,13 +65,13 @@ public class FracaoBuildDivisao extends FracaoBuild {
 			abreMath();
 
 			operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-			operacao.getRetorno().add(new Descricao("Invertendo fração de "));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoDivisaoBuild.resolucao.1", null, locale)));
 			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 			
 			montaFracao(fracao.getNumerador(), fracao.getDenominador());
 			
 			operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-			operacao.getRetorno().add(new Descricao(" para "));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoDivisaoBuild.resolucao.2", null, locale)));
 			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 			
 			montaFracao(fracao.getDenominador(), fracao.getNumerador());
@@ -78,10 +79,10 @@ public class FracaoBuildDivisao extends FracaoBuild {
 			fechaMath();
 			
 			fracao = new Fracao(fracao.getDenominador(), fracao.getNumerador());
-			operacao.getRetorno().add(new Descricao("Multiplicando numeradores: "));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoDivisaoBuild.resolucao.3", null, locale)));
 			Inteiro multiplicacaoNumeradores = multiplicarNumeradores(resultado, fracao);
 
-			operacao.getRetorno().add(new Descricao("Multiplicando denominadores: "));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoDivisaoBuild.resolucao.4", null, locale)));
 			Inteiro multiplicacaoDenominadores = multiplicarDenominadores(resultado, fracao);
 			
 			resultado = new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores);
@@ -89,7 +90,7 @@ public class FracaoBuildDivisao extends FracaoBuild {
 			abreMath();
 			
 			operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-			operacao.getRetorno().add(new Descricao("Resultado:"));
+			operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoDivisaoBuild.resolucao.5", null, locale)));
 			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 			
 			montaFracao(resultado.getNumerador(), resultado.getDenominador());
@@ -97,7 +98,7 @@ public class FracaoBuildDivisao extends FracaoBuild {
 			fechaMath();
 		}
 		
-		fracaoSimplificacaoBuild = new FracaoBuildSimplificacao(resultado, operacao);
+		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(resultado, operacao, messageSource);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}

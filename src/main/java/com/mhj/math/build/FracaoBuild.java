@@ -2,9 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
 import com.mhj.math.data.Descricao;
@@ -21,20 +19,15 @@ import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.OperacaoUtil;
 
 public abstract class FracaoBuild extends Build{
-
-	@Autowired
-	MessageSource messageSource;
-
-	Locale locale;
 	
 	List<Fracao> fracoes;
 	
 	public FracaoBuild(){
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()));
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
 	}
 	
-	protected FracaoBuild(List<Fracao> fracoes, Operacao operacao) {
-		super(operacao);
+	protected FracaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
+		super(operacao, messageSource);
 		this.fracoes = fracoes;
 	}
 	
@@ -148,10 +141,6 @@ public abstract class FracaoBuild extends Build{
 		}
 		
 		fechaMath();
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
 	}
 
 	public void setFracoes(List<Fracao> fracoes) {
