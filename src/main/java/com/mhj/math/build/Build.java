@@ -21,10 +21,13 @@ public abstract class Build {
 
 	Locale locale;
 
-	public Build(Operacao operacao, MessageSource messageSource) {
+	public Build(Operacao operacao, MessageSource messageSource, Locale locale) {
 		this.operacao = operacao;
 		if (messageSource != null) {
 			this.messageSource = messageSource;
+		}
+		if (locale != null) {
+			this.locale = locale;
 		}
 	}
 

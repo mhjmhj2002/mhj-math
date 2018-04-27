@@ -1,6 +1,7 @@
 package com.mhj.math.build;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -29,8 +30,8 @@ public class FracaoMultiplicacaoBuild extends FracaoBuild {
 		super();
 	}
 
-	public FracaoMultiplicacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource) {
-		super(fracoes, operacao, messageSource);
+	public FracaoMultiplicacaoBuild(List<Fracao> fracoes, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(fracoes, operacao, messageSource, locale);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class FracaoMultiplicacaoBuild extends FracaoBuild {
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoMultiplicacaoBuild.resolucao.2", null, locale)));
 		Inteiro multiplicacaoDenominadores = multiplicarDenominadores();
 		
-		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao, messageSource);
+		fracaoSimplificacaoBuild = new FracaoSimplificacaoBuild(new Fracao(multiplicacaoNumeradores, multiplicacaoDenominadores), operacao, messageSource, locale);
 		
 		fracaoSimplificacaoBuild.resolver();
 	}

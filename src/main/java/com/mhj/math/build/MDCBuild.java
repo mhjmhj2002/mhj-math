@@ -2,6 +2,7 @@ package com.mhj.math.build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
@@ -36,12 +37,12 @@ public class MDCBuild extends Build {
 	Inteiro resultado;
 
 	public MDCBuild() {
-		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null);
+		super(new Operacao(new ArrayList<>(), new ArrayList<>()), null, null);
 		decomposicoes = new ArrayList<>();
 	}
 
-	public MDCBuild(MDC mdc, Operacao operacao, MessageSource messageSource) {
-		super(operacao, messageSource);
+	public MDCBuild(MDC mdc, Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(operacao, messageSource, locale);
 		this.mdc = mdc;
 		decomposicoes = new ArrayList<>();
 	}

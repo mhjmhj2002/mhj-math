@@ -1,5 +1,7 @@
 package com.mhj.math.build;
 
+import java.util.Locale;
+
 import org.springframework.context.MessageSource;
 
 import com.mhj.math.exception.BusinessException;
@@ -12,8 +14,8 @@ public class DivisaoBuild extends OperacaoBasicaBuild {
 		super();
 	}
 
-	public DivisaoBuild(Operacao operacao, MessageSource messageSource) {
-		super(operacao, messageSource);
+	public DivisaoBuild(Operacao operacao, MessageSource messageSource, Locale locale) {
+		super(operacao, messageSource, locale);
 		// TODO Auto-generated constructor stub
 	}
 
