@@ -290,4 +290,8 @@ public class MDCBuild extends Build {
 		this.mdc = mdc;
 	}
 
+	public Inteiro getResultado() {
+		return resultado;
+	}
+
 }
