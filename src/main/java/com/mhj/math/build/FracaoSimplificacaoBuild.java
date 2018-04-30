@@ -19,7 +19,7 @@ import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Divisao;
 import com.mhj.math.operacao.Fracao;
-import com.mhj.math.operacao.MMC;
+import com.mhj.math.operacao.MDC;
 import com.mhj.math.util.OperacaoUtil;
 
 @Component
@@ -27,10 +27,11 @@ import com.mhj.math.util.OperacaoUtil;
 public class FracaoSimplificacaoBuild extends FracaoBuild {
 
 	@Autowired
-	MMCBuild mmcBuild;
+	MDCBuild mdcBuild;
 
-	Fracao fracao;
-	Divisao divisao;
+	private Fracao fracao;
+	private Divisao divisao;
+	private boolean validarNumeradorMaiorComResto = false;
 
 	public FracaoSimplificacaoBuild() {
 		super();
@@ -60,14 +61,15 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 	protected void regras() throws BusinessException, RegraException {
 
 		verificarNumeradorIgual();
-
-		validarFracaoIrredutivel();
 		
-		while(validarFracaoBase10());
-
 		verificarNumeradorMaiorSemResto();
+		
+		validarFracaoBase10();
 
-//		verificarNumeradorMaiorComResto();
+		if (validarNumeradorMaiorComResto) {
+			verificarNumeradorMaiorComResto();
+		}
+		
 	}
 
 	@Override
@@ -81,9 +83,10 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.3", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
-		carregarMmc();
+		carregarMdc();
+		
 		try {
-			mmcBuild.resolver();
+			mdcBuild.resolver();
 		} catch (RegraException e) {
 		}
 
@@ -91,19 +94,19 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(fracao.getNumerador());
 		operacao.getRetorno().add(Operando.DIVISAO);
-		operacao.getRetorno().add(mmcBuild.getResultado());
+		operacao.getRetorno().add(mdcBuild.getResultado());
 		operacao.getRetorno().add(Simbolo.ESPACO);
 		operacao.getRetorno().add(Letra.e);
 		operacao.getRetorno().add(Simbolo.ESPACO);
 		operacao.getRetorno().add(fracao.getDenominador());
 		operacao.getRetorno().add(Operando.DIVISAO);
-		operacao.getRetorno().add(mmcBuild.getResultado());
+		operacao.getRetorno().add(mdcBuild.getResultado());
 		operacao.getRetorno().add(LineSeparator.BREAK);
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSimplificacaoBuild.resolucao.5", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
 
-		fracao = new Fracao(OperacaoUtil.divisao(fracao.getNumerador(), mmcBuild.getResultado()).getQuociente(),
-				OperacaoUtil.divisao(fracao.getDenominador(), mmcBuild.getResultado()).getQuociente());
+		fracao = new Fracao(OperacaoUtil.divisao(fracao.getNumerador(), mdcBuild.getResultado()).getQuociente(),
+				OperacaoUtil.divisao(fracao.getDenominador(), mdcBuild.getResultado()).getQuociente());
 
 		abreMath();
 		if (divisao != null) {
@@ -152,14 +155,25 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		this.fracao = fracao;
 	}
 
-	private void carregarMmc() {
-		mmcBuild.setLocale(locale);
-		mmcBuild.setOperacao(operacao);
+//	private void carregarMmc() {
+//		mmcBuild.setLocale(locale);
+//		mmcBuild.setOperacao(operacao);
+//		List<Inteiro> denominadores = new ArrayList<>();
+//		denominadores.add(fracao.getNumerador());
+//		denominadores.add(fracao.getDenominador());
+//		MMC mmc = new MMC(denominadores, new Inteiro(1), true);
+//		mmcBuild.setMmc(mmc);
+//	}
+
+	private void carregarMdc() {
+		mdcBuild.setLocale(locale);
+		mdcBuild.setOperacao(operacao);
 		List<Inteiro> denominadores = new ArrayList<>();
 		denominadores.add(fracao.getNumerador());
 		denominadores.add(fracao.getDenominador());
-		MMC mmc = new MMC(denominadores, new Inteiro(1), true);
-		mmcBuild.setMmc(mmc);
+		MDC mdc = new MDC(denominadores, new Inteiro(1));
+		mdcBuild.setMdc(mdc);
+		
 	}
 
 	private void verificarNumeradorIgual() throws RegraException {
@@ -209,9 +223,14 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 			montaFracao(divNumerador.getQuociente(), divDenominador.getQuociente());
 			fechaMath();
 			fracao = new Fracao(divNumerador.getQuociente(), divDenominador.getQuociente());
+			while (validarFracaoBase10());
 			return true;
 		}
 		return false;
+	}
+
+	public void setValidarNumeradorMaiorComResto(boolean validarNumeradorMaiorComResto) {
+		this.validarNumeradorMaiorComResto = validarNumeradorMaiorComResto;
 	}
 
 }
