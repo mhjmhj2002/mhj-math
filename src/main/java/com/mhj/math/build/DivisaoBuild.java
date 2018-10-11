@@ -11,19 +11,16 @@ public class DivisaoBuild extends OperacaoBasicaBuild {
 
 	@Override
 	protected void titulo() throws BusinessException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
 
 	}
 
