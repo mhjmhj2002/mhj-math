@@ -1,7 +1,7 @@
 package com.mhj.math.models;
 
 import java.util.ArrayList;
-import java.util.Collection;
+//import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Usuario /*implements UserDetails*/ {
 
-	private static final long serialVersionUID = 1L;
+//	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String email;
