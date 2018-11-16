@@ -22,7 +22,7 @@
 	<section id="about">
 		<div class="container">
 			<form:form action="${s:mvcUrl('EC#calcular').build() }" method="POST"
-				commandName="equacaoGrau2">
+				modelAttribute="equacaoGrau2">
 				<div class="form-group">
 					<div class="col-md-12">
 						<div class="form-group row">
