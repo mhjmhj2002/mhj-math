@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -23,7 +22,7 @@
 	<section id="about">
 		<div class="container">
 			<form:form action="${s:mvcUrl('EC#calcular').build() }" method="POST"
-				commandName="equacaoGrau2">
+				modelAttribute="equacaoGrau2">
 				<div class="form-group">
 					<div class="col-md-12">
 						<div class="form-group row">
