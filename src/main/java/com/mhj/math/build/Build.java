@@ -5,12 +5,14 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
+import com.mhj.math.data.Inteiro;
 import com.mhj.math.enums.MathjaxTag;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Operacao;
 import com.mhj.math.util.MathProperties;
 import com.mhj.math.util.MathjaxUtil;
+import com.mhj.math.util.OperacaoUtil;
 
 public abstract class Build {
 
@@ -75,6 +77,12 @@ public abstract class Build {
 
 	public void setLocale(Locale locale) {
 		this.locale = locale;
+	}
+	
+	protected void montaValor(Inteiro numero){
+		operacao.getRetorno().add(MathjaxTag.MO_OPEN);
+		operacao.getRetorno().add(OperacaoUtil.getSinalNumero(numero));
+		operacao.getRetorno().add(MathjaxTag.MO_CLOSE);
 	}
 
 }

@@ -9,10 +9,7 @@ import com.mhj.math.enums.Letra;
 import com.mhj.math.enums.MathjaxProperty;
 import com.mhj.math.enums.MathjaxTag;
 import com.mhj.math.enums.Simbolo;
-import com.mhj.math.exception.BusinessException;
-import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Fracao;
-import com.mhj.math.util.OperacaoUtil;
 
 public abstract class FracaoBuild extends Build{
 	
@@ -25,13 +22,6 @@ public abstract class FracaoBuild extends Build{
 	protected FracaoBuild(List<Fracao> fracoes) {
 		super();
 		this.fracoes = fracoes;
-	}
-	
-	@Override
-	protected abstract void validarParametros() throws BusinessException, RegraException;
-
-	public List<Fracao> getFracoes() {
-		return fracoes;
 	}
 	
 	public void montaFracao(List<Data> nominadores, List<Data> denominadores){
@@ -112,12 +102,6 @@ public abstract class FracaoBuild extends Build{
 		
 		operacao.getRetorno().add(MathjaxTag.MFRAC_CLOSE);
 	}
-	
-	private void montaValor(Inteiro numero){
-		operacao.getRetorno().add(MathjaxTag.MO_OPEN);
-		operacao.getRetorno().add(OperacaoUtil.getSinalNumero(numero));
-		operacao.getRetorno().add(MathjaxTag.MO_CLOSE);
-	}
 
 	protected void exibirFracoes(List<Fracao> fracoes) {
 		Fracao fracao = fracoes.get(0);
@@ -141,6 +125,10 @@ public abstract class FracaoBuild extends Build{
 
 	public void setFracoes(List<Fracao> fracoes) {
 		this.fracoes = fracoes;
+	}
+	
+	public List<Fracao> getFracoes() {
+		return fracoes;
 	}
 
 }

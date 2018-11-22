@@ -1,32 +1,42 @@
 package com.mhj.math.build;
 
-import com.mhj.math.exception.BusinessException;
-import com.mhj.math.exception.RegraException;
+import java.util.List;
 
-public class PotenciaBuild extends Build {
+import com.mhj.math.enums.MathjaxTag;
+import com.mhj.math.operacao.Potenciacao;
 
-	@Override
-	protected void validarParametros() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
+public abstract class PotenciaBuild extends Build {
 
+	List<Potenciacao> potencias;
+
+	public PotenciaBuild() {
+		super();
 	}
 
-	@Override
-	protected void titulo() throws BusinessException {
-		// TODO Auto-generated method stub
-
+	public PotenciaBuild(List<Potenciacao> potencias) {
+		super();
+		this.potencias = potencias;
 	}
 
-	@Override
-	protected void regras() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
-
+	public List<Potenciacao> getPotencias() {
+		return potencias;
 	}
-
-	@Override
-	protected void resolucao() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
-
+	
+	public void montaPotencia(Potenciacao potencia, boolean mostraSinal){
+		montaPotencia(potencia, mostraSinal, true);
+	}
+	
+	public void montaPotencia(Potenciacao potencia, boolean mostraSinal, boolean addNumerador){
+		if (mostraSinal) {
+			montaValor(potencia.getBase());
+		}
+	
+		operacao.getRetorno().add(MathjaxTag.MROW_OPEN);
+		operacao.getRetorno().add(MathjaxTag.MN_OPEN);
+		operacao.getRetorno().add(potencia.getExpoente());
+		operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
+		operacao.getRetorno().add(MathjaxTag.MROW_CLOSE);
+		
 	}
 
 }
