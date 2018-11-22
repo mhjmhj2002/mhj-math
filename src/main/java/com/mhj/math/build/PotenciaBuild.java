@@ -22,6 +22,10 @@ public abstract class PotenciaBuild extends Build {
 		return potencias;
 	}
 	
+	public void setPotencias(List<Potenciacao> potencias) {
+		this.potencias = potencias;
+	}
+
 	public void montaPotencia(Potenciacao potencia, boolean mostraSinal){
 		montaPotencia(potencia, mostraSinal, true);
 	}

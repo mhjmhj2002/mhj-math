@@ -10,6 +10,12 @@ public class Potenciacao {
 	
 	private Inteiro potencia;
 
+	public Potenciacao(Inteiro base, Inteiro expoente) {
+		super();
+		this.base = base;
+		this.expoente = expoente;
+	}
+
 	public Inteiro getBase() {
 		return base;
 	}
