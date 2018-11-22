@@ -69,6 +69,7 @@ public class EquacaoController {
 		try {
 			equacaoGrau2Build.resolver();
 		} catch (RegraException e) {
+			e.printStackTrace();
 		}
 		
 		Operacao operacao = equacaoGrau2Build.getOperacao();

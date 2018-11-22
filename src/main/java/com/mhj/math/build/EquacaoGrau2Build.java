@@ -2,6 +2,7 @@ package com.mhj.math.build;
 
 import java.util.List;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -934,6 +935,10 @@ public class EquacaoGrau2Build extends Build{
 
 	public void setEquacaoGrau2(EquacaoGrau2 equacaoGrau2) {
 		this.equacaoGrau2 = equacaoGrau2;
+	}
+	
+	public void addMessageSource(MessageSource messageSource) {
+		this.messageSource = messageSource;
 	}
 
 }
