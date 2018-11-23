@@ -81,7 +81,7 @@ public abstract class FracaoBuild extends Build{
 	
 	public void montaFracao(Fracao fracao, boolean mostraSinal, boolean addNumerador){
 		if (mostraSinal) {
-			montaValor(fracao.getNumerador());
+			montaSinal(fracao.getNumerador());
 		}
 		
 		operacao.getRetorno().add(MathjaxTag.MFRAC_OPEN);

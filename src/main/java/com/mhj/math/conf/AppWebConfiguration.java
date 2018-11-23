@@ -33,14 +33,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.mhj.math.build.EquacaoGrau2Build;
 import com.mhj.math.controllers.HomeController;
-import com.mhj.math.daos.UsuarioDAO;
 import com.mhj.math.infra.FileSaver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class,UsuarioDAO.class,
-			FileSaver.class, EquacaoGrau2Build.class})
-//@EnableCaching
+@ComponentScan(basePackageClasses={HomeController.class, FileSaver.class, EquacaoGrau2Build.class})
 public class AppWebConfiguration implements WebMvcConfigurer {
 
 	@Bean
@@ -115,10 +112,10 @@ public class AppWebConfiguration implements WebMvcConfigurer {
 	@Bean
 	public MailSender mailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-		mailSender.setHost("mail.manuelhj.com.br");
-		mailSender.setUsername("manuelhj@manuelhj.com.br");
-		mailSender.setPassword("@@2y244y26@@");
-		mailSender.setPort(587);
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setUsername("mhjapps@gmail.com");
+		mailSender.setPassword("@1234567890@");
+		mailSender.setPort(25);
 		
 		Properties mailProperties = new Properties();
 		mailProperties.put("mail.smtp.auth", true);

@@ -40,35 +40,35 @@ public class PotenciaController {
 
 	@RequestMapping(method = RequestMethod.GET, name="soma", value="soma")
 	public ModelAndView soma(PotenciaDto potencia) {
-		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/potencia_soma");
+		ModelAndView modelAndView = new ModelAndView("math/ef2/8ano/potencia_soma");
 
 		return modelAndView;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, name = "calcular_ss_potencia", value="calcular_ss_potencia")
-	public ModelAndView calcularSoma(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
+	public ModelAndView calcularSoma(@RequestParam("bases") List<Integer> bases, @RequestParam("expoentes") List<Integer> expoentes, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 
 		List<Inteiro> nums = new ArrayList<>();
 		List<Inteiro> denoms = new ArrayList<>();
-		List<Potenciacao> fracoes = new ArrayList<>();
+		List<Potenciacao> potencias = new ArrayList<>();
 
-		for (int i = 1; i < numeradores.size(); i++) {
-			nums.add(new Inteiro(Integer.valueOf(sinais.get(i) + numeradores.get(i))));
+		for (int i = 1; i < bases.size(); i++) {
+			nums.add(new Inteiro(Integer.valueOf(sinais.get(i) + bases.get(i))));
 		}
 		
-		for (int i = 1; i < denominadores.size(); i++) {
-			denoms.add(new Inteiro(denominadores.get(i)));
+		for (int i = 1; i < expoentes.size(); i++) {
+			denoms.add(new Inteiro(expoentes.get(i)));
 		}
 		
 		int pos = 0;
 		for (Inteiro num : nums) {
 			Potenciacao potencia = new Potenciacao(num, denoms.get(pos));
-			fracoes.add(potencia);
+			potencias.add(potencia);
 			pos++;
 		}
 		
-		potenciaSomaBuild.setPotencias(fracoes);
+		potenciaSomaBuild.setPotencias(potencias);
 		potenciaSomaBuild.setLocale(locale);
 		potenciaSomaBuild.setOperacao(new Operacao(new ArrayList<>(), new ArrayList<>()));
 
@@ -78,7 +78,7 @@ public class PotenciaController {
 		}
 		Operacao operacao = potenciaSomaBuild.getOperacao();
 
-		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/potencia_resultado");
+		ModelAndView modelAndView = new ModelAndView("math/ef2/8ano/potencia_resultado");
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
 
 		return modelAndView;

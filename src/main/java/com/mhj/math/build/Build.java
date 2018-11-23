@@ -79,7 +79,7 @@ public abstract class Build {
 		this.locale = locale;
 	}
 	
-	protected void montaValor(Inteiro numero){
+	protected void montaSinal(Inteiro numero){
 		operacao.getRetorno().add(MathjaxTag.MO_OPEN);
 		operacao.getRetorno().add(OperacaoUtil.getSinalNumero(numero));
 		operacao.getRetorno().add(MathjaxTag.MO_CLOSE);
