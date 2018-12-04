@@ -11,7 +11,7 @@ import com.mhj.math.operacao.Fracao;
 public class OperacaoUtil {
 
 	public static Inteiro quadrado(Inteiro numero) {
-		return new Inteiro(new Double(Math.pow(numero.getValor(), 2)).intValue());
+		return new Inteiro(Double.valueOf(Math.pow(numero.getValor(), 2)).intValue());
 	}
 
 	public static Integer multiplicacao(List<Integer> numeros) {
@@ -27,7 +27,7 @@ public class OperacaoUtil {
 		String sinal = "";
 
 		if (exibeSinal) {
-			if (new Integer(0).compareTo(numero.getValor()) > 0) {// negativo
+			if (Integer.valueOf(0).compareTo(numero.getValor()) > 0) {// negativo
 				sinal = "- ";
 				return new Descricao(sinal + Math.abs(numero.getValor()));
 			} else {
@@ -46,13 +46,6 @@ public class OperacaoUtil {
 
 	public static Inteiro calculaSomaSubtracao(Inteiro num1, Inteiro num2) {
 		return new Inteiro(num1.getValor() + num2.getValor());
-		// Sinal sinal1 = buscaSinalNumero(num1);
-		// Sinal sinal2 = buscaSinalNumero(num2);
-		// if (sinal1.equals(sinal2)) {
-		// return num1 + num2;
-		// } else {
-		// return num1 - num2;
-		// }
 	}
 
 	public static Divisao divisao(Inteiro dividendo, Inteiro divisor) {
@@ -80,8 +73,8 @@ public class OperacaoUtil {
 
 	public static Fracao quadrado(Fracao fracao) {
 		Fracao retorno = new Fracao(new Inteiro(1), new Inteiro(1));
-		retorno.setNumerador(new Inteiro(new Double(Math.pow(fracao.getNumerador().getValor(), 2)).intValue()));
-		retorno.setDenominador(new Inteiro(new Double(Math.pow(fracao.getDenominador().getValor(), 2)).intValue()));
+		retorno.setNumerador(new Inteiro(Double.valueOf(Math.pow(fracao.getNumerador().getValor(), 2)).intValue()));
+		retorno.setDenominador(new Inteiro(Double.valueOf(Math.pow(fracao.getDenominador().getValor(), 2)).intValue()));
 		return retorno;
 	}
 
@@ -107,10 +100,7 @@ public class OperacaoUtil {
 	}
 
 	public static boolean fracaoEhReal(Fracao fracao) {
-		if (new Integer(1).equals(fracao.getDenominador().getValor())) {
-			return true;
-		}
-		return false;
+		return Integer.valueOf(1).equals(fracao.getDenominador().getValor());
 	}
 
 	public static Fracao calculaSomaSubtracao(Fracao fracao1, Fracao fracao2) {
@@ -122,14 +112,14 @@ public class OperacaoUtil {
 	}
 
 	public static Sinal getSinalNumero(Inteiro numero) {
-		if (new Integer(0).compareTo(numero.getValor()) > 0) {
+		if (Integer.valueOf(0).compareTo(numero.getValor()) > 0) {
 			return Sinal.NEGATIVO;
 		}
 		return Sinal.POSITIVO;
 	}
 
 	public static Inteiro raiz2(Inteiro numero) {
-		return new Inteiro(new Double(Math.sqrt(numero.getValor())).intValue());
+		return new Inteiro(Double.valueOf(Math.sqrt(numero.getValor())).intValue());
 	}
 	
 	public static boolean ehPrimo(Inteiro numero) {
@@ -186,7 +176,6 @@ public class OperacaoUtil {
 			resto = new Inteiro(numero1.getValor() % numero2.getValor());
 			numero1 = numero2;
 			numero2 = resto;
-//			texto_resultado.setText("MDC = " + valor1);
 		}
 		return resto;
 	}
@@ -196,7 +185,7 @@ public class OperacaoUtil {
 	}
 	
 	public static boolean validarValor(Inteiro numero, Integer valor) {
-		return new Integer(valor).equals(numero.getValor());
+		return valor.equals(numero.getValor());
 	}
 
 

@@ -35,7 +35,7 @@ public class FracaoDivisaoBuild extends FracaoBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException {
-		
+		throw new UnsupportedOperationException("Operacao invalida");
 	}
 
 	@Override

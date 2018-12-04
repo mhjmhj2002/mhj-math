@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,9 +26,12 @@ import com.mhj.math.operacao.Potenciacao;
 import com.mhj.math.print.Impressao;
 import com.mhj.math.validation.PotenciaValidation;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/math/potencia")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
+@Slf4j
 public class PotenciaController {
 	
 	@Autowired
@@ -38,14 +42,12 @@ public class PotenciaController {
 		binder.addValidators(new PotenciaValidation());
 	}
 
-	@RequestMapping(method = RequestMethod.GET, name="soma", value="soma")
+	@GetMapping( name="soma", value="soma")
 	public ModelAndView soma(PotenciaDto potencia) {
-		ModelAndView modelAndView = new ModelAndView("math/ef2/8ano/potencia_soma");
-
-		return modelAndView;
+		return new ModelAndView("math/ef2/8ano/potencia_soma");
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_ss_potencia", value="calcular_ss_potencia")
+	@PostMapping( name = "calcular_ss_potencia", value="calcular_ss_potencia")
 	public ModelAndView calcularSoma(@RequestParam("bases") List<Integer> bases, @RequestParam("expoentes") List<Integer> expoentes, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 
@@ -75,6 +77,7 @@ public class PotenciaController {
 		try {
 			potenciaSomaBuild.resolver();
 		} catch (RegraException e) {
+			log.error("Erro de regra");
 		}
 		Operacao operacao = potenciaSomaBuild.getOperacao();
 

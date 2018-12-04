@@ -2,17 +2,17 @@ package com.mhj.math.infra;
 
 import java.util.Date;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class MailSend {
+import lombok.extern.slf4j.Slf4j;
 
-	private Logger LOG = Logger.getLogger(this.getClass());
+@Repository
+@Slf4j
+public class MailSend {
 
 	@Autowired
 	private MailSender sender;
@@ -20,11 +20,9 @@ public class MailSend {
 	@Async
 	public void send(SimpleMailMessage email) {
 
-		System.out.println("antes send: " + new Date());
-		LOG.info("antes send: " + new Date());
+		log.info("antes send: " + new Date());
 		sender.send(email);
-		System.out.println("depois send: " + new Date());
-		LOG.info("depois send: " + new Date());
+		log.info("depois send: " + new Date());
 
 	}
 

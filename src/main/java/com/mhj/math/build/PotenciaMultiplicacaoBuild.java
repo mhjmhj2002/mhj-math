@@ -19,7 +19,7 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException, RegraException {
-
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
@@ -33,7 +33,6 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 	}
 
 	@Override
-	// TODO Auto-generated method stub
 	protected void regras() throws BusinessException, RegraException {
 		//a^0 = 1
 		validarExpoenteZero();
@@ -57,8 +56,7 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void exibirPotencias(List<Potenciacao> potencias) {
@@ -83,37 +81,30 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 	}
 
 	private void validarFracaoPotencia() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validar() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarMesmoExpoente() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarMesmaBase() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarExpoenteNegativo() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarExpoenteUm() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarExpoenteZero() throws RegraException {
-		// TODO Auto-generated method stub
 		for (Potenciacao potenciacao : potencias) {
 			if (OperacaoUtil.validarValor(potenciacao.getExpoente(), 0)) {
 				//multiplicacao sera zero
@@ -123,13 +114,11 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 	}
 
 	private void ordenarBasesIguais() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void ordenarExpoentesIguais() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 }

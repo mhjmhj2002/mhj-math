@@ -14,6 +14,10 @@ public class Bhaskara extends Metodo {
 
 	// x = (-b +- sqrt(b^2 - 4ac)) / (2a)
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8158535186241635898L;
 	private List<Data> formula;
 
 	public Bhaskara() {

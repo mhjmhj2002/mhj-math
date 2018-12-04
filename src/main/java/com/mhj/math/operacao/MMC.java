@@ -34,10 +34,6 @@ public class MMC extends Comum{
 	}
 
 	private void adicionarDivisor() {
-//		List<Inteiro> nums = new ArrayList<>(numeros);
-		
-//		Comparator<Inteiro> comparator = Collections.reverseOrder();
-//		Collections.sort(nums, comparator);
 		Collections.sort(numeros);
 		
 		for (Inteiro numero : numeros) {

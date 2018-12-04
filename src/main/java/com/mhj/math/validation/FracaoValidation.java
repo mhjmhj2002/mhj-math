@@ -14,23 +14,7 @@ public class FracaoValidation implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		// ValidationUtils.rejectIfEmpty(errors, "a",
-		// "EquacaoGrau2Build.field.required");
-		// ValidationUtils.rejectIfEmpty(errors, "b",
-		// "EquacaoGrau2Build.field.required");
-		// ValidationUtils.rejectIfEmpty(errors, "c",
-		// "EquacaoGrau2Build.field.required");
-		// ValidationUtils.rejectIfEmpty(errors, "sinalA",
-		// "EquacaoGrau2Build.field.required", "erro sinalA");
-		// ValidationUtils.rejectIfEmpty(errors, "sinalB",
-		// "EquacaoGrau2Build.field.required");
-		// ValidationUtils.rejectIfEmpty(errors, "sinalC",
-		// "EquacaoGrau2Build.field.required");
-
-		// EquacaoGrau2 equacaoGrau2 = (EquacaoGrau2) target;
-		// if (equacaoGrau2.getSinalA() == null) {
-		// errors.rejectValue("sinalA", "field.required");
-		// }
+		// TODO adicionar validators
 	}
 
 }

@@ -37,6 +37,7 @@ public class EquacaoGrau2Build extends Build{
 
 	@Override
 	protected void validarParametros() throws BusinessException, RegraException {
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
@@ -51,6 +52,7 @@ public class EquacaoGrau2Build extends Build{
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
@@ -678,7 +680,7 @@ public class EquacaoGrau2Build extends Build{
 		
 		if (equacaoGrau2.getX2Fracao() != null) {
 			//termo1
-			Fracao aF = null;
+			Fracao aF = new Fracao(equacaoGrau2.getAInteiro(), new Inteiro(1));
 			Fracao bF = new Fracao(equacaoGrau2.getBInteiro(), new Inteiro(1));
 
 			Fracao quadradoXF = OperacaoUtil.quadrado(equacaoGrau2.getX2Fracao());

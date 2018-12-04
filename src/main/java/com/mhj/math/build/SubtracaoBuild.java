@@ -11,17 +11,17 @@ public class SubtracaoBuild extends OperacaoBasicaBuild {
 
 	@Override
 	protected void titulo() throws BusinessException {
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 }

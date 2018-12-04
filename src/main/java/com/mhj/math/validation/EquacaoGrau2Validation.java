@@ -7,6 +7,8 @@ import org.springframework.validation.Validator;
 import com.mhj.math.operacao.EquacaoGrau2;
 
 public class EquacaoGrau2Validation implements Validator {
+	
+	private final String required = "EquacaoGrau2Build.field.required";
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -15,17 +17,13 @@ public class EquacaoGrau2Validation implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "a", "EquacaoGrau2Build.field.required");
-		ValidationUtils.rejectIfEmpty(errors, "b", "EquacaoGrau2Build.field.required");
-		ValidationUtils.rejectIfEmpty(errors, "c", "EquacaoGrau2Build.field.required");
-		ValidationUtils.rejectIfEmpty(errors, "sinalA", "EquacaoGrau2Build.field.required", "erro sinalA");
-		ValidationUtils.rejectIfEmpty(errors, "sinalB", "EquacaoGrau2Build.field.required");
-		ValidationUtils.rejectIfEmpty(errors, "sinalC", "EquacaoGrau2Build.field.required");
+		ValidationUtils.rejectIfEmpty(errors, "a", required);
+		ValidationUtils.rejectIfEmpty(errors, "b", required);
+		ValidationUtils.rejectIfEmpty(errors, "c", required);
+		ValidationUtils.rejectIfEmpty(errors, "sinalA", required, "erro sinalA");
+		ValidationUtils.rejectIfEmpty(errors, "sinalB", required);
+		ValidationUtils.rejectIfEmpty(errors, "sinalC", required);
 		
-//		EquacaoGrau2 equacaoGrau2 = (EquacaoGrau2) target;
-//		if (equacaoGrau2.getSinalA() == null) {
-//			errors.rejectValue("sinalA", "field.required");
-//		}
 	}
 	
 }

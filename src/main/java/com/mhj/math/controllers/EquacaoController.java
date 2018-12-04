@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,9 +29,12 @@ import com.mhj.math.operacao.Operacao;
 import com.mhj.math.print.Impressao;
 import com.mhj.math.validation.EquacaoGrau2Validation;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/math")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
+@Slf4j
 public class EquacaoController {
 
 	@Autowired
@@ -50,7 +53,7 @@ public class EquacaoController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
 	public ModelAndView calcular(@Valid EquacaoGrau2 equacaoGrau2, Locale locale, BindingResult result, RedirectAttributes redirectAttributes) throws BusinessException {
 		
 		if (result.hasErrors()) {
@@ -69,7 +72,7 @@ public class EquacaoController {
 		try {
 			equacaoGrau2Build.resolver();
 		} catch (RegraException e) {
-			e.printStackTrace();
+			log.error("Regra Exception: ", e);
 		}
 		
 		Operacao operacao = equacaoGrau2Build.getOperacao();
