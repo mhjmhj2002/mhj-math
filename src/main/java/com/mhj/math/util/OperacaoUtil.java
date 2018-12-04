@@ -194,6 +194,10 @@ public class OperacaoUtil {
 	public static Inteiro soma(Inteiro numero1, Inteiro numero2) {
 		return new Inteiro(numero1.getValor() + numero2.getValor());
 	}
+	
+	public static boolean validarValor(Inteiro numero, Integer valor) {
+		return new Integer(valor).equals(numero.getValor());
+	}
 
 
 }
