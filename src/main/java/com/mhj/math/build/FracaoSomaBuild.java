@@ -19,8 +19,11 @@ import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.MMC;
 import com.mhj.math.util.OperacaoUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
+@Slf4j
 public class FracaoSomaBuild extends FracaoBuild {
 	
 	@Autowired
@@ -53,7 +56,9 @@ public class FracaoSomaBuild extends FracaoBuild {
 		
 		try {
 			mmcBuild.resolver();
-		} catch (RegraException e) {}
+		} catch (RegraException e) {
+			log.error("Erro de regra", e);			
+		}
 
 		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.resolucao.1", null, locale)));
 		operacao.getRetorno().add(LineSeparator.BREAK);
@@ -230,6 +235,7 @@ public class FracaoSomaBuild extends FracaoBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException {
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarNumeradorZerado(Fracao fracao) throws RegraException {

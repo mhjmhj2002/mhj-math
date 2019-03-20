@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,9 +26,12 @@ import com.mhj.math.operacao.Operacao;
 import com.mhj.math.print.Impressao;
 import com.mhj.math.validation.MMCValidation;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/math/mmc")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
+@Slf4j
 public class MMCController {
 
 	@Autowired
@@ -38,14 +42,12 @@ public class MMCController {
 		binder.addValidators(new MMCValidation());
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public ModelAndView form(MmcDto mmc) {
-		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/mmc");
-
-		return modelAndView;
+		return new ModelAndView("math/ef2/6ano/mmc");
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_mmc")
+	@PostMapping( name = "calcular_mmc")
 	public ModelAndView calcular(@RequestParam("numeros") List<Integer> numeros, Locale locale)
 			throws BusinessException {
 
@@ -64,7 +66,7 @@ public class MMCController {
 		try {
 			mmcBuild.resolver();
 		} catch (RegraException e) {
-			e.printStackTrace();
+			log.error("Erro de regra: ", e);
 		}
 		
 		Operacao operacao = mmcBuild.getOperacao();

@@ -15,6 +15,10 @@ import com.mhj.math.enums.Simbolo;
 
 public class MathjaxUtil {
 	
+	private MathjaxUtil() {
+		
+	}
+	
 	public static List<Data> montarTagComposta(TagComposta tagProperty){
 		List<Data> retorno = new ArrayList<>();
 		retorno.add(Simbolo.MENOR);

@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,35 +51,35 @@ public class FracaoController {
 		binder.addValidators(new FracaoValidation());
 	}
 
-	@RequestMapping(method = RequestMethod.GET, name="soma", value="soma")
+	@GetMapping( name="soma", value="soma")
 	public ModelAndView soma(FracaoDto fracao) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_soma");
 
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, name="multiplicacao", value="multiplicacao")
+	@GetMapping( name="multiplicacao", value="multiplicacao")
 	public ModelAndView multiplicacao(FracaoDto fracao) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_multiplicacao");
 
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, name="divisao", value="divisao")
+	@GetMapping(name="divisao", value="divisao")
 	public ModelAndView divisao(FracaoDto fracao) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_divisao");
 
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, name="simplificacao", value="simplificacao")
+	@GetMapping( name="simplificacao", value="simplificacao")
 	public ModelAndView simplificacao(FracaoDto fracao) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_simplificacao");
 
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_ss_fracao", value="calcular_ss_fracao")
+	@PostMapping( name = "calcular_ss_fracao", value="calcular_ss_fracao")
 	public ModelAndView calcularSoma(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 
@@ -117,7 +118,7 @@ public class FracaoController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_mult_fracao", value="calcular_mult_fracao")
+	@PostMapping( name = "calcular_mult_fracao", value="calcular_mult_fracao")
 	public ModelAndView calcularMultiplicacao(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 
@@ -156,7 +157,7 @@ public class FracaoController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_div_fracao", value="calcular_div_fracao")
+	@PostMapping( name = "calcular_div_fracao", value="calcular_div_fracao")
 	public ModelAndView calcularDivisao(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 
@@ -195,7 +196,7 @@ public class FracaoController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "calcular_simpl_fracao", value="calcular_simpl_fracao")
+	@PostMapping( name = "calcular_simpl_fracao", value="calcular_simpl_fracao")
 	public ModelAndView calcularSimplificacao(@RequestParam("numeradores") List<Integer> numeradores, @RequestParam("denominadores") List<Integer> denominadores, @RequestParam("sinais") List<String> sinais, Locale locale)
 			throws BusinessException {
 

@@ -11,7 +11,10 @@ import com.mhj.math.metodo.Metodo;
 
 public class EquacaoGrau2 implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6169821135021301279L;
 
 	private Letra variavel;
 
@@ -217,52 +220,6 @@ public class EquacaoGrau2 implements Serializable {
 
 	public SinalDelta getSinalDelta() {
 		return sinalDelta;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((a == null) ? 0 : a.hashCode());
-		result = prime * result + ((b == null) ? 0 : b.hashCode());
-		result = prime * result + ((c == null) ? 0 : c.hashCode());
-		result = prime * result + ((sinalA == null) ? 0 : sinalA.hashCode());
-		result = prime * result + ((sinalB == null) ? 0 : sinalB.hashCode());
-		result = prime * result + ((sinalC == null) ? 0 : sinalC.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EquacaoGrau2 other = (EquacaoGrau2) obj;
-		if (a == null) {
-			if (other.a != null)
-				return false;
-		} else if (!a.equals(other.a))
-			return false;
-		if (b == null) {
-			if (other.b != null)
-				return false;
-		} else if (!b.equals(other.b))
-			return false;
-		if (c == null) {
-			if (other.c != null)
-				return false;
-		} else if (!c.equals(other.c))
-			return false;
-		if (sinalA != other.sinalA)
-			return false;
-		if (sinalB != other.sinalB)
-			return false;
-		if (sinalC != other.sinalC)
-			return false;
-		return true;
 	}
 
 }

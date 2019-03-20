@@ -188,7 +188,6 @@ public class MDCBuild extends Build {
 		int qtdeNumeros = mdc.getNumeros().size();
 		
 		ValueComposta value = new ValueComposta(MathjaxValue.PT, new Inteiro(qtdeNumeros));
-		values = new ArrayList<>();
 		values.add(value);
 		PropertyComposta property = new PropertyComposta(MathjaxProperty.ROW_SPACING, values);		
 		properties.add(property);
@@ -255,9 +254,9 @@ public class MDCBuild extends Build {
 		tag = new TagComposta(MathjaxTag.MTABLE_OPEN, properties);		
 		operacao.getRetorno().addAll(MathjaxUtil.montarTagComposta(tag));
 		
-		for (MDC mdc : decomposicoes) {
+		for (MDC decomposicao : decomposicoes) {
 			operacao.getRetorno().add(MathjaxTag.MTR_OPEN);
-			for (Inteiro numero : mdc.getNumeros()) {
+			for (Inteiro numero : decomposicao.getNumeros()) {
 				operacao.getRetorno().add(MathjaxTag.MTD_OPEN);
 				operacao.getRetorno().add(MathjaxTag.MN_OPEN);
 				operacao.getRetorno().add(numero);
@@ -266,18 +265,18 @@ public class MDCBuild extends Build {
 			}
 			operacao.getRetorno().add(MathjaxTag.MTD_OPEN);
 			operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-			operacao.getRetorno().add(mdc.getDivisor());
+			operacao.getRetorno().add(decomposicao.getDivisor());
 			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 			operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
-			if (mdc.isDivisivelPorTodos()) {
-				resultados.add(mdc.getDivisor());
+			if (decomposicao.isDivisivelPorTodos()) {
+				resultados.add(decomposicao.getDivisor());
 				operacao.getRetorno().add(MathjaxTag.MTD_OPEN);
 				operacao.getRetorno().add(MathjaxTag.MN_OPEN);
 				operacao.getRetorno().add(new Descricao("Divisivel por todos"));
 				operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 				operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
 			}
-			resultado = mdc.getResultado();	
+			resultado = decomposicao.getResultado();	
 			operacao.getRetorno().add(MathjaxTag.MTR_CLOSE);
 		}
 		operacao.getRetorno().add(MathjaxTag.MTABLE_CLOSE);

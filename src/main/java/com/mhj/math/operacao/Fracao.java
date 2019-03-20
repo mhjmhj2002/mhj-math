@@ -1,9 +1,15 @@
 package com.mhj.math.operacao;
 
+import java.io.Serializable;
+
 import com.mhj.math.data.Inteiro;
 
-public class Fracao {
+public class Fracao implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4058981238787876898L;
 	private Inteiro numerador;
 	private Inteiro denominador;
 	

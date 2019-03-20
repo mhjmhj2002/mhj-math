@@ -18,22 +18,22 @@ public class FracaoSubtracaoBuild extends FracaoBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException {
-		
+		throw new UnsupportedOperationException("Operacao invalida");
 	}
 
 	@Override
 	protected void titulo() throws BusinessException {
-		
+		throw new UnsupportedOperationException("Operacao invalida");
 	}
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		
+		throw new UnsupportedOperationException("Operacao invalida");
 	}
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		
+		throw new UnsupportedOperationException("Operacao invalida");
 	}
 
 }

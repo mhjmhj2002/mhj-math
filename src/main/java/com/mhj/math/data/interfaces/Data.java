@@ -1,6 +1,8 @@
 package com.mhj.math.data.interfaces;
 
-public interface Data {
+import java.io.Serializable;
+
+public interface Data extends Serializable {
 	
 	public String getHtml();
 	

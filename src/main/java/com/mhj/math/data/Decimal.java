@@ -6,6 +6,10 @@ import com.mhj.math.data.interfaces.Valor;
 
 public class Decimal implements Valor{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8586997340474974487L;
 	BigDecimal valor;
 
 	public Decimal(BigDecimal valor) {
@@ -39,7 +43,7 @@ public class Decimal implements Valor{
 	}
 
 	public BigDecimal getValorSemSinal() {
-		return new BigDecimal(Math.abs(valor.doubleValue()));
+		return BigDecimal.valueOf(Math.abs(valor.doubleValue()));
 	}
 
 }

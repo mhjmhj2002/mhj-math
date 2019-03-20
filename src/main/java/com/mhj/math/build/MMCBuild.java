@@ -239,7 +239,6 @@ public class MMCBuild extends Build {
 		int qtdeNumeros = mmc.getNumeros().size();
 
 		ValueComposta value = new ValueComposta(MathjaxValue.PT, new Inteiro(qtdeNumeros));
-		values = new ArrayList<>();
 		values.add(value);
 		PropertyComposta property = new PropertyComposta(MathjaxProperty.ROW_SPACING, values);
 		properties.add(property);
@@ -306,9 +305,9 @@ public class MMCBuild extends Build {
 		tag = new TagComposta(MathjaxTag.MTABLE_OPEN, properties);
 		operacao.getRetorno().addAll(MathjaxUtil.montarTagComposta(tag));
 
-		for (MMC mmc : decomposicoes) {
+		for (MMC decomposicao : decomposicoes) {
 			operacao.getRetorno().add(MathjaxTag.MTR_OPEN);
-			for (Inteiro numero : mmc.getNumeros()) {
+			for (Inteiro numero : decomposicao.getNumeros()) {
 				operacao.getRetorno().add(MathjaxTag.MTD_OPEN);
 				operacao.getRetorno().add(MathjaxTag.MN_OPEN);
 				operacao.getRetorno().add(numero);
@@ -317,12 +316,12 @@ public class MMCBuild extends Build {
 			}
 			operacao.getRetorno().add(MathjaxTag.MTD_OPEN);
 			operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-			operacao.getRetorno().add(mmc.getDivisor());
+			operacao.getRetorno().add(decomposicao.getDivisor());
 			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 			operacao.getRetorno().add(MathjaxTag.MTD_CLOSE);
 
-			resultados.add(mmc.getDivisor());
-			resultado = mmc.getResultado();
+			resultados.add(decomposicao.getDivisor());
+			resultado = decomposicao.getResultado();
 
 			operacao.getRetorno().add(MathjaxTag.MTR_CLOSE);
 

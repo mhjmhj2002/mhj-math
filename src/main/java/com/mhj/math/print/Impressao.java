@@ -7,10 +7,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import com.mhj.math.data.interfaces.Data;
-import com.mhj.math.enums.Simbolo;
 import com.mhj.math.enums.HtmlTag;
+import com.mhj.math.enums.Simbolo;
 import com.mhj.math.enums.TagPropertie;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Impressao {
 
 	public void imprimirHTML(String path, String file, List<Data> retorno) {
@@ -27,7 +30,7 @@ public class Impressao {
 				linhasHtml.append(linha.getHtml());
 			}
 
-			System.out.println(linhasHtml.toString());
+			log.info(linhasHtml.toString());
 
 			linhasHtml.append("</div>");
 			linhasHtml.append(HtmlTag.BODY_CLOSE.getTag());
@@ -37,7 +40,7 @@ public class Impressao {
 			saida.print(linhasHtml.toString());
 
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			e.printStackTrace();
+			log.error("Erro de escrita: ", e);
 		} finally {
 			if (saida != null) {
 				saida.close();
@@ -75,13 +78,13 @@ public class Impressao {
 				linhasTexto.append(linha.getTexto());
 			}
 
-			System.out.println(linhasTexto.toString());
+			log.info(linhasTexto.toString());
 
 			saida = new PrintWriter(arquivo, "UTF-8");
 			saida.print(linhasTexto.toString());
 
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			e.printStackTrace();
+			log.error("Erro de escrita: ", e);
 		} finally {
 			if (saida != null) {
 				saida.close();
@@ -97,7 +100,7 @@ public class Impressao {
 			linhasHtml.append(linha.getHtml());
 		}
 
-		System.out.println(linhasHtml.toString());
+		log.info(linhasHtml.toString());
 
 		linhasHtml.append("</div>");
 

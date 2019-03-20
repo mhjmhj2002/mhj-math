@@ -25,8 +25,8 @@ import com.mhj.math.exception.BusinessException;
 import com.mhj.math.operacao.EquacaoGrau2;
 import com.mhj.math.operacao.Operacao;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { UnitTestContext.class })
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = { UnitTestContext.class })
 public class EquacaoControllerTest {
 
 	private RedirectAttributesModelMap redirectAttributes;
@@ -34,7 +34,7 @@ public class EquacaoControllerTest {
 	private EquacaoController equacaoController;
 	private EquacaoGrau2Build equacaoGrau2Build;
 
-	@Before
+	//@Before
 	public void setUp() {
 		redirectAttributes = new RedirectAttributesModelMap();
 		mockRequest = new MockHttpServletRequest("POST", "/math/equacao");
@@ -52,7 +52,7 @@ public class EquacaoControllerTest {
 		ReflectionTestUtils.setField(equacaoController, "equacaoGrau2Build", equacaoGrau2Build);
 	}
 
-	@Test
+	//@Test
 	public void calcularOk() {
 		EquacaoGrau2 equacaoGrau2 = EquacaoGrau2Builder.create().getEquacaoOk();
 		BindingResult result = bindAndValidate(mockRequest, equacaoGrau2);

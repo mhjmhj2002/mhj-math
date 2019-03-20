@@ -33,14 +33,12 @@ public class PotenciaSomaBuild extends PotenciaBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void exibirPotencias(List<Potenciacao> potencias) {

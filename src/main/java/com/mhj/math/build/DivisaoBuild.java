@@ -3,7 +3,7 @@ package com.mhj.math.build;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 
-public class DivisaoBuild extends OperacaoBasicaBuild {
+public abstract class DivisaoBuild extends OperacaoBasicaBuild {
 	
 	public DivisaoBuild() {
 		super();

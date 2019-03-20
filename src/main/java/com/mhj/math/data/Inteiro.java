@@ -4,6 +4,10 @@ import com.mhj.math.data.interfaces.Valor;
 
 public class Inteiro implements Valor, Comparable<Inteiro>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5299122804527888256L;
 	Integer valor;
 
 	public Inteiro(Integer valor) {

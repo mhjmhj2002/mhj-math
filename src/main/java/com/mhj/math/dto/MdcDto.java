@@ -7,11 +7,11 @@ public class MdcDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	List<Integer> numeros;
+	private List<Integer> numeros;
 	
-	Integer numero1;
+	private Integer numero1;
 	
-	Integer numero2;
+	private Integer numero2;
 
 	public List<Integer> getNumeros() {
 		return numeros;

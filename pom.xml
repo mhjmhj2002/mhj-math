@@ -12,8 +12,9 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.1.0.RELEASE</spring.version>		
+		<spring.version>4.3.0.RELEASE</spring.version>		
         <jackson.version>1.9.9</jackson.version>
+		<org.projectlombok.version>1.18.0</org.projectlombok.version>
 	</properties>
 	<dependencies>
 	
@@ -103,6 +104,13 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${org.projectlombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- configuracao jpa e driver -->

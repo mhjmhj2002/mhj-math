@@ -155,16 +155,6 @@ public class FracaoSimplificacaoBuild extends FracaoBuild {
 		this.fracao = fracao;
 	}
 
-//	private void carregarMmc() {
-//		mmcBuild.setLocale(locale);
-//		mmcBuild.setOperacao(operacao);
-//		List<Inteiro> denominadores = new ArrayList<>();
-//		denominadores.add(fracao.getNumerador());
-//		denominadores.add(fracao.getDenominador());
-//		MMC mmc = new MMC(denominadores, new Inteiro(1), true);
-//		mmcBuild.setMmc(mmc);
-//	}
-
 	private void carregarMdc() {
 		mdcBuild.setLocale(locale);
 		mdcBuild.setOperacao(operacao);

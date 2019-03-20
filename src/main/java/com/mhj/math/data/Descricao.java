@@ -4,6 +4,10 @@ import com.mhj.math.data.interfaces.Info;
 
 public class Descricao implements Info {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 320338538072567068L;
 	String html;
 
 	public Descricao(String descricao) {

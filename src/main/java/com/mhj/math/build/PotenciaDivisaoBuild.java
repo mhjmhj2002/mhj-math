@@ -18,7 +18,7 @@ public class PotenciaDivisaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException, RegraException {
-
+		throw new UnsupportedOperationException("Operacao invalida");
 	}
 
 	@Override
@@ -33,13 +33,13 @@ public class PotenciaDivisaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Operacao invalida");
 
 	}
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
-		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Operacao invalida");
 
 	}
 

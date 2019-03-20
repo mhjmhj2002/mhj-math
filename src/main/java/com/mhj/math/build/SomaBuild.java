@@ -31,6 +31,7 @@ public class SomaBuild extends OperacaoBasicaBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
+		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
