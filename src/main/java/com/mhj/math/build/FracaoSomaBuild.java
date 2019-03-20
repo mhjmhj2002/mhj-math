@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.mhj.math.controllers.EquacaoController;
 import com.mhj.math.data.Descricao;
 import com.mhj.math.data.Inteiro;
 import com.mhj.math.enums.LineSeparator;
