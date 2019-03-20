@@ -87,11 +87,24 @@ public abstract class FracaoBuild extends Build{
 		operacao.getRetorno().add(MathjaxTag.MFRAC_OPEN);
 	
 		operacao.getRetorno().add(MathjaxTag.MROW_OPEN);
-		operacao.getRetorno().add(MathjaxTag.MN_OPEN);
-		if (addNumerador) {
-			operacao.getRetorno().add(fracao.getNumerador().getValorSemSinal());
+		if (fracao.getPotencia() != null && (fracao.getPotencia().getValor() > 1 || fracao.getPotencia().getValor() < 1) ) {
+			operacao.getRetorno().add(MathjaxTag.MSUP_OPEN);
+			if (addNumerador) {
+				operacao.getRetorno().add(MathjaxTag.MI_OPEN);
+				operacao.getRetorno().add(fracao.getNumerador().getValorSemSinal());
+				operacao.getRetorno().add(MathjaxTag.MI_CLOSE);
+				operacao.getRetorno().add(MathjaxTag.MI_OPEN);
+				operacao.getRetorno().add(fracao.getPotencia());
+				operacao.getRetorno().add(MathjaxTag.MI_CLOSE);
+			}
+			operacao.getRetorno().add(MathjaxTag.MSUP_CLOSE);
+		} else {
+			operacao.getRetorno().add(MathjaxTag.MN_OPEN);
+			if (addNumerador) {
+				operacao.getRetorno().add(fracao.getNumerador().getValorSemSinal());
+			}
+			operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 		}
-		operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 		operacao.getRetorno().add(MathjaxTag.MROW_CLOSE);
 		
 		operacao.getRetorno().add(MathjaxTag.MROW_OPEN);

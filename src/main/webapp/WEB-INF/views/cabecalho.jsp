@@ -79,7 +79,7 @@
 								<li class="dropdown-submenu">
 									<a class="dropdown-item" href="#">8 Ano</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="${mathPath}/potencia/soma">Frações Soma</a></li>
+										<li><a class="dropdown-item" href="${mathPath}/potencia/soma">Potencia Soma</a></li>
 									</ul>
 								</li>
 								<li class="dropdown-submenu">

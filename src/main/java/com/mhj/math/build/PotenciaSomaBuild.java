@@ -23,7 +23,7 @@ public class PotenciaSomaBuild extends PotenciaBuild {
 
 	@Override
 	protected void titulo() throws BusinessException {
-		operacao.getRetorno().add(new Descricao(messageSource.getMessage("FracaoSomaBuild.titulo.1", null, locale)));
+		operacao.getRetorno().add(new Descricao(messageSource.getMessage("PotenciaSomaBuild.titulo.1", null, locale)));
 
 		exibirPotencias(potencias);
 
@@ -33,7 +33,7 @@ public class PotenciaSomaBuild extends PotenciaBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		throw new UnsupportedOperationException("Operacao nao permitida");
+		validarPotenciaNegativa();
 	}
 
 	@Override

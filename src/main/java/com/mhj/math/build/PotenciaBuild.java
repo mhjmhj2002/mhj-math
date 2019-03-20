@@ -49,5 +49,9 @@ public abstract class PotenciaBuild extends Build {
 		operacao.getRetorno().add(MathjaxTag.MN_CLOSE);
 		operacao.getRetorno().add(MathjaxTag.MSUP_CLOSE);
 	}
+	
+	protected void validarPotenciaNegativa() {
+		
+	}
 
 }
