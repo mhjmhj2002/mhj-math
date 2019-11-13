@@ -235,7 +235,7 @@ public class FracaoSomaBuild extends FracaoBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException {
-		throw new UnsupportedOperationException("Operacao nao permitida");
+//		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	private void validarNumeradorZerado(Fracao fracao) throws RegraException {

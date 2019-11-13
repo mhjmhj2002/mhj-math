@@ -19,7 +19,7 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void validarParametros() throws BusinessException, RegraException {
-		throw new UnsupportedOperationException("Operacao nao permitida");
+//		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
