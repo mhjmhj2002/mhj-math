@@ -37,7 +37,7 @@ public class EquacaoGrau2Build extends Build{
 
 	@Override
 	protected void validarParametros() throws BusinessException, RegraException {
-		throw new UnsupportedOperationException("Operacao nao permitida");
+//		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class EquacaoGrau2Build extends Build{
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		throw new UnsupportedOperationException("Operacao nao permitida");
+//		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
 	@Override
