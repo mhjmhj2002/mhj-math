@@ -42,6 +42,13 @@
 							<label>&#x97;&#x97;&#x97;&#x97;</label>
 							<input name="denominadores" type="number" min="1" max="999999" class="form-control input-xs" value="2"/>
 						</div>
+						<div style="padding-left: 5px">
+							<select name="potencias">
+								<c:forEach items="${potenciaList}" var="category">
+       								<option value="${potencia.id}">${potencia.value}</option>
+    							</c:forEach>
+							</select>		
+						</div>
 						<div style="padding-left: 20px">
 							<select name="sinais">
 								<option value="+" label="+" selected="selected" ></option>
@@ -52,6 +59,13 @@
 							<input name="numeradores" type="number" min="1" max="999999" class="form-control input-xs" value="1"/> 							
 							<label>&#x97;&#x97;&#x97;&#x97;</label>
 							<input name="denominadores" type="number" min="1" max="999999" class="form-control input-xs" value="2"/>
+						</div>						
+						<div style="padding-left: 5px">
+							<select name="potencias">
+								<c:forEach items="${potenciaList}" var="category">
+       								<option value="${potencia.id}">${potencia.value}</option>
+    							</c:forEach>
+							</select>				
 						</div>
 					</div>											
 					

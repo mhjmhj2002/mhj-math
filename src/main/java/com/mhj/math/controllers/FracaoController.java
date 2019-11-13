@@ -24,6 +24,7 @@ import com.mhj.math.data.Inteiro;
 import com.mhj.math.dto.FracaoDto;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
+import com.mhj.math.models.Potencia;
 import com.mhj.math.operacao.Fracao;
 import com.mhj.math.operacao.Operacao;
 import com.mhj.math.print.Impressao;
@@ -54,6 +55,7 @@ public class FracaoController {
 	@GetMapping( name="soma", value="soma")
 	public ModelAndView soma(FracaoDto fracao) {
 		ModelAndView modelAndView = new ModelAndView("math/ef2/6ano/fracao_soma");
+		modelAndView.addObject("potenciaList", addPotenciaList());
 
 		return modelAndView;
 	}
@@ -233,6 +235,10 @@ public class FracaoController {
 		modelAndView.addObject("linha", Impressao.getHTML(operacao.getRetorno()));
 
 		return modelAndView;
+	}
+
+	private List<Potencia> addPotenciaList() {
+		return Potencia.getPotenciaList();
 	}
 
 }
