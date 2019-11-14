@@ -84,5 +84,4 @@ public abstract class Build {
 		operacao.getRetorno().add(OperacaoUtil.getSinalNumero(numero));
 		operacao.getRetorno().add(MathjaxTag.MO_CLOSE);
 	}
-
 }

@@ -48,24 +48,24 @@ public class PotenciaController {
 	}
 
 	@PostMapping( name = "calcular_ss_potencia", value="calcular_ss_potencia")
-	public ModelAndView calcularSoma(@RequestParam("bases") List<Integer> bases, @RequestParam("expoentes") List<Integer> expoentes, @RequestParam("sinais") List<String> sinais, Locale locale)
+	public ModelAndView calcularSoma(@RequestParam("bases") List<Integer> bases, @RequestParam("expoentes") List<Integer> expoentes, @RequestParam("sinaisExpoente") List<String> sinaisExpoente, @RequestParam("sinaisBase") List<String> sinaisBase, Locale locale)
 			throws BusinessException {
 
-		List<Inteiro> nums = new ArrayList<>();
-		List<Inteiro> denoms = new ArrayList<>();
+		List<Inteiro> baseList = new ArrayList<>();
+		List<Inteiro> expList = new ArrayList<>();
 		List<Potenciacao> potencias = new ArrayList<>();
 
-		for (int i = 1; i < bases.size(); i++) {
-			nums.add(new Inteiro(Integer.valueOf(sinais.get(i) + bases.get(i))));
+		for (int i = 1; i < expoentes.size(); i++) {
+			expList.add(new Inteiro(Integer.valueOf(sinaisExpoente.get(i) + expoentes.get(i))));
 		}
 		
-		for (int i = 1; i < expoentes.size(); i++) {
-			denoms.add(new Inteiro(expoentes.get(i)));
+		for (int i = 1; i < bases.size(); i++) {
+			baseList.add(new Inteiro(Integer.valueOf(sinaisBase.get(i) + bases.get(i))));
 		}
 		
 		int pos = 0;
-		for (Inteiro num : nums) {
-			Potenciacao potencia = new Potenciacao(num, denoms.get(pos));
+		for (Inteiro num : baseList) {
+			Potenciacao potencia = new Potenciacao(num, expList.get(pos));
 			potencias.add(potencia);
 			pos++;
 		}

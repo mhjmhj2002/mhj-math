@@ -3,18 +3,16 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<tags:pageTemplate titulo="Produto não encontrado">
+<tags:pageTemplate titulo="Retorno Inesperado">
 
   <section id="index-section" class="container middle">
 	
-	<h2>Erro genérico acontecendo!!!</h2>
-	
-	<!-- 
+	<h2>Retorno Inesperado</h2>	
+	 
 		Mensagem: ${exception.message }
-		<c:forEach items="${exception.stackTrace }" var="stk">
-			${stk}
-		</c:forEach>
-	 -->
+<%-- 		<c:forEach items="${exception.stackTrace }" var="stk"> --%>
+<%-- 			${stk} --%>
+<%-- 		</c:forEach> --%>
     
   </section>
 

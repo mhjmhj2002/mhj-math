@@ -37,18 +37,20 @@
 						<div>
 							<select name="sinaisExpoente">
 								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
 							</select>
 						</div>							
 						<div style="padding-left: 5px">
-							<input name="expoentes" type="number" min="0" max="999999" class="form-control input-xs" value="2"/> 							
+							<input name="expoentes" type="number" min="1" max="999999" class="form-control input-xs" value="2"/> 							
 						</div>							
 						<div>
 							<select name="sinaisExpoente">
 								<option value="+" label="+" selected="selected" ></option>
+								<option value="-" label="-"/>
 							</select>
 						</div>							
 						<div style="padding-left: 5px">
-							<input name="expoentes" type="number" min="0" max="999999" class="form-control input-xs" value="3"/>
+							<input name="expoentes" type="number" min="1" max="999999" class="form-control input-xs" value="3"/>
 						</div>						
 					</div>	
 				
@@ -123,7 +125,7 @@
 			element.removeChild(element.lastChild);
 		}
 		
-		function addSinal(name, addNegativo){
+		function addSinal(name){
 			var divSinal = document.createElement("div");
 			var sinal = document.createElement("select");
 			sinal.setAttribute("name", name);
@@ -132,21 +134,19 @@
 			option.setAttribute("label", "+");
 			option.setAttribute("selected", "selected");
 			sinal.appendChild(option);
-			if(addNegativo){
-				option = document.createElement("option");
-				option.setAttribute("value", "-");
-				option.setAttribute("label", "-");
-				sinal.appendChild(option);
-			}
+			option = document.createElement("option");
+			option.setAttribute("value", "-");
+			option.setAttribute("label", "-");
+			sinal.appendChild(option);
 			divSinal.appendChild(sinal);
 			return divSinal;
 		}
 		
-		function addInput(name, min){
+		function addInput(name){
 			var input = document.createElement("input");
 			input.setAttribute("name", name);
 			input.setAttribute("type", "number");
-			input.setAttribute("min", min);
+			input.setAttribute("min", "1");
 			input.setAttribute("max", "9999");
 			input.setAttribute("class", "form-control input-xs");
 			input.setAttribute("value", "1");
@@ -154,13 +154,13 @@
 		}
 		
 		function addExpoente(divExpoente) {
-			divExpoente.appendChild(addSinal("sinaisExpoente", false));
-			divExpoente.appendChild(addInput("expoentes", 0));
+			divExpoente.appendChild(addSinal("sinaisExpoente"));
+			divExpoente.appendChild(addInput("expoentes"));
 		}
 		
 		function addBase(divBase) {
-			divBase.appendChild(addSinal("sinaisBase", true));
-			divBase.appendChild(addInput("bases", 1));
+			divBase.appendChild(addSinal("sinaisBase"));
+			divBase.appendChild(addInput("bases"));
 		}
 	</script>
 

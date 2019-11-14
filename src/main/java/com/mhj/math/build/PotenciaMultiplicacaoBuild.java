@@ -11,7 +11,6 @@ import com.mhj.math.enums.LineSeparator;
 import com.mhj.math.exception.BusinessException;
 import com.mhj.math.exception.RegraException;
 import com.mhj.math.operacao.Potenciacao;
-import com.mhj.math.util.OperacaoUtil;
 
 @Component
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
@@ -36,8 +35,6 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 	protected void regras() throws BusinessException, RegraException {
 		//a^0 = 1
 		validarExpoenteZero();
-		ordenarExpoentesIguais();
-		ordenarBasesIguais();
 		//a^1 = a
 		validarExpoenteUm();
 		//a^-x = 1/a^x => 2^-3 = 1/2^3 = 1/8
@@ -56,6 +53,8 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void resolucao() throws BusinessException, RegraException {
+		ordenarExpoentesIguais();
+		ordenarBasesIguais();
 		throw new UnsupportedOperationException("Operacao nao permitida");
 	}
 
@@ -94,23 +93,6 @@ public class PotenciaMultiplicacaoBuild extends PotenciaBuild {
 
 	private void validarMesmaBase() {
 		throw new UnsupportedOperationException("Operacao nao permitida");
-	}
-
-	private void validarExpoenteNegativo() {
-		throw new UnsupportedOperationException("Operacao nao permitida");
-	}
-
-	private void validarExpoenteUm() {
-		throw new UnsupportedOperationException("Operacao nao permitida");
-	}
-
-	private void validarExpoenteZero() throws RegraException {
-		for (Potenciacao potenciacao : potencias) {
-			if (OperacaoUtil.validarValor(potenciacao.getExpoente(), 0)) {
-				//multiplicacao sera zero
-				throw new RegraException();
-			}
-		}
 	}
 
 	private void ordenarBasesIguais() {

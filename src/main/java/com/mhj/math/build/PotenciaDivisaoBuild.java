@@ -33,7 +33,8 @@ public class PotenciaDivisaoBuild extends PotenciaBuild {
 
 	@Override
 	protected void regras() throws BusinessException, RegraException {
-		throw new UnsupportedOperationException("Operacao invalida");
+		validarExpoenteIgual();
+		validarBaseIgual();
 
 	}
 
@@ -62,6 +63,16 @@ public class PotenciaDivisaoBuild extends PotenciaBuild {
 
 		fechaMath();
 
+	}
+
+	private void validarBaseIgual() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void validarExpoenteIgual() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
